@@ -5,7 +5,7 @@
      <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h2>Buku Tamu Digital</h2>
+    <h2>Buku Tamu Digital 2025</h2>
      <form action="simpan.php" method="post" enctype="multipart/form-data">
         Nama: <input type="text" name="nama" required><br>
         Instansi: <input type="text" name="instansi"><br>
