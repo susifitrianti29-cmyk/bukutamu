@@ -3,46 +3,19 @@ include 'koneksi.php'; // Pastikan file ini ada dan benar
 
 // Ambil data dari form
 $nama   = $_POST['nama'];
+$instansi = $_POST['instansi'];
 $alamat = $_POST['alamat'];
+$no_hp= $_POST['no_HP'];
+$email = $_POST['email'];
+$keperluan = $_POST['keperluan'];
+$tanggal_kunjungan= $_POST['tanggal_kunjungan'];
 
-// Ambil file upload
-// $foto     = $_FILES['foto']['name'];
-// $foto_tmp = $_FILES['foto']['tmp_name'];
-// $ttd      = $_FILES['ttd_digital']['name'];
-// $ttd_tmp  = $_FILES['ttd_digital']['tmp_name'];
-
-// Cek jika foto dan tanda tangan kosong
-// if (empty($foto) || empty($ttd)) {
-//     echo "<script>
-//         alert('Gagal! Foto dan tanda tangan harus diisi.');
-//         window.location.href='index.php';
-//     </script>";
-//     exit();
-// }
-
-// Buat folder upload kalau belum ada
-// if (!is_dir(_DIR_ . '/uploads')) {
-//     mkdir(_DIR_ . '/uploads');
-// }
-
-// Pindahkan file ke folder uploads
-// move_uploaded_file($foto_tmp, _DIR_ . '/uploads/' . $foto);
-// move_uploaded_file($ttd_tmp, _DIR_ . '/uploads/' . $ttd);
-
-// Simpan nama file untuk database
-// $foto_db = 'uploads/' . $foto;
-// $ttd_db  = 'uploads/' . $ttd;
 
 // SQL untuk menyimpan data
-$sql = "INSERT INTO tamu (nama, alamat, foto, ttd) VALUES (?, ?, ?, ?)";
+$sql = "INSERT INTO tamu (nama, instansi, alamat, no_hp, email, keperluan, tanggal_kunjungan) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-$stmt = mysqli_prepare($koneksi, $sql);
-if (mysqli_stmt_execute($stmt)) {
-    echo "Data berhasil disimpan.";
-} else 
-    echo "Gagal menyimpan data: " . mysqli_error($koneksi);
 
-mysqli_stmt_bind_param($stmt, "ssss", $nama, $alamat, $foto_db, $ttd_db);
+mysqli_stmt_bind_param($stmt, "sssssss", $nama, $instansi, $alamat, $no_hp, $email, $keperluan, $tanggal_kunjungan);
 $exec = mysqli_stmt_execute($stmt);
 
 if ($exec) {
