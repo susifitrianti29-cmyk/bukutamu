@@ -1,6 +1,13 @@
 <?php
 include 'koneksi.php'; // Pastikan file ini ada dan benar
 
+<div class="header-box">
+  <div class="header-text">
+    <center><h1>BUKU TAMU</h1></center>
+   <center> <p>DINAS KOMUNIKASI DAN INFORMATIKA<br>KABUPATEN BELITUNG</p></center>
+  </div>
+</div>
+    
 // Ambil data dari form
 $nama   = $_POST['nama'];
 $instansi = $_POST['instansi'];
