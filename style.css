@@ -1,3 +1,37 @@
+/* ===== HEADER BOX ===== */
+.header-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  background-color: #003366; /* biru tua */
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* ===== LOGO ===== */
+.header-box .logo {
+  width: 60px;
+  height: auto;
+}
+
+/* ===== TEKS ===== */
+.header-text h1 {
+  font-size: 24px;
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.header-text p {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.3;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #d89595;
