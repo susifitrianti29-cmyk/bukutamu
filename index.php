@@ -6,10 +6,9 @@
 </head>
 <body>
     <div class="header-box">
-  <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri).png" alt="Logo kabupaten belitung" class="logo">
   <div class="header-text">
-    <h1>BUKU TAMU</h1>
-    <p>DINAS KOMUNIKASI DAN INFORMATIKA<br>KABUPATEN BELITUNG</p>
+    <center><h1>BUKU TAMU</h1></center>
+   <center> <p>DINAS KOMUNIKASI DAN INFORMATIKA<br>KABUPATEN BELITUNG</p></center>
   </div>
 </div>
     <h2>Buku Tamu Digital 2025</h2>
