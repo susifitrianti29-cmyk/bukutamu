@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="header-box">
-  <img src="logo-belitung.png" alt="Logo Belitung" class="logo">
+  <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri).png" alt="Logo Kabupaten Belitung (Maju Terus Mawas Diri)" class="logo">
   <div class="header-text">
     <h1>BUKU TAMU</h1>
     <p>DINAS KOMUNIKASI DAN INFORMATIKA<br>KABUPATEN BELITUNG</p>
