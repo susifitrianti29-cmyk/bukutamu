@@ -5,6 +5,13 @@
      <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <div class="header-box">
+  <img src="logo-belitung.png" alt="Logo Belitung" class="logo">
+  <div class="header-text">
+    <h1>BUKU TAMU</h1>
+    <p>DINAS KOMUNIKASI DAN INFORMATIKA<br>KABUPATEN BELITUNG</p>
+  </div>
+</div>
     <h2>Buku Tamu Digital 2025</h2>
      <form action="simpan.php" method="post" enctype="multipart/form-data">
         Nama: <input type="text" name="nama" required><br>
