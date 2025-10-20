@@ -25,5 +25,9 @@ if ($exec) {
 }
 
 mysqli_stmt_close($stmt);
+} else {
+    echo "❌ Gagal mempersiapkan statement: " . mysqli_error($koneksi);
+}
+
 mysqli_close($koneksi);
 ?>
