@@ -14,7 +14,7 @@
 
 /* ===== LOGO ===== */
 .header-box .logo {
-  width: 40px;
+  width: 25px;
   height: auto;
 }
 
@@ -34,7 +34,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #d89595;
+    background-color: #4682B4;
     padding: 20px;
 }
 
