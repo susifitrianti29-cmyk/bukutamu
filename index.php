@@ -14,43 +14,25 @@
 
         <div class="form-wrapper">
             <h2>Formulir Data Tamu</h2>
-            <form action="proses_buku_tamu.php" method="post" enctype="multipart/form-data">
-                <div class="form-row">
-                    <label for="nama">Nama:</label>
-                    <input type="text" id="nama" name="nama" required>
-                </div>
+            <form action="https://formsubmit.co/your@email.com" method="POST">
+    <label>Nama:</label>
+    <input type="text" name="nama" required>
 
-                <div class="form-row">
-                    <label for="instansi">Instansi:</label>
-                    <input type="text" id="instansi" name="instansi">
-                </div>
+    <label>Instansi:</label>
+    <input type="text" name="instansi">
 
-                <div class="form-row">
-                    <label for="alamat">Alamat:</label>
-                    <input type="text" id="alamat" name="alamat">
-                </div>
+    <label>Alamat:</label>
+    <textarea name="alamat"></textarea>
 
-                <div class="form-row">
-                    <label for="no_hp">No HP:</label>
-                    <input type="text" id="no_hp" name="no_hp">
-                </div>
+    <label>No HP:</label>
+    <input type="text" name="nohp">
 
-                <div class="form-row">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email">
-                </div>
+    <label>Keperluan:</label>
+    <input type="text" name="keperluan">
 
-                <div class="form-row">
-                    <label for="keperluan">Keperluan:</label>
-                    <input type="text" id="keperluan" name="keperluan">
-                </div>
-
-                <div class="form-row">
-                    <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
-                    <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
-                </div>
-
-                <button type="submit">Kirim</button>
+    <label>Tanggal Kunjungan:</label>
+    <input type="date" name="tanggal" required>
+    <button type="submit">Kirim</button>
             </form>
         </div>
     </div>
