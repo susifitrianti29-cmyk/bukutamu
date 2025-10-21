@@ -7,14 +7,16 @@
 </head>
 <body>
     <div class="container">
-        <header>
-           <center> <h1>Buku Tamu Digital</h1></center>
-           <center><p>DINAS KOMUNIKASI DAN INFORMATIKA KABUPATEN BELITUNG</p></center> 
+        <header class="header-box">
+            <div class="header-text">
+                <h1>Buku Tamu Digital</h1>
+                <p>DINAS KOMUNIKASI DAN INFORMATIKA KABUPATEN BELITUNG</p>
+            </div>
         </header>
 
-       <center> <div class="form-wrapper"></center>
+        <div class="form-wrapper">
             <h2>Formulir Data Tamu</h2>
-            <form action="proses_buku_tamu.php" method="post" enctype="multipart/form-data">
+            <form action="proses_buku_tamu.php" method="post">
                 <div class="form-row">
                     <label for="nama">Nama:</label>
                     <input type="text" id="nama" name="nama" required>
@@ -51,7 +53,6 @@
                 </div>
 
                 <button type="submit">Kirim</button>
-            
             </form>
         </div>
     </div>
