@@ -5,17 +5,13 @@
      <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-    <div class="header-box">
-  <div class="header-text">
     <center><h1>BUKU TAMU</h1></center>
    <center> <p>DINAS KOMUNIKASI DAN INFORMATIKA<br>KABUPATEN BELITUNG</p></center>
   </div>
 </div>
-        </div>
-    </div>
     <h2>Buku Tamu Digital 2025</h2>
+     <div class="container">
+        <div class="header">
      <form action="simpan.php" method="post" enctype="multipart/form-data">
         Nama: <input type="text" name="nama" required><br>
         Instansi: <input type="text" name="instansi"><br>
@@ -28,5 +24,7 @@
         Foto (upload gambar): <input type="file" name="foto" accept="image/*"><br> -->
         <input type="submit" value="Kirim">
     </form>
+        </div>
+    </div>         
 </body>
 </html>
