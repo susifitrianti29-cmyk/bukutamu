@@ -7,6 +7,10 @@
 </head>
 <body>
     <div class="container">
+        <div class="header-box">
+    <h1>Buku Tamu Digital</h1>
+    <p>Dinas Komunikasi dan Informatika</p>
+</div>
         <div class="form-wrapper">
             <h2>Formulir Data Tamu</h2>
             <form action="proses_buku_tamu.php" method="post">
