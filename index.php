@@ -29,6 +29,13 @@
         Foto (upload gambar): <input type="file" name="foto" accept="image/*"><br> -->
         <input type="submit" value="Kirim">
     </form>
-        </div>
+    </div>
+     </div>
+    </div>
+     </div>
+    </div>
+    </div>
+   </div>
+     </div>
 </body>
 </html>
