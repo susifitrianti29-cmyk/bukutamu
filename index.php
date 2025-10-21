@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="container">
+    <center><div class="container"></center>
         <header>
             <h1>Buku Tamu Digital</h1>
             <p>DINAS KOMUNIKASI DAN INFORMATIKA KABUPATEN BELITUNG</p>
         </header>
 
-        <div class="form-wrapper">
+       <center> <div class="form-wrapper"></center>
             <h2>Formulir Data Tamu</h2>
             <form action="proses_buku_tamu.php" method="post" enctype="multipart/form-data">
                 <div class="form-row">
