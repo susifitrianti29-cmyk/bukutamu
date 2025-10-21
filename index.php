@@ -15,7 +15,7 @@
         </header>
 
         <div class="form-wrapper">
-            <h2>Formulir Data Tamu</h2>
+            <h2>Formulir Data Tamu 2025</h2>
             <form action="proses_buku_tamu.php" method="post">
                 <div class="form-row">
                     <label for="nama">Nama:</label>
