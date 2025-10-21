@@ -8,8 +8,8 @@
 <body>
     <center><div class="container"></center>
         <header>
-            <h1>Buku Tamu Digital</h1>
-            <p>DINAS KOMUNIKASI DAN INFORMATIKA KABUPATEN BELITUNG</p>
+           <center> <h1>Buku Tamu Digital</h1></center>
+           <center><p>DINAS KOMUNIKASI DAN INFORMATIKA KABUPATEN BELITUNG</p></center> 
         </header>
 
        <center> <div class="form-wrapper"></center>
