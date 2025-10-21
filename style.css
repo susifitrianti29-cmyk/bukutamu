@@ -109,3 +109,22 @@ button:hover {
         width: 70%;
     }
 }
+/* Header Box Styles */
+.header-box {
+    background-color: #007bff; /* Blue */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+.header-box h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.header-box p {
+    font-size: 1.2em;
+    opacity: 0.8;
+}
