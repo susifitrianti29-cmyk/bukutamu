@@ -1,40 +1,30 @@
 <?php
 include 'koneksi.php'; // Pastikan file ini ada dan benar
 
-<div class="header-box">
-  <div class="header-text">
-    <center><h1>BUKU TAMU</h1></center>
-   <center> <p>DINAS KOMUNIKASI DAN INFORMATIKA<br>KABUPATEN BELITUNG</p></center>
-  </div>
-</div>
-    
-// Ambil data dari form
-$nama   = $_POST['nama'];
-$instansi = $_POST['instansi'];
-$alamat = $_POST['alamat'];
-$no_hp= $_POST['no_HP'];
-$email = $_POST['email'];
-$keperluan = $_POST['keperluan'];
-$tanggal_kunjungan= $_POST['tanggal_kunjungan'];
+// Periksa apakah form telah disubmit
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    // Ambil data dari form
+    $nama   = $_POST['nama'];
+    $instansi = $_POST['instansi'];
+    $alamat = $_POST['alamat'];
+    $no_hp  = $_POST['no_hp'];
+    $email  = $_POST['email'];
+    $keperluan = $_POST['keperluan'];
+    $tanggal_kunjungan = $_POST['tanggal_kunjungan'];
 
-// SQL untuk menyimpan data
-$sql = "INSERT INTO tamu (nama, instansi, alamat, no_hp, email, keperluan, tanggal_kunjungan) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    // Gunakan prepared statements untuk keamanan
+    $sql = "INSERT INTO tamu (nama, instansi, alamat, no_hp, email, keperluan, tanggal_kunjungan) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+    // Persiapkan statement
+    $stmt = mysqli_prepare($koneksi, $sql);
 
-mysqli_stmt_bind_param($stmt, "sssssss", $nama, $instansi, $alamat, $no_hp, $email, $keperluan, $tanggal_kunjungan);
-$exec = mysqli_stmt_execute($stmt);
+    if ($stmt) {
+        // Bind parameter ke statement
+        mysqli_stmt_bind_param($stmt, "sssssss", $nama, $instansi, $alamat, $no_hp, $email, $keperluan, $tanggal_kunjungan);
 
-if ($exec) {
-    echo "<h3 style='color:green;'>✅ Data berhasil disimpan!</h3>";
-} else {
-    echo "<h3 style='color:red;'>❌ Gagal menyimpan data: " . mysqli_error($koneksi) . "</h3>";
-}
-
-mysqli_stmt_close($stmt);
-} else {
-    echo "❌ Gagal mempersiapkan statement: " . mysqli_error($koneksi);
-}
-
-mysqli_close($koneksi);
-?>
+        // Eksekusi statement
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<h3 style='color:green; text-align:center;'>✅ Data berhasil disimpan!</h3>";
+        } else {
+            echo "<h3 style='color:red; text-align:center;'>❌ Gagal menyimpan data: " . mysqli_
