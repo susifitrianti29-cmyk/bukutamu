@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <center><div class="container"></center>
+    <div class="container">
         <header>
            <center> <h1>Buku Tamu Digital</h1></center>
            <center><p>DINAS KOMUNIKASI DAN INFORMATIKA KABUPATEN BELITUNG</p></center> 
