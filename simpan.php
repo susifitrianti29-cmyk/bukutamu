@@ -27,4 +27,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_stmt_execute($stmt)) {
             echo "<h3 style='color:green; text-align:center;'>✅ Data berhasil disimpan!</h3>";
         } else {
-            echo "<h3 style='color:red; text-align:center;'>❌ Gagal menyimpan data: " . mysqli_
+            echo "<h3 style='color:red; text-align:center;'>❌ Gagal menyimpan data: " . mysqli_error($koneksi) . "</h3>";
+        }
+
+        // Tutup statement
+        mysqli_stmt_close($stmt);
+    } else {
+        echo "<h3 style='color:red; text-align:center;'>❌ Gagal mempersiapkan statement: " . mysqli_error($koneksi) . "</h3>";
+    }
+
+    // Tutup koneksi
+    mysqli_close($koneksi);
+}
+?>
