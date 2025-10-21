@@ -7,15 +7,8 @@
 </head>
 <body>
     <div class="container">
-        <header class="header-box">
-            <div class="header-text">
-                <h1>Buku Tamu Digital</h1>
-                <p>DINAS KOMUNIKASI DAN INFORMATIKA KABUPATEN BELITUNG</p>
-            </div>
-        </header>
-
         <div class="form-wrapper">
-            <h2>Formulir Data Tamu 2025</h2>
+            <h2>Formulir Data Tamu</h2>
             <form action="proses_buku_tamu.php" method="post">
                 <div class="form-row">
                     <label for="nama">Nama:</label>
