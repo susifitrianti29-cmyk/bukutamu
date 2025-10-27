@@ -142,6 +142,36 @@ h2 {
     margin-bottom: 20px;
 }
 
+/* Container Styles */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Box Styles */
+.header-box {
+    background-color: #007bff; /* Blue */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.header-box h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.header-box p {
+    font-size: 1.2em;
+    opacity: 0.8;
+}
+
 /* Table Styles */
 table {
     width: 100%;
@@ -178,6 +208,9 @@ tbody tr:hover {
 a {
     color: #007bff;
     text-decoration: none;
+    display: block; /* Make it a block element */
+    margin-bottom: 10px; /* Add some space below the link */
+    text-align: center; /* Center the link text */
 }
 
 a:hover {
