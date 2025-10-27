@@ -1,17 +1,14 @@
 <?php
-// ====== Konfigurasi koneksi ======
-$host = "localhost";     // Nama server MySQL (default: localhost)
-$user = "root";          // Username MySQL (default: root di XAMPP)
-$pass = "";              // Password MySQL (kosong kalau belum diubah)
-$db   = "bukutamu_db";   // Nama database yang kamu buat di phpMyAdmin
+$host = "localhost";    
+$user = "root";          
+$pass = "";              
+$db   = "bukutamu_db";   
 
-// ====== Membuat koneksi ======
 $conn = mysqli_connect($host, $user, $pass, $db);
 
-// ====== Mengecek koneksi ======
 if (!$conn) {
-    die("Koneksi database gagal: " . mysqli_connect_error());
+    die("❌ Koneksi database gagal: " . mysqli_connect_error());
+} else {
+    echo "✅ Koneksi database berhasil!";
 }
-// Jika berhasil (optional)
-# echo "Koneksi berhasil!";
 ?>
