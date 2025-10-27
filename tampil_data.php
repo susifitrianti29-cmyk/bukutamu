@@ -1,60 +1,50 @@
+<?php
+// Hubungkan ke database utama bukutamu_db
+include 'koneksi.php';
+
+// Ambil data dari tabel buku_tamu
+$result = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
+?>
+
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Data Buku Tamu</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Data Buku Tamu</title>
 </head>
 <body>
-    <div class="container">
-        <div class="header-box">
-            <h1>Data Buku Tamu</h1>
-            <p>Dinas Komunikasi dan Informatika</p>
-        </div>
-        <a href="form_buku_tamu.html">Kembali ke Form</a>
+  <center><h2>Data Buku Tamu</h2></center>
+   <link rel="stylesheet" href="style.css">
+  <a href="index.php">Kembali ke Form</a><br><br>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Instansi</th>
-                    <th>Alamat</th>
-                    <th>No HP</th>
-                    <th>Email</th>
-                    <th>Keperluan</th>
-                    <th>Tanggal Kunjungan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                include 'koneksi.php'; // Pastikan file ini ada dan benar
+  <table border="1" cellpadding="8">
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>Instansi</th>
+      <th>Alamat</th>
+      <th>No HP</th>
+      <th>Email</th>
+      <th>Keperluan</th>
+      <th>Tanggal Kunjungan</th>
+    </tr>
 
-                $sql = "SELECT * FROM tamu";
-                $result = mysqli_query($koneksi, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    $no = 1;
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>" . $no . "</td>";
-                        echo "<td>" . $row["nama"] . "</td>";
-                        echo "<td>" . $row["instansi"] . "</td>";
-                        echo "<td>" . $row["alamat"] . "</td>";
-                        echo "<td>" . $row["no_hp"] . "</td>";
-                        echo "<td>" . $row["email"] . "</td>";
-                        echo "<td>" . $row["keperluan"] . "</td>";
-                        echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
-                        echo "</tr>";
-                        $no++;
-                    }
-                } else {
-                    echo "<tr><td colspan='8'>Tidak ada data.</td></tr>";
-                }
-
-                mysqli_close($koneksi);
-                ?>
-            </tbody>
-        </table>
-    </div>
+    <?php
+    $no = 1;
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo "<tr>
+              <td>{$no}</td>
+              <td>{$row['nama']}</td>
+              <td>{$row['instansi']}</td>
+              <td>{$row['alamat']}</td>
+              <td>{$row['no_hp']}</td>
+              <td>{$row['email']}</td>
+              <td>{$row['keperluan']}</td>
+              <td>{$row['tanggal_kunjungan']}</td>
+            </tr>";
+      $no++;
+    }
+    ?>
+  </table>
 </body>
 </html>
