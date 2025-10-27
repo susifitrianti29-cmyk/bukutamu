@@ -15,8 +15,6 @@ $result = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
 <body>
   <center><h2>Data Buku Tamu</h2></center>
    <link rel="stylesheet" href="style.css">
-  <a href="index.php">Kembali ke Form</a><br><br>
-
   <table border="1" cellpadding="8">
     <tr>
       <th>No</th>
@@ -28,7 +26,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
       <th>Keperluan</th>
       <th>Tanggal Kunjungan</th>
     </tr>
-
+<a href="index.php">Kembali ke Form</a><br><br>
     <?php
     $no = 1;
     while ($row = mysqli_fetch_assoc($result)) {
