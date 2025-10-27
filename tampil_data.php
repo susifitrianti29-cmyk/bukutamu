@@ -13,7 +13,7 @@ $result = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
   <title>Data Buku Tamu</title>
 </head>
 <body>
-  <h2>Data Buku Tamu</h2>
+  <center><h2>Data Buku Tamu</h2></center>
    <link rel="stylesheet" href="style.css">
   <a href="index.php">Kembali ke Form</a><br><br>
 
