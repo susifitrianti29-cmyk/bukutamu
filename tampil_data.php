@@ -11,10 +11,10 @@ $result = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
 <head>
   <meta charset="UTF-8">
   <title>Data Buku Tamu</title>
-   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h2>Data Buku Tamu</h2>
+   <link rel="stylesheet" href="style.css">
   <a href="index.php">Kembali ke Form</a><br><br>
 
   <table border="1" cellpadding="8">
