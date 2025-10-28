@@ -216,3 +216,16 @@ a {
 a:hover {
     text-decoration: underline;
 }
+th, td {
+  width: 150px; /* Lebar kolom 150 pixel */
+}
+th, td {
+  text-align: center; /* Meratakan teks ke tengah */
+}
+th, td {
+  padding: 8px; /* Ruang 8 pixel di sekitar teks */
+}
+table, th, td {
+  border: 1px solid black; /* Garis tepi 1 pixel berwarna hitam */
+  border-collapse: collapse; /* Menggabungkan garis tepi */
+}
