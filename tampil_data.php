@@ -2,7 +2,6 @@
 // Hubungkan ke database utama bukutamu_db
 include 'koneksi.php';
 
-// Ambil data dari tabel buku_tamu
 $result = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
 ?>
 
