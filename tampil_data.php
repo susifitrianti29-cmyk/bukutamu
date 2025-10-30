@@ -12,15 +12,6 @@ include 'koneksi.php';
 </head>
 <body>
 
-<!-- HEADER KOMINFO -->
-<div class="header-kominfo" style="display:flex;align-items:center;gap:15px;margin:20px;">
-  <img src="logo.png" alt="Logo Kominfo" style="width:60px;">
-  <div class="info">
-    <h3 style="margin:0;font-size:20px;">Dinas Komunikasi dan Informatika</h3>
-    <h4 style="margin:0;font-size:16px;">Kabupaten Belitung</h4>
-  </div>
-</div>
-
 <div class="container">
   <h2 class="judul-halaman">Data Buku Tamu</h2>
   <div class="kembali">
