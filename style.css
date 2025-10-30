@@ -172,60 +172,69 @@ h2 {
     opacity: 0.8;
 }
 
-/* Table Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f6fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin-top: 60px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.kembali {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.kembali a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.kembali a:hover {
+  color: #0056b3;
+}
+
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden; /* Hide overflow for rounded corners */
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
 }
 
 th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
 }
 
 th {
-    background-color: #007bff; /* Blue */
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
+  background-color: #007bff;
+  color: white;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-tbody tr:hover {
-    background-color: #e9ecef;
+tr:hover {
+  background-color: #eaf3ff;
 }
 
-/* Link Styles */
-a {
-    color: #007bff;
-    text-decoration: none;
-    display: block; /* Make it a block element */
-    margin-bottom: 10px; /* Add some space below the link */
-    text-align: center; /* Center the link text */
-}
-
-a:hover {
-    text-decoration: underline;
-}
-th, td {
-  width: 150px; /* Lebar kolom 150 pixel */
-}
-th, td {
-  text-align: center; /* Meratakan teks ke tengah */
-}
-th, td {
-  padding: 8px; /* Ruang 8 pixel di sekitar teks */
-}
-table, th, td {
-  border: 1px solid black; /* Garis tepi 1 pixel berwarna hitam */
-  border-collapse: collapse; /* Menggabungkan garis tepi */
-}
