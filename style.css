@@ -237,3 +237,92 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #eaf3ff;
 }
+/* ===== HEADER KOMINFO ===== */
+.header-kominfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 25px;
+  background: #ffffff;
+  border-bottom: 2px solid #e7f0ff;
+  margin-bottom: 20px;
+}
+
+.header-kominfo img {
+  width: 65px;
+}
+
+.header-kominfo h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0a3a8d;
+}
+
+.header-kominfo h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #1a4fb9;
+}
+
+/* ===== PAGE TITLE ===== */
+.judul-halaman {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 5px;
+  font-weight: 700;
+  color: #0a3a8d;
+}
+
+.kembali {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.kembali a {
+  color: #0069d9;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.kembali a:hover {
+  text-decoration: underline;
+}
+
+/* ===== TABLE STYLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background: #0a66c2;
+  color: white;
+  padding: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+td {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #eaeaea;
+}
+
+tr:hover {
+  background: #f6f9ff;
+}
+
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  max-width: 900px;
+  margin: auto;
+}
+
