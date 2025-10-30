@@ -19,20 +19,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     VALUES ('$nama', '$instansi', '$alamat', '$no_hp', '$email', '$keperluan', '$tanggal_kunjungan')";
 
     // Jalankan query
-    if (mysqli_query($conn, $query)) {
+    if (mysqli_query($koneksi, $query)) {
         echo "<script>
                 alert('Data berhasil disimpan!');
                 window.location.href = 'index.php';
               </script>";
     } else {
-        $error = mysqli_error($conn);
+        $error = mysqli_error($koneksi);
         echo "<script>
                 alert('Terjadi kesalahan: $error');
                 window.location.href = 'index.php';
               </script>";
     }
 
-    mysqli_close($conn);
+    mysqli_close($koneksi);
     
 } else {
     echo "Akses tidak diizinkan!";
