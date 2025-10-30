@@ -6,13 +6,13 @@ include 'koneksi.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Ambil data & hindari SQL Injection
-    $nama = mysqli_real_escape_string($conn, $_POST['nama']);
-    $instansi = mysqli_real_escape_string($conn, $_POST['instansi']);
-    $alamat = mysqli_real_escape_string($conn, $_POST['alamat']);
-    $no_hp = mysqli_real_escape_string($conn, $_POST['no_hp']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $keperluan = mysqli_real_escape_string($conn, $_POST['keperluan']);
-    $tanggal_kunjungan = mysqli_real_escape_string($conn, $_POST['tanggal_kunjungan']);
+    $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
+    $instansi = mysqli_real_escape_string($koneksi, $_POST['instansi']);
+    $alamat = mysqli_real_escape_string($koneksi, $_POST['alamat']);
+    $no_hp = mysqli_real_escape_string($koneksi, $_POST['no_hp']);
+    $email = mysqli_real_escape_string($koneksi, $_POST['email']);
+    $keperluan = mysqli_real_escape_string($koneksi, $_POST['keperluan']);
+    $tanggal_kunjungan = mysqli_real_escape_string($koneksi, $_POST['tanggal_kunjungan']);
 
     // Query simpan data
     $query = "INSERT INTO buku_tamu (nama, instansi, alamat, no_hp, email, keperluan, tanggal_kunjungan)
