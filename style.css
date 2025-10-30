@@ -237,4 +237,26 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #eaf3ff;
 }
+.header-kominfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.header-kominfo img {
+  width: 70px;
+}
+
+.header-kominfo .info h3, 
+.header-kominfo .info h4 {
+  margin: 0;
+  color: #003b95;
+}
+
+.judul-halaman {
+  text-align: center;
+  margin-top: 10px;
+}
 
