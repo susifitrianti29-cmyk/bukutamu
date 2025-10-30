@@ -2,20 +2,21 @@
 // Hubungkan ke database
 include 'koneksi.php';
 
-// Cek apakah form dikirim dengan metode POST
+// Cek apakah form dikirim menggunakan metode POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Ambil data dari form
-    $nama = $_POST['nama'];
-    $instansi = $_POST['instansi'];
-    $alamat = $_POST['alamat'];
-    $no_hp = $_POST['no_hp'];
-    $email = $_POST['email'];
-    $keperluan = $_POST['keperluan'];
-    $tanggal_kunjungan = $_POST['tanggal_kunjungan'];
 
-    // Query untuk menyimpan data ke tabel buku_tamu
+    // Ambil data & hindari SQL Injection
+    $nama = mysqli_real_escape_string($conn, $_POST['nama']);
+    $instansi = mysqli_real_escape_string($conn, $_POST['instansi']);
+    $alamat = mysqli_real_escape_string($conn, $_POST['alamat']);
+    $no_hp = mysqli_real_escape_string($conn, $_POST['no_hp']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $keperluan = mysqli_real_escape_string($conn, $_POST['keperluan']);
+    $tanggal_kunjungan = mysqli_real_escape_string($conn, $_POST['tanggal_kunjungan']);
+
+    // Query simpan data
     $query = "INSERT INTO buku_tamu (nama, instansi, alamat, no_hp, email, keperluan, tanggal_kunjungan)
-              VALUES ('$nama', '$instansi', '$alamat', '$no_hp', '$email', '$keperluan', '$tanggal_kunjungan')";
+    VALUES ('$nama', '$instansi', '$alamat', '$no_hp', '$email', '$keperluan', '$tanggal_kunjungan')";
 
     // Jalankan query
     if (mysqli_query($conn, $query)) {
@@ -24,14 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 window.location.href = 'index.php';
               </script>";
     } else {
+        $error = mysqli_error($conn);
         echo "<script>
-                alert('Terjadi kesalahan saat menyimpan data: " . mysqli_error($conn) . "');
+                alert('Terjadi kesalahan: $error');
                 window.location.href = 'index.php';
               </script>";
     }
 
-    // Tutup koneksi
     mysqli_close($conn);
+    
 } else {
     echo "Akses tidak diizinkan!";
 }
