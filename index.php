@@ -17,7 +17,6 @@
     </div>
 </div>
 
-    <div class="container">
         <div class="header-box">
     <h1>Buku Tamu Digital</h1>
     <p>Dinas Komunikasi dan Informatika</p>
