@@ -16,7 +16,7 @@
         <p>Telp: +6271924942 | fax: +6271921386 | Email:  kominfo[at]belitung.go.id</p>
     </div>
 </div>
-        <div class="container">
+        
         <div class="header-box">
     <h1>Buku Tamu Digital</h1>
     <p>Dinas Komunikasi dan Informatika</p>
