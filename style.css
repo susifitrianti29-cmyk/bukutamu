@@ -69,7 +69,6 @@
   justify-content: center;
   width: 100%;         /* biar panjang penuh */
   max-width: 1000px;    /* samakan dengan box biru */
-    text-align: center; 
 }
 
 .header-kominfo img {
@@ -86,4 +85,5 @@
   margin: 2px 0;
   font-size: 0.9rem;
   opacity: 0.95;
+text-align: center;
 }
