@@ -110,7 +110,7 @@ button:hover {
   color: white;
   margin-bottom: 25px;
   justify-content: center;
-  width: 100%;         /* biar panjang penuh */
+  width: 100px;         /* biar panjang penuh */
   max-width: 1000px;    /* samakan dengan box biru */
 }
 
