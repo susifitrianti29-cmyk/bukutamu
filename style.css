@@ -55,7 +55,6 @@
     .form-row textarea {
         width: 260px;      /* ✅ Tetap pendek */
     }
-}
 /* ===== HEADER KOMINFO ===== */
 .header-kominfo {
   display: flex;
@@ -73,19 +72,20 @@
 
 .header-kominfo img {
   width: 70px;
-    text-align: center;
+}
+
+.header-text {
+  text-align: center;  /* ✅ teks jadi ditengah */
 }
 
 .header-text h2 {
   font-size: 1.6rem;
   font-weight: 700;
   margin: 0;
-    text-align: center;
 }
 
 .header-text p {
   margin: 2px 0;
   font-size: 0.9rem;
   opacity: 0.95;
-text-align: center;
 }
