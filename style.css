@@ -3,30 +3,62 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0; /* Warna latar belakang */
+  background-color: #f0f0f0;
 }
 
 /* Container Styles */
 .container {
-  max-width: 600px; /* Lebar maksimum */
-  margin: 20px auto; /* Memusatkan container */
+  max-width: 600px;
+  margin: 20px auto;
   padding: 20px;
-  background-color: #fff; /* Warna latar belakang putih */
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Efek shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Header Styles */
-h1 {
+/* Header Atas Styles */
+.header-atas {
+  background-color: #007bff; /* Warna header atas */
+  color: white;
   text-align: center;
-  color: #333;
-  margin-bottom: 10px;
+  padding: 10px; /* Padding lebih kecil */
+  border-radius: 8px;
 }
 
-p {
+.header-atas img {
+  max-width: 50px; /* Ukuran logo lebih kecil */
+  height: auto;
+  margin-right: 10px; /* Jarak logo dan teks */
+  vertical-align: middle; /* Rata tengah vertikal */
+}
+
+.header-atas h1 {
+  font-size: 1.2em; /* Ukuran font lebih kecil */
+  display: inline-block; /* Agar sejajar dengan logo */
+  vertical-align: middle; /* Rata tengah vertikal */
+  margin: 0; /* Hilangkan margin default */
+}
+
+.header-atas p {
+  font-size: 0.8em; /* Ukuran font lebih kecil */
+  margin: 5px 0; /* Jarak atas dan bawah */
+}
+
+/* Header Box Styles */
+.header-box {
   text-align: center;
-  color: #666;
   margin-bottom: 20px;
+}
+
+.header-box h1 {
+  font-size: 2em; /* Ukuran font lebih besar */
+  font-weight: bold; /* Font weight lebih tebal */
+  margin-bottom: 5px; /* Jarak lebih kecil */
+}
+
+.header-box p {
+  font-size: 1em; /* Ukuran font lebih kecil */
+  color: #666;
 }
 
 /* Form Styles */
@@ -51,10 +83,6 @@ select {
   font-size: 14px;
 }
 
-input[type="date"] {
-  width: 150px; /* Lebar input tanggal */
-}
-
 button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -63,10 +91,12 @@ button {
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  align-self: center; /* Memusatkan tombol */
+  width: 100px; /* Lebar tombol */
 }
 
 button:hover {
-  background-color: #0056b3; /* Warna saat dihover */
+  background-color: #0056b3;
 }
 /* ===== HEADER KOMINFO ===== */
 .header-kominfo {
