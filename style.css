@@ -87,7 +87,7 @@ button:hover {
 }
 
 /* Responsive Design */
-@media (min-width: 768px) {
+@media (min-width: 300px) {
     .container {
         padding: 40px;
     }
