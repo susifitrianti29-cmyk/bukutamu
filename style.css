@@ -1,328 +1,58 @@
-/* General Styles */
-body {
-    font-family: sans-serif;
-    background-color: #e6f7ff; /* Light Blue */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
-.container {
-    background-color: #ffffff; /* White */
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 800px;
-    padding: 30px;
-    box-sizing: border-box;
-}
-
-.form-wrapper {
-    padding: 20px;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
-    font-size: 1.8em;
-}
-
-/* Form Styles */
+/* FORM WRAPPER */
 .form-row {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
 
+/* Label */
 .form-row label {
-    font-size: 1.2em;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: 600;
 }
 
+/* Input dan Textarea */
 .form-row input,
 .form-row textarea {
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 1.1em;
+    font-size: 1em;
+    width: 260px;     /* ✅ Lebih pendek */
+    max-width: 100%;
     box-sizing: border-box;
-    width: 250px;
     transition: border-color 0.3s ease;
 }
 
+/* Textarea height */
+.form-row textarea {
+    height: 120px;  /* ✅ lebih kecil */
+}
+
+/* Hover & Focus effect */
 .form-row input:focus,
 .form-row textarea:focus {
-    border-color: #007bff; /* Highlight on focus */
+    border-color: #007bff;
     outline: none;
 }
 
-.form-row textarea {
-    height: 150px;
-}
-
-/* Button Styles */
-button {
-    background-color: #007bff; /* Blue */
-    color: white;
-    padding: 14px 25px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.2em;
-    display: block;
-    margin: 30px auto 0;
-    width: fit-content;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3; /* Darker Blue */
-}
-
-/* Responsive Design */
-@media (min-width: 300px) {
-    .container {
-        padding: 40px;
-    }
-
+/* RESPONSIVE UNTUK LAYAR LEBAR */
+@media (min-width: 768px) {
     .form-row {
         flex-direction: row;
         align-items: center;
     }
 
     .form-row label {
-        width: 30%;
-        text-align: right;
-        padding-right: 15px;
-        margin-bottom: 0; /* Reset margin for horizontal layout */
+        width: 150px;     /* ✅ Label tetap kiri */
+        margin-bottom: 0;
+        text-align: left;
     }
 
     .form-row input,
     .form-row textarea {
-        width: 70%;
+        width: 260px;      /* ✅ Tetap pendek */
     }
 }
-/* Header Box Styles */
-.header-box {
-    background-color: #007bff; /* Blue */
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-}
-
-.header-box h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
-.header-box p {
-    font-size: 1.2em;
-    opacity: 0.8;
-}
-/* General Styles */
-body {
-    font-family: sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px;
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Container Styles */
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Header Box Styles */
-.header-box {
-    background-color: #007bff; /* Blue */
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-.header-box h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-.header-box p {
-    font-size: 1.2em;
-    opacity: 0.8;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  background-color: #f5f6fa;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin-top: 60px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-}
-
-h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.kembali {
-  text-align: right;
-  margin-bottom: 20px;
-}
-
-.kembali a {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.kembali a:hover {
-  color: #0056b3;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-th, td {
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-}
-
-th {
-  background-color: #007bff;
-  color: white;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #eaf3ff;
-}
-/* ===== HEADER KOMINFO ===== */
-.header-kominfo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 15px 25px;
-  background: #ffffff;
-  border-bottom: 2px solid #e7f0ff;
-  margin-bottom: 20px;
-}
-
-.header-kominfo img {
-  width: 65px;
-}
-
-.header-kominfo h3 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: #0a3a8d;
-}
-
-.header-kominfo h4 {
-  margin: 0;
-  font-size: 16px;
-  color: #1a4fb9;
-}
-
-/* ===== PAGE TITLE ===== */
-.judul-halaman {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 5px;
-  font-weight: 700;
-  color: #0a3a8d;
-}
-
-.kembali {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.kembali a {
-  color: #0069d9;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.kembali a:hover {
-  text-decoration: underline;
-}
-
-/* ===== TABLE STYLE ===== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-th {
-  background: #0a66c2;
-  color: white;
-  padding: 12px;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-
-td {
-  padding: 10px;
-  font-size: 14px;
-  color: #333;
-  border-bottom: 1px solid #eaeaea;
-}
-
-tr:hover {
-  background: #f6f9ff;
-}
-
-.container {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  max-width: 900px;
-  margin: auto;
-}
-
