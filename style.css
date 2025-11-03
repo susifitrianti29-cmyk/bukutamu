@@ -56,3 +56,31 @@
         width: 260px;      /* ✅ Tetap pendek */
     }
 }
+/* ===== HEADER KOMINFO ===== */
+.header-kominfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #007bff; /* Biru senada */
+  padding: 20px 30px;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 25px;
+  justify-content: center;
+}
+
+.header-kominfo img {
+  width: 70px;
+}
+
+.header-text h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header-text p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
