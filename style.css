@@ -99,8 +99,10 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
 /* ===== HEADER KOMINFO ===== */
 .header-kominfo {
+  flex-wrap: wrap; /* biar tidak keluar garis di tampilan HP */
   display: flex;
   align-items: center;
   gap: 20px;
