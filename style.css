@@ -233,11 +233,11 @@ input, textarea {
   display: block;
 }
 input, textarea {
-  width: 200%;
+  width: 110%;
   max-width: 700px;
 }
 button, input[type="submit"] {
-  width: 200%;
+  width: 110%;
   max-width: 700px; /* ukuran tombol mengikuti input */
   padding: 10px;
   margin-top: 10px;
