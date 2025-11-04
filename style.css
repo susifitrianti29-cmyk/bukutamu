@@ -212,14 +212,15 @@ textarea {
     max-height: 120px; /* batas maksimal tinggi */
     resize: vertical; /* bisa diubah secara vertikal */
   }
+
 table {
-  margin: 0 auto; /* Center tabel */
-  text-align: center; /* Center tulisan di dalam tabel */
+  margin: 0 auto; /* tabel berada di tengah */
+}
+input, textarea, select {
+  display: block;
+  margin: 5px auto; /* input berada di tengah */
 }
 
-table td, table th {
-  text-align: center; /* Agar teks dalam kolom rata tengah */
-}
 td {
   text-align: center;
 }
