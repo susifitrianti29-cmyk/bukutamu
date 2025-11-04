@@ -38,6 +38,7 @@ if ($data === false) {
                 <th>EMAIL</th>
                 <th>KEPERLUAN</th>
                 <th>TANGGAL KUNJUNGAN</th>
+                <th>AKSI</th>
               </tr></thead>';
         echo '<tbody>';
         $no = 1;
