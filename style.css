@@ -206,3 +206,13 @@ table th:first-child {
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
+
+textarea {
+    height: 80px;
+    max-height: 120px; /* batas maksimal tinggi */
+    resize: vertical; /* bisa diubah secara vertikal */
+  }
+
+  input[type="text"], input[type="email"] {
+    width: 300px; /* lebar tidak terlalu panjang */
+  }
