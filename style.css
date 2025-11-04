@@ -213,6 +213,6 @@ textarea {
     resize: vertical; /* bisa diubah secara vertikal */
   }
 
-  input[type="text"], input[type="email"] {
+  input[type="text"], input[type="email"], input[type="date"] {
     width: 500px; /* lebar tidak terlalu panjang */
   }
