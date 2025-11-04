@@ -214,5 +214,5 @@ textarea {
   }
 
   input[type="text"], input[type="email"] {
-    width: 300px; /* lebar tidak terlalu panjang */
+    width: 500px; /* lebar tidak terlalu panjang */
   }
