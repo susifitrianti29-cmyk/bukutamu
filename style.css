@@ -227,14 +227,14 @@ label {
 
 input, textarea {
   width: 200%;
-  max-width: 800px;
+  max-width: 900px;
   margin: 5px auto;
   padding: 8px;
   display: block;
 }
 input, textarea {
   width: 200%;
-  max-width: 800px;
+  max-width: 900px;
 }
 button, input[type="submit"] {
   width: 100%;
