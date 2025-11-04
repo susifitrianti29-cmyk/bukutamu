@@ -217,13 +217,6 @@ textarea {
     width: 500px; /* lebar tidak terlalu panjang */
   }
 table {
-  margin: 0 auto; /* tabel berada di tengah */
-}
-input, textarea, select {
-  display: block;
-  margin: 5px auto; /* input berada di tengah */
-}
-table {
   margin: 0 auto; /* Center tabel */
   text-align: center; /* Center tulisan di dalam tabel */
 }
