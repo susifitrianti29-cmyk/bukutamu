@@ -216,3 +216,10 @@ textarea {
   input[type="text"], input[type="email"], input[type="date"] {
     width: 500px; /* lebar tidak terlalu panjang */
   }
+table {
+  margin: 0 auto; /* tabel berada di tengah */
+}
+input, textarea, select {
+  display: block;
+  margin: 5px auto; /* input berada di tengah */
+}
