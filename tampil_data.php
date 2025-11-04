@@ -54,12 +54,6 @@ if ($data === false) {
                     <td>".htmlspecialchars($row['keperluan'])."</td>
                     <td>".htmlspecialchars($row['tanggal_kunjungan'])."</td>
                   </tr>";
-          <td>
-    <a href="edit.php?id=<?php echo $data['id']; ?>">Edit</a> | 
-    <a href="hapus.php?id=<?php echo $data['id']; ?>" 
-       onclick="return confirm('Yakin mau hapus data ini?');">
-       Hapus
-            </td>
             $no++;
         }
         echo '</tbody></table>';
