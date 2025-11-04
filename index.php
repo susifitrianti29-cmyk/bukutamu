@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-    <div class="header-kominfo">
+    <div class="header-kabupaten belitung">
     <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri).png" alt="Logo Kabupaten Belitung">
     <div class="header-text">
        <h2>Dinas Komunikasi dan Informatika</h2>
