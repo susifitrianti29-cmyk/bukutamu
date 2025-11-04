@@ -9,11 +9,11 @@
     <div class="container">
     <div class="header-atas">
     <img src="cropped-cropped-cropped-logo-kominfo-1-300x300.png" alt="Logo Kominfo">
-    </div>
     <div class="header-text">
        <h2>Dinas Komunikasi dan Informatika</h2>
        <p>Jalan Anwar Komp Marakas Tanjungpandan RT 025 RW 010 - 33412</p>
         <p>Telp: +6271924942 | fax: +6271921386 | Email:  kominfo[at]belitung.go.id</p>
+    </div>
     </div>
         
         <div class="header-box">
