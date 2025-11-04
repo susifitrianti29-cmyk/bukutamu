@@ -22,10 +22,11 @@
     <p>Dinas Komunikasi dan Informatika</p>
 </div>
         </div>
-        <div class="form-wrapper">
+        
             <h2>Formulir Data Tamu</h2>
             <form action="proses_buku_tamu.php" method="post">
                 <div class="form-row">
+                    <div class="form-wrapper">
                     <label for="nama">Nama:</label>
                     <input type="text" id="nama" name="nama" required>
                 </div>
@@ -59,7 +60,7 @@
                     <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
                     <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
                 </div>
-
+                
                 <button type="submit">Kirim</button>
             </form>
         </div>
