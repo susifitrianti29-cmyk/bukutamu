@@ -213,16 +213,22 @@ textarea {
     resize: vertical; /* bisa diubah secara vertikal */
   }
 
-table {
-  margin: 0 auto; /* tabel berada di tengah */
+.form-wrapper {
+  width: 350px; 
+  margin: 0 auto; /* posisi form di tengah */
+  text-align: center; /* label rata tengah */
 }
-input, textarea, select {
+
+label {
+  display: block; 
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  max-width: 300px;
+  margin: 5px auto;
+  padding: 8px;
   display: block;
-  margin: 5px auto; /* input berada di tengah */
-}
-td:first-child {
-  text-align: right; /* opsional, kalau mau label di kanan */
-}
-td {
-  text-align: center;
 }
