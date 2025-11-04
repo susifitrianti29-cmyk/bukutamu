@@ -100,38 +100,39 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* ===== HEADER KOMINFO ===== */
-.header-kominfo {
-  flex-wrap: wrap; /* biar tidak keluar garis di tampilan HP */
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: #007bff; /* Biru senada */
-  padding: 20px 30px;
-  border-radius: 10px;
+/* Header Atas Styles */
+.header-atas {
+  background-color: #007bff;
   color: white;
-  margin-bottom: 25px;
-  justify-content: center;
-  width: 100%;         /* biar panjang penuh */
-  max-width: 900px;    /* samakan dengan box biru */
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex; /* Menggunakan flexbox */
+  align-items: center; /* Rata tengah vertikal */
+  justify-content: flex-start; /* Tata letak dari kiri ke kanan */
 }
 
-.header-kominfo img {
-  width: 70px;
+.header-atas img {
+  max-width: 50px; /* Ukuran logo */
+  height: auto;
+  margin-right: 10px;
 }
 
-.header-text {
-  text-align: center;  /* ✅ teks jadi ditengah */
+.header-atas div {
+  text-align: left; /* Teks rata kiri */
 }
 
-.header-text h2 {
-  font-size: 1.6rem;
-  font-weight: 700;
+.header-atas h1 {
+  font-size: 1.2em; /* Ukuran font judul */
   margin: 0;
+  font-weight: bold;
 }
 
-.header-text p {
-  margin: 2px 0;
-  font-size: 0.9rem;
-  opacity: 0.95;
+.header-atas p {
+  font-size: 0.8em; /* Ukuran font deskripsi */
+  margin: 0;
+  line-height: 1.2; /* Jarak antar baris */
 }
+
