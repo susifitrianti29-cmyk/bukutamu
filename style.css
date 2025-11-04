@@ -248,37 +248,3 @@ button, input[type="submit"] {
   background-color: #007bff; /* warna tombol */
   color: white;
 }
-.header-kominfo {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* pusatkan teks, tapi logo tetap kiri */
-  gap: 15px;
-  padding: 15px 20px;
-  background-color: #ffffff;
-  border-bottom: 2px solid #0057b8; /* warna biru Diskominfo */
-  text-align: center;
-  position: relative;
-}
-
-.header-kominfo img {
-  width: 70px; /* ukuran logo */
-  height: auto;
-  position: absolute;
-  left: 20px; /* tempel kiri */
-}
-.header-text h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.header-text h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.header-text p {
-  margin: 3px 0 0;
-  font-size: 13px;
-}
