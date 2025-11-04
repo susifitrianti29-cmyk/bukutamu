@@ -53,6 +53,10 @@ if ($data === false) {
                     <td>".htmlspecialchars($row['email'])."</td>
                     <td>".htmlspecialchars($row['keperluan'])."</td>
                     <td>".htmlspecialchars($row['tanggal_kunjungan'])."</td>
+                  <td>
+                      <a href='edit.php?id=".htmlspecialchars($row['id'])."' class='edit'>Edit</a>
+                      <a href='hapus.php?id=".htmlspecialchars($row['id'])."' class='hapus' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'>Hapus</a>
+                    </td>
                   </tr>";
             $no++;
         }
