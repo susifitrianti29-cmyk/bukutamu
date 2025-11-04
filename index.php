@@ -8,7 +8,7 @@
 <body>
     <div class="container">
     <div class="header-kominfo">
-    <img src="cropped-cropped-cropped-logo-kominfo-1-300x300.png" alt="Logo Kominfo">
+    <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri).png" alt="Logo Kabupaten Belitung">
     <div class="header-text">
        <h2>Dinas Komunikasi dan Informatika</h2>
        <p>Jalan Anwar Komp Marakas Tanjungpandan RT 025 RW 010 - 33412</p>
