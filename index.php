@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-    <div class="header-atas">
+    <div class="header-kominfo">
     <img src="cropped-cropped-cropped-logo-kominfo-1-300x300.png" alt="Logo Kominfo">
     <div class="header-text">
        <h2>Dinas Komunikasi dan Informatika</h2>
