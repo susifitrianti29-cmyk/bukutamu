@@ -7,8 +7,8 @@
 </head>
 <body>
     <div class="container">
-    <div class="header-kabupaten belitung">
-    <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri).png" alt="Logo Kabupaten Belitung">
+    <div class="header-kabupaten ">
+    <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri).png" alt="Logo Kabupaten">
     <div class="header-text">
        <h2>Dinas Komunikasi dan Informatika</h2>
        <p>Jalan Anwar Komp Marakas Tanjungpandan RT 025 RW 010 - 33412</p>
