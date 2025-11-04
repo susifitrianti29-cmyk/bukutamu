@@ -223,3 +223,11 @@ input, textarea, select {
   display: block;
   margin: 5px auto; /* input berada di tengah */
 }
+table {
+  margin: 0 auto; /* Center tabel */
+  text-align: center; /* Center tulisan di dalam tabel */
+}
+
+table td, table th {
+  text-align: center; /* Agar teks dalam kolom rata tengah */
+}
