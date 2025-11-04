@@ -94,7 +94,7 @@ body {
 
 /* Container utama form */
 .container {
-  width: 100%;
+  width: 90%;
   max-width: 1000px;
   background: #ffffff;
   margin: 30px auto;
