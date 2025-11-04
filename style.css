@@ -1,138 +1,136 @@
-/* General Styles */
+/* Reset margin dan padding */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container umum */
 body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f0f0;
+    background-color: #f0f2f5;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
 }
 
-/* Container Styles */
-.container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Kotak utama */
+.wrapper {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 480px;
 }
 
-/* Header Atas Styles */
-.header-atas {
-  background-color: #FFF; /* Warna header atas */
-  color: white;
-  text-align: center;
-  padding: 10px; /* Padding lebih kecil */
-  border-radius: 8px;
-  width: 100px; 
+/* Header biru */
+.header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px 10px 0 0;
 }
 
-.header-atas img {
-  max-width: 50px; /* Ukuran logo lebih kecil */
-  height: auto;
-  margin-right: 10px; /* Jarak logo dan teks */
-  vertical-align: middle; /* Rata tengah vertikal */
+/* Logo header */
+.header img {
+    height: 50px;
+    width: auto;
 }
 
-.header-atas h1 {
-  font-size: 1.2em; /* Ukuran font lebih kecil */
-  display: inline-block; /* Agar sejajar dengan logo */
-  vertical-align: middle; /* Rata tengah vertikal */
-  margin: 0; /* Hilangkan margin default */
+/* Teks header */
+.header-text {
+    line-height: 1.3;
 }
 
-.header-atas p {
-  font-size: 0.8em; /* Ukuran font lebih kecil */
-  margin: 5px 0; /* Jarak atas dan bawah */
+.header-text h1 {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
-/* Header Box Styles */
-.header-box {
-  text-align: center;
-  margin-bottom: 20px;
+.header-text p {
+    font-size: 13px;
+    opacity: 0.9;
 }
 
-.header-box h1 {
-  font-size: 2em; /* Ukuran font lebih besar */
-  font-weight: bold; /* Font weight lebih tebal */
-  margin-bottom: 5px; /* Jarak lebih kecil */
+/* Konten form */
+.content {
+    padding: 30px 25px;
 }
 
-.header-box p {
-  font-size: 1em; /* Ukuran font lebih kecil */
-  color: #666;
+/* Judul dan subjudul */
+.content h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #222;
 }
 
-/* Form Styles */
-form {
-  display: flex;
-  flex-direction: column;
+.content p.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
 }
 
-label {
-  margin-bottom: 5px;
-  font-weight: bold;
+/* Label Form */
+form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="date"],
-select {
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
+/* Grup form tiap input */
+.form-group {
+    margin-bottom: 18px;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  align-self: center; /* Memusatkan tombol */
-  width: 100px; /* Lebar tombol */
+/* Input field */
+form input[type="text"],
+form input[type="email"],
+form input[type="date"] {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="date"]:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
-/* Header Atas Styles */
-.header-atas {
-  background-color: #007bff;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  border-radius: 8px;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex; /* Menggunakan flexbox */
-  align-items: center; /* Rata tengah vertikal */
-  justify-content: flex-start; /* Tata letak dari kiri ke kanan */
+/* Tombol submit */
+form button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
 }
 
-.header-atas img {
-  max-width: 50px; /* Ukuran logo */
-  height: auto;
-  margin-right: 10px;
+form button:hover {
+    background-color: #0056b3;
 }
 
-.header-atas div {
-  text-align: left; /* Teks rata kiri */
+/* Responsive: jika layar kecil */
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
 }
-
-.header-atas h1 {
-  font-size: 1.2em; /* Ukuran font judul */
-  margin: 0;
-  font-weight: bold;
-}
-
-.header-atas p {
-  font-size: 0.8em; /* Ukuran font deskripsi */
-  margin: 0;
-  line-height: 1.2; /* Jarak antar baris */
-}
-
