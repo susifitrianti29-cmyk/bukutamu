@@ -212,10 +212,6 @@ textarea {
     max-height: 120px; /* batas maksimal tinggi */
     resize: vertical; /* bisa diubah secara vertikal */
   }
-
-  input[type="text"], input[type="email"], input[type="date"] {
-    width: 500px; /* lebar tidak terlalu panjang */
-  }
 table {
   margin: 0 auto; /* Center tabel */
   text-align: center; /* Center tulisan di dalam tabel */
@@ -223,4 +219,7 @@ table {
 
 table td, table th {
   text-align: center; /* Agar teks dalam kolom rata tengah */
+}
+td {
+  text-align: center;
 }
