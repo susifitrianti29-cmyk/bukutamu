@@ -238,7 +238,7 @@ input, textarea {
 }
 button, input[type="submit"] {
   width: 100%;
-  max-width: 300px; /* ukuran tombol mengikuti input */
+  max-width: 500px; /* ukuran tombol mengikuti input */
   padding: 10px;
   margin-top: 10px;
   cursor: pointer;
