@@ -83,12 +83,6 @@ label {
   max-width: 300px;
 
 }
-/* Pastikan selector benar */
-form input[type="text"],
-form input[type="number"],
-form input[type="email"],
-form input[type="tel"]
-form input[type="date"]
 form textarea {
   width: 100%;
   max-width: 300px;
