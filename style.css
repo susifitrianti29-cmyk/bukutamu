@@ -78,7 +78,22 @@ label {
   display: block;
   margin: 10px 0 5px;
 }
-
+/* Pastikan selector benar */
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="tel"]
+form textarea {
+  width: 100%;
+  max-width: 300px;
+  margin: 5px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  display: block;
+  box-sizing: border-box; /* ✅ penting agar ukuran tidak meluber */
+}
 input, textarea {
   width: 100%;
   max-width: 100%;
