@@ -94,24 +94,9 @@ form textarea {
   display: block;
   box-sizing: border-box; /* ✅ penting agar ukuran tidak meluber */
 }
-form input[type="text"],
-form input[type="number"],
-form input[type="email"],
-form input[type="tel"],
-form select,
-form textarea {
-    width: 100%;
-    max-width: 500px; /* bisa disesuaikan, atau hapus kalau mau full semua */
-    padding: 10px;
-    margin: 5px 0 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    box-sizing: border-box;
-}
 input, textarea {
   width: 100%;
-  max-width: 100%;
+  max-width: 500%;
   margin: 5px auto;
   padding: 10px;
   border: 1px solid #ccc;
