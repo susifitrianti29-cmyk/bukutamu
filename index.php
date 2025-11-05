@@ -25,7 +25,7 @@
         
             <h2>Formulir Data Tamu</h2>
             <form action="proses_buku_tamu.php" method="post">
-                <div class="form-row">
+                <div class="form-container">
                     
                     <label for="nama">Nama:</label>
                     <input type="text" id="nama" name="nama" required>
