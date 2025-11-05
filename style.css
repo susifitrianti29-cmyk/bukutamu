@@ -78,6 +78,11 @@ label {
   display: block;
   margin: 10px 0 5px;
 }
+  .form-control {
+  width: 100% !important;
+  max-width: 300px;
+
+}
 /* Pastikan selector benar */
 form input[type="text"],
 form input[type="number"],
