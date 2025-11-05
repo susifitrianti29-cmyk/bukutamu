@@ -17,21 +17,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  // Query untuk mencari user dengan username dan password yang sesuai
-  $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-  $result = mysqli_query($koneksi, $sql);
-
-  // Jika user ditemukan
-  if (mysqli_num_rows($result) > 0) {
-    // Simpan username ke dalam session
-    $_SESSION['username'] = $username;
-
-    // Redirect ke halaman admin
-    header("Location: admin.php");
-    exit;
+  // Validasi input (contoh sederhana)
+  if (empty($username) || empty($password)) {
+    $error = "Username dan password harus diisi.";
   } else {
-    // Jika login gagal
-    $error = "Username atau password salah.";
+    // Gunakan prepared statement untuk mencegah SQL injection
+    $sql = "SELECT id, username, password FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($koneksi, $sql);
+
+    if ($stmt === false) {
+      die("Error: " . mysqli_error($koneksi)); // Jangan tampilkan error ini di produksi
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    // Jika user ditemukan
+    if ($row = mysqli_fetch_assoc($result)) {
+      // Verifikasi password menggunakan password_verify()
+      if (password_verify($password, $row['password'])) {
+        // Simpan username ke dalam session
+        $_SESSION['username'] = $row['username'];
+
+        // Redirect ke halaman admin
+        header("Location: admin.php");
+        exit;
+      } else {
+        // Jika password salah
+        $error = "Username atau password salah.";
+      }
+    } else {
+      // Jika user tidak ditemukan
+      $error = "Username atau password salah.";
+    }
+
+    mysqli_stmt_close($stmt);
   }
 
   // Tutup koneksi database
