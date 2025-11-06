@@ -199,11 +199,12 @@ body {
 /* Kotak login */
 .login-box {
     background-color: white;
-    padding: 30px 40px;
+    padding: 25px 30px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    width: 300px;
+    width: 260px;
     text-align: center;
+    margin: 0 auto;
 }
 
 .login-box h2 {
@@ -214,12 +215,14 @@ body {
 /* Input */
 .login-box input[type="text"],
 .login-box input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
+    width: 85%;              /* Ubah dari 100% ke 85% agar lebih kecil */
+    padding: 8px;            /* Sedikit lebih kecil */
+    margin: 8px auto;        /* Supaya tetap di tengah */
+    display: block;          /* Agar margin auto bisa bekerja */
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13px;         /* Font lebih kecil agar proporsional */
+}
 }
 
 /* Tombol login */
