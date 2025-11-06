@@ -39,9 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = $result->fetch_assoc();
 
                 // Verifikasi kata sandi yang di-hash
-                if (password_verify($password, $row["admin"])) {
+                if (password_verify($password, $row["password"])) {
                     // Otentikasi berhasil
-                    $_SESSION["username"] = $row["admin"];
+                    $_SESSION["username"] = $row["username"];
                     $_SESSION["id"] = $row["id"]; // Simpan juga ID pengguna
 
                     // Redirect ke halaman admin
