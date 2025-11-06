@@ -6,13 +6,6 @@ include 'koneksi.php';
 
 // Mulai sesi
 session_start();
-
-// Periksa apakah user sudah login
-if (!isset($_SESSION["username"])) {
-    header("Location: login.php");
-    exit();
-}
-
 ?>
 
 <!DOCTYPE html>
