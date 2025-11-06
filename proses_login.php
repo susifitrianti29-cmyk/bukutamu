@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include 'koneksi.php';
 
     // Ambil data dari formulir dan bersihkan
-    $username = trim($_POST["admin"]);
-    $password = trim($_POST["admin"]);
+    $username = trim($_POST["username"]);
+    $password = trim($_POST["password"]);
 
     // Validasi input
     if (empty($username) || empty($password)) {
@@ -39,9 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = $result->fetch_assoc();
 
                 // Verifikasi kata sandi yang di-hash
-                if (password_verify($password, $row["password"])) {
+                if (password_verify($password, $row["admin"])) {
                     // Otentikasi berhasil
-                    $_SESSION["username"] = $row["username"];
+                    $_SESSION["username"] = $row["admin"];
                     $_SESSION["id"] = $row["id"]; // Simpan juga ID pengguna
 
                     // Redirect ke halaman admin
