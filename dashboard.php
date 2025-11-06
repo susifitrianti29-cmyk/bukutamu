@@ -16,7 +16,8 @@ session_start();
 </head>
 <body>
     <div class="container">
-        <h2>Selamat datang, <?php echo $_SESSION["username"]; ?>!</h2>
+        <h2>BUKU TAMU DIGITAL</h2>
+        <p>DINAS KOMUNIKASI DAN INFORMATIKA</p>
         <div class="menu">
             <a href="form.php">Form</a>
             <a href="pengumuman.php">Pengumuman</a>
