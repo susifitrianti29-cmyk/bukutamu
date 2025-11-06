@@ -4,20 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Perpustakaan</title>
+    <title>Dashboard Buku Tamu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Navbar -->
     <div class="navbar">
-        <h2>SISTEM INFORMASI PERPUSTAKAAN</h2>
+        <h2>SISTEM INFORMASI BUKU TAMU DINAS KOMUNIKASI DAN INFORMATIKA</h2>
         <div class="menu">
             <a href="#">Dashboard</a>
-            <a href="#">Buku</a>
-            <a href="#">Anggota</a>
+            <a href="#">Tentang</a>
+            <a href="#">Form</a>
             <a href="#">Pengumuman</a>
-            <a href="#">Laporan</a>
             <a href="#">Pengaturan</a>
             <a href="#">Keluar</a>
         </div>
