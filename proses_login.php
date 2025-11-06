@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include 'koneksi.php';
 
     // Ambil data dari formulir dan bersihkan
-    $username = trim($_POST["username"]);
-    $password = trim($_POST["password"]);
+    $username = trim($_POST["admin"]);
+    $password = trim($_POST["admin"]);
 
     // Validasi input
     if (empty($username) || empty($password)) {
