@@ -25,12 +25,12 @@ if (!isset($_SESSION["username"])) {
     <div class="container">
         <h2>Selamat datang, <?php echo $_SESSION["username"]; ?>!</h2>
         <div class="menu">
-            <a href="guru.php">Guru</a>
-            <a href="siswa.php">Siswa</a>
-            <a href="kelas.php">Kelas</a>
-            <a href="perlengkapan.php">Perlengkapan</a>
+            <a href="form.php">Form</a>
+            <a href="pengumuman.php">Pengumuman</a>
+            <a href="tentang.php">Tentang</a>
+            <a href="profil.php">Profil</a>
             <a href="logout.php">Logout</a>
         </div>
     </div>
 </body>
-</html> css nya
+</html> 
