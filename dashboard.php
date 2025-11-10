@@ -1,139 +1,126 @@
 <?php
-// dashboard.php
+include 'db.php';
 
-// Sertakan file koneksi database
-include 'koneksi.php';
+$dari = isset($_GET['dari']) ? $_GET['dari'] : '';
+$sampai = isset($_GET['sampai']) ? $_GET['sampai'] : '';
 
-// Mulai sesi (tetap pertahankan, mungkin dibutuhkan untuk fitur lain)
-session_start();
+$where = "";
+if ($dari && $sampai) {
+    $where = "WHERE hari_tanggal BETWEEN '$dari' AND '$sampai'";
+}
 
-// Ambil data statistik dari database (seperti jumlah tamu)
-$sql_jumlah_tamu_hari_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE DATE(tanggal_kunjungan) = CURDATE()";
-$result_jumlah_tamu_hari_ini = $koneksi->query($sql_jumlah_tamu_hari_ini);
-$row_jumlah_tamu_hari_ini = $result_jumlah_tamu_hari_ini->fetch_assoc();
-$jumlah_tamu_hari_ini = $row_jumlah_tamu_hari_ini["jumlah"];
-
-$sql_jumlah_tamu_bulan_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE MONTH(tanggal_kunjungan) = MONTH(CURDATE()) AND YEAR(tanggal_kunjungan) = YEAR(CURDATE())";
-$result_jumlah_tamu_bulan_ini = $koneksi->query($sql_jumlah_tamu_bulan_ini);
-$row_jumlah_tamu_bulan_ini = $result_jumlah_tamu_bulan_ini->fetch_assoc();
-$jumlah_tamu_bulan_ini = $row_jumlah_tamu_bulan_ini["jumlah"];
-
-// Ambil data tamu terbaru
-$sql_tamu_terbaru = "SELECT nama, tanggal_kunjungan, keperluan FROM buku_tamu ORDER BY tanggal_kunjungan DESC LIMIT 5";
-$result_tamu_terbaru = $koneksi->query($sql_tamu_terbaru);
-
+$sql = "SELECT * FROM buku_tamu $where ORDER BY hari_tanggal DESC";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buku Tamu Digital</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <title>Buku Tamu - EntryEase</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Contoh styling sederhana */
+        .btn-export {
+            padding: 6px 12px; border-radius: 3px; text-decoration:none; color:#fff; font-weight:600;margin-right:10px;
+        }
+        .btn-excel {background-color:#28a745;}
+        .btn-pdf {background-color:#fd7e14;}
+        .btn-isi {background-color:#007bff;}
+        table {
+            width: 100%; border-collapse: collapse; margin-top: 10px;
+        }
+        th, td {
+            padding: 10px; border: 1px solid #ddd; text-align: center; vertical-align: middle;
+        }
+        th {
+            background-color: #2f8e2f; color: #fff;
+        }
+        .aksi .btn {
+            padding: 6px 12px; border: none; border-radius: 3px; color: #fff; cursor: pointer; font-weight: bold;
+            margin-right: 5px;
+        }
+        .btn-ubah {background-color: #ff9800;}
+        .btn-hapus {background-color: #dc3545;}
+        img.sign {
+            width: 80px; height: auto;
+        }
+        img.avatar {
+            width: 40px; height: auto; border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
-                <div class="sidebar-heading">
-                  <img src="images/logo_belitung.png" alt="Logo Kabupaten Belitung" class="logo-kabupaten">
-                </div>
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.php">
-                                <i class="fas fa-tachometer-alt"></i> Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-calendar-alt"></i> Agenda & Kegiatan
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="data_tamu.php">
-                                <i class="fas fa-address-book"></i> Buku Tamu
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-file-alt"></i> Kelola Tata Surat
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-archive"></i> Kelola Dokumen & Arsip
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+    <h2>Buku Tamu</h2>
 
-            <!-- Konten Utama -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
-                </div>
+    <form method="GET" action="" style="margin-bottom: 15px;">
+        Dari: <input type="date" name="dari" value="<?php echo htmlspecialchars($dari); ?>" />
+        Sampai: <input type="date" name="sampai" value="<?php echo htmlspecialchars($sampai); ?>" />
+        <button type="submit" style="padding:6px 15px; background:#2f8e2f; color:#fff; border:none; border-radius:4px; cursor:pointer;">Cari</button>
+    </form>
 
-                <!-- Data Statistik -->
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card data-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Jumlah Tamu Hari Ini</h5>
-                                <p class="card-text"><?php echo $jumlah_tamu_hari_ini; ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card data-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Jumlah Tamu Bulan Ini</h5>
-                                <p class="card-text"><?php echo $jumlah_tamu_bulan_ini; ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <a href="export_excel.php?dari=<?php echo urlencode($dari); ?>&sampai=<?php echo urlencode($sampai); ?>" class="btn-export btn-excel">Export To Excel</a>
+    <a href="export_pdf.php?dari=<?php echo urlencode($dari); ?>&sampai=<?php echo urlencode($sampai); ?>" class="btn-export btn-pdf">Export To PDF</a>
+    <a href="tambah_buku_tamu.php" class="btn-export btn-isi">Isi Buku Tamu</a>
 
-                <!-- Tabel Tamu Terbaru -->
-                <h2>Tamu Terbaru</h2>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm data-table">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Tanggal Kunjungan</th>
-                                <th>Keperluan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if ($result_tamu_terbaru->num_rows > 0) {
-                                while ($row = $result_tamu_terbaru->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row["nama"] . "</td>";
-                                    echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
-                                    echo "<td>" . $row["keperluan"] . "</td>";
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='3'>Tidak ada data tamu terbaru.</td></tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-        </div>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Hari & Tanggal</th>
+                <th>Jabatan</th>
+                <th>Alamat</th>
+                <th>Makud & Tujuan</th>
+                <th>Tanda Tangan</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <tbody>
+            <?php
+            if ($result && $result->num_rows > 0):
+                $no = 1;
+                while($row = $result->fetch_assoc()):
+            ?>
+            <tr>
+                <td><?php echo $no++; ?></td>
+                <td>
+                    <?php 
+                    if (!empty($row['foto'])) { 
+                        echo '<img class="avatar" src="uploads/'.$row['foto'].'" alt="Foto '.$row['nama'].'"><br>';
+                    }
+                    ?>
+                    <?php echo htmlspecialchars($row['nama']); ?>
+                </td>
+                <td><?php echo htmlspecialchars(date('l, d-m-Y', strtotime($row['hari_tanggal']))); ?></td>
+                <td><?php echo htmlspecialchars($row['jabatan']); ?></td>
+                <td><?php echo htmlspecialchars($row['alamat']); ?></td>
+                <td><?php echo htmlspecialchars($row['maksud_tujuan']); ?></td>
+                <td>
+                    <?php 
+                    if (!empty($row['tanda_tangan'])) { 
+                        echo '<img class="sign" src="signatures/'.$row['tanda_tangan'].'" alt="TTD '.$row['nama'].'">';
+                    } else {
+                        echo '-';
+                    }
+                    ?>
+                </td>
+                <td class="aksi">
+                    <a href="edit_buku_tamu.php?id=<?php echo $row['id']; ?>" class="btn btn-ubah">Ubah</a>
+                    <a href="hapus_buku_tamu.php?id=<?php echo $row['id']; ?>" class="btn btn-hapus" onclick="return confirm('Yakin ingin menghapus data?')">Hapus</a>
+                </td>
+            </tr>
+            <?php
+                endwhile;
+            else:
+            ?>
+            <tr><td colspan="8">Belum ada data buku tamu.</td></tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
