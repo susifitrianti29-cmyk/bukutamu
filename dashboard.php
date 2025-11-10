@@ -5,7 +5,7 @@ include 'koneksi.php';
 session_start();
 
 // Periksa koneksi
-if (!$conn) {
+if (!$koneksi) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
 
