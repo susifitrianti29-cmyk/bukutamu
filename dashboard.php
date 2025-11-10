@@ -22,7 +22,7 @@ $jumlah_tamu_bulan_ini = $row_jumlah_tamu_bulan_ini["jumlah"];
 
 // Ambil data tamu terbaru
 $sql_tamu_terbaru = "SELECT nama, tanggal_kunjungan, keperluan, foto FROM buku_tamu ORDER BY tanggal_kunjungan DESC LIMIT 5";
-$result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
+$result_tamu_terbaru = $koneksi->query($sql_tamu_terbaru);
 ?>
 
 <!DOCTYPE html>
