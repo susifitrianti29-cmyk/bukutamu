@@ -41,7 +41,7 @@ $result_tamu_terbaru = $koneksi->query($sql_tamu_terbaru);
             <!-- Sidebar -->
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
                 <div class="sidebar-heading">
-                    <img src="assets/img/logo.png" alt="Logo" class="logo">
+                    <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri).png" alt="Logo" class="logo-kabupaten">
                 </div>
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
