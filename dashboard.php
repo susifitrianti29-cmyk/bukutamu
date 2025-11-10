@@ -13,7 +13,7 @@ $result_jumlah_tamu_hari_ini = $koneksi->query($sql_jumlah_tamu_hari_ini);
 $row_jumlah_tamu_hari_ini = $result_jumlah_tamu_hari_ini->fetch_assoc();
 $jumlah_tamu_hari_ini = $row_jumlah_tamu_hari_ini["jumlah"];
 
-$sql_jumlah_tamu_bulan_ini = "SELECT COUNT(*) AS jumlah FROM tamu WHERE MONTH(tanggal) = MONTH(CURDATE()) AND YEAR(tanggal) = YEAR(CURDATE())";
+$sql_jumlah_tamu_bulan_ini = "SELECT COUNT(*) AS jumlah FROM tamu WHERE MONTH(tanggal_kunjungan) = MONTH(CURDATE()) AND YEAR(tanggal) = YEAR(CURDATE())";
 $result_jumlah_tamu_bulan_ini = $koneksi->query($sql_jumlah_tamu_bulan_ini);
 $row_jumlah_tamu_bulan_ini = $result_jumlah_tamu_bulan_ini->fetch_assoc();
 $jumlah_tamu_bulan_ini = $row_jumlah_tamu_bulan_ini["jumlah"];
