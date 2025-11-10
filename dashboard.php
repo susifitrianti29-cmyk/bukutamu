@@ -81,7 +81,7 @@ $tanggal_hari_ini = strftime("%A, %d %B %Y");
                 <!-- Header -->
                 <nav class="navbar navbar-dark bg-success fixed-top">
                     <a class="navbar-brand" href="#">
-                        <img src="images/logo_belitung.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        <img src="images/logo_Kabupaten Belitung (Maju Terus Mawas Diri) (1).png" width="30" height="30" class="d-inline-block align-top" alt="">
                         Dinas Komunikasi dan Informatika
                     </a>
                     <span class="navbar-text">
