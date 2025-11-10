@@ -125,3 +125,8 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru); // Ganti $koneksi dengan
                                     echo "<td><img src='" . $row["foto"] . "' alt='Foto' width='50'></td>"; // Tampilkan foto
                                     echo "<td>" . $row["nama"] . "</td>";
                                     echo "<td>" . $row["tanggal"] ."</td>";
+                                  }
+} else {
+    echo "<tr><td colspan='4'>Tidak ada data tamu terbaru.</td></tr>";
+}
+?>
