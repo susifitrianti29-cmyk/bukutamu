@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'koneksi.php';
 
 $dari = isset($_GET['dari']) ? $_GET['dari'] : '';
 $sampai = isset($_GET['sampai']) ? $_GET['sampai'] : '';
