@@ -9,10 +9,10 @@ $pass     = "";              // Password database (kosong jika tidak ada)
 $db   = "bukutamu_db";   // Nama database
 
 // Membuat koneksi ke database
-$koneksi = mysqli_connect($host, $user, $pass, $db);
+$conn = mysqli_connect($host, $user, $pass, $db);
 
 // Memeriksa apakah koneksi berhasil
-if (!$koneksi) {
+if (!$conn) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
 
