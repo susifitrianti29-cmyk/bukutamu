@@ -8,17 +8,19 @@ include 'koneksi.php';
 session_start();
 
 // Ambil data statistik dari database (seperti jumlah tamu)
-$sql_jumlah_tamu_hari_ini = "SELECT COUNT(*) AS jumlah FROM tamu WHERE DATE(tanggal) = CURDATE()";
+$sql_jumlah_tamu_hari_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE DATE(tanggal_kunjungan) = CURDATE()";
 $result_jumlah_tamu_hari_ini = $koneksi->query($sql_jumlah_tamu_hari_ini);
 $row_jumlah_tamu_hari_ini = $result_jumlah_tamu_hari_ini->fetch_assoc();
 $jumlah_tamu_hari_ini = $row_jumlah_tamu_hari_ini["jumlah"];
 
-$sql_jumlah_tamu_bulan_ini = "SELECT COUNT(*) AS jumlah FROM tamu WHERE MONTH(tanggal_kunjungan) = MONTH(CURDATE()) AND YEAR(tanggal_kunjungan) = YEAR(CURDATE())";
+$sql_jumlah_tamu_bulan_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE MONTH(tanggal_kunjungan) = MONTH(CURDATE()) AND YEAR(tanggal_kunjungan) = YEAR(CURDATE())";
 $result_jumlah_tamu_bulan_ini = $koneksi->query($sql_jumlah_tamu_bulan_ini);
 $row_jumlah_tamu_bulan_ini = $result_jumlah_tamu_bulan_ini->fetch_assoc();
 $jumlah_tamu_bulan_ini = $row_jumlah_tamu_bulan_ini["jumlah"];
 
-// ... (Tambahkan query lain untuk mengambil data statistik lainnya) ...
+// Ambil data tamu terbaru
+$sql_tamu_terbaru = "SELECT nama, tanggal_kunjungan, keperluan FROM buku_tamu ORDER BY tanggal_kunjungan DESC LIMIT 5";
+$result_tamu_terbaru = $koneksi->query($sql_tamu_terbaru);
 
 ?>
 
@@ -65,17 +67,6 @@ $jumlah_tamu_bulan_ini = $row_jumlah_tamu_bulan_ini["jumlah"];
                                 <i class="fas fa-archive"></i> Kelola Dokumen & Arsip
                             </a>
                         </li>
-                        <!-- HAPUS BAGIAN INI: -->
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-users-cog"></i> Manajemen Pengguna
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </a>
-                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -83,10 +74,63 @@ $jumlah_tamu_bulan_ini = $row_jumlah_tamu_bulan_ini["jumlah"];
             <!-- Konten Utama -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Buku Tamu</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                                <i class="fas fa-file-excel"></i> Export to Excel
-                            </button>
-                            <button type="button
+                    <h1 class="h2">Dashboard</h1>
+                </div>
+
+                <!-- Data Statistik -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Jumlah Tamu Hari Ini</h5>
+                                <p class="card-text"><?php echo $jumlah_tamu_hari_ini; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Jumlah Tamu Bulan Ini</h5>
+                                <p class="card-text"><?php echo $jumlah_tamu_bulan_ini; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabel Tamu Terbaru -->
+                <h2>Tamu Terbaru</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Tanggal Kunjungan</th>
+                                <th>Keperluan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($result_tamu_terbaru->num_rows > 0) {
+                                while ($row = $result_tamu_terbaru->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row["nama"] . "</td>";
+                                    echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
+                                    echo "<td>" . $row["keperluan"] . "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='3'>Tidak ada data tamu terbaru.</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
