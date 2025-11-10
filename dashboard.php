@@ -29,17 +29,20 @@ $result_tamu_terbaru = $koneksi->query($sql_tamu_terbaru);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buku Tamu Digital - Dinas Komunikasi dan Informatika</title>
-    <link rel="stylesheet" href="style.css"> <!-- Hubungkan ke file CSS -->
+    <title>Buku Tamu Digital</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="sidebar-heading">
+                    <img src="assets/img/logo.png" alt="Logo" class="logo">
+                </div>
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -80,7 +83,7 @@ $result_tamu_terbaru = $koneksi->query($sql_tamu_terbaru);
                 <!-- Data Statistik -->
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card data-card">
                             <div class="card-body">
                                 <h5 class="card-title">Jumlah Tamu Hari Ini</h5>
                                 <p class="card-text"><?php echo $jumlah_tamu_hari_ini; ?></p>
@@ -88,7 +91,7 @@ $result_tamu_terbaru = $koneksi->query($sql_tamu_terbaru);
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card data-card">
                             <div class="card-body">
                                 <h5 class="card-title">Jumlah Tamu Bulan Ini</h5>
                                 <p class="card-text"><?php echo $jumlah_tamu_bulan_ini; ?></p>
@@ -100,7 +103,7 @@ $result_tamu_terbaru = $koneksi->query($sql_tamu_terbaru);
                 <!-- Tabel Tamu Terbaru -->
                 <h2>Tamu Terbaru</h2>
                 <div class="table-responsive">
-                    <table class="table table-striped table-sm">
+                    <table class="table table-striped table-sm data-table">
                         <thead>
                             <tr>
                                 <th>Nama</th>
