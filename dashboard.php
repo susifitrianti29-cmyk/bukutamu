@@ -124,4 +124,4 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru); // Ganti $koneksi dengan
                                     echo "<tr>";
                                     echo "<td><img src='" . $row["foto"] . "' alt='Foto' width='50'></td>"; // Tampilkan foto
                                     echo "<td>" . $row["nama"] . "</td>";
-                                    echo "<td>" . $row["tanggal
+                                    echo "<td>" . $row["tanggal"] ."</td>";
