@@ -11,12 +11,12 @@ if (!$koneksi) {
 
 // Ambil data statistik
 $sql_jumlah_tamu_hari_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE DATE(tanggal_kunjungan) = CURDATE()";
-$result_jumlah_tamu_hari_ini = $conn->query($sql_jumlah_tamu_hari_ini);
+$result_jumlah_tamu_hari_ini = $koneksi->query($sql_jumlah_tamu_hari_ini);
 $row_jumlah_tamu_hari_ini = $result_jumlah_tamu_hari_ini->fetch_assoc();
 $jumlah_tamu_hari_ini = $row_jumlah_tamu_hari_ini["jumlah"];
 
 $sql_jumlah_tamu_bulan_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE MONTH(tanggal_kunjungan) = MONTH(CURDATE()) AND YEAR(tanggal_kunjungan) = YEAR(CURDATE())";
-$result_jumlah_tamu_bulan_ini = $conn->query($sql_jumlah_tamu_bulan_ini);
+$result_jumlah_tamu_bulan_ini = $koneksi->query($sql_jumlah_tamu_bulan_ini);
 $row_jumlah_tamu_bulan_ini = $result_jumlah_tamu_bulan_ini->fetch_assoc();
 $jumlah_tamu_bulan_ini = $row_jumlah_tamu_bulan_ini["jumlah"];
 
