@@ -261,9 +261,9 @@ body {
 
 /* Batas lebar utama halaman */
 .container {
-    max-width: 500px;   /* Batasi ukuran maksimal agar tidak terlalu lebar */
+    max-width: 400px;   /* Batasi ukuran maksimal agar tidak terlalu lebar */
     margin: 0 auto;
-    padding: 15px;
+    padding: 10px;
 }
 
 /* Header */
