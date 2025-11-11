@@ -351,4 +351,24 @@ form input {
     max-width: 900px;
     margin: auto;
 }
+.container {
+    max-width: 1300px;   /* Ubah angka ini untuk mengatur lebar */
+    margin: 20px auto;   /* Auto = rata tengah */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+.container {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+}
+@media (max-width: 768px) {
+    .container {
+        max-width: 95%;   /* otomatis menyesuaikan layar HP */
+        padding: 10px;
+    }
+}
+
 
