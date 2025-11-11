@@ -15,25 +15,10 @@ session_start();
 // Ambil data statistik dari database (seperti jumlah tamu)
 $sql_jumlah_tamu_hari_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE DATE(tanggal_kunjungan) = CURDATE()";
 $result_jumlah_tamu_hari_ini = $conn->query($sql_jumlah_tamu_hari_ini);
-if ($result_jumlah_tamu_hari_ini) {
-    $row_jumlah_tamu_hari_ini = $result_jumlah_tamu_hari_ini->fetch_assoc();
-    $jumlah_tamu_hari_ini = $row_jumlah_tamu_hari_ini["jumlah"];
-} else {
-    $jumlah_tamu_hari_ini = 0; // Atur nilai default jika query gagal
-}
+$row_jumlah_tamu_hari_ini = $result_jumlah_tamu_hari_ini->fetch_assoc();
+$jumlah_tamu_hari_ini = $row_jumlah_tamu_hari_ini["jumlah"];
 
-$sql_jumlah_tamu_bulan_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE MONTH(tanggal_kunjungan) = MONTH(CURDATE()) AND YEAR(tanggal_kunjungan) = YEAR(CURDATE())";
-$result_jumlah_tamu_bulan_ini = $conn->query($sql_jumlah_tamu_bulan_ini);
-if ($result_jumlah_tamu_bulan_ini) {
-    $row_jumlah_tamu_bulan_ini = $result_jumlah_tamu_bulan_ini->fetch_assoc();
-    $jumlah_tamu_bulan_ini = $row_jumlah_tamu_bulan_ini["jumlah"];
-} else {
-    $jumlah_tamu_bulan_ini = 0; // Atur nilai default jika query gagal
-}
-
-// Ambil data tamu terbaru
-$sql_tamu_terbaru = "SELECT nama, tanggal_kunjungan, keperluan, foto FROM buku_tamu ORDER BY tanggal_kunjungan DESC LIMIT 5";
-$result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
+// ... (Kode lainnya) ...
 
 // Format tanggal Indonesia
 setlocale(LC_TIME, 'id_ID');
@@ -129,4 +114,42 @@ $tanggal_hari_ini = strftime("%A, %d %B %Y");
                     </div>
                 </div>
 
-                <!--
+                <!-- Tabel Tamu Terbaru -->
+                <h2>Tamu Terbaru</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm data-table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nama</th>
+                                <th>Tanggal Kunjungan</th>
+                                <th>Keperluan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($result_tamu_terbaru->num_rows > 0) {
+                                while ($row = $result_tamu_terbaru->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td><img src='" . $row["foto"] . "' alt='Foto' width='50'></td>";
+                                    echo "<td>" . $row["nama"] . "</td>";
+                                    echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
+                                    echo "<td>" . $row["keperluan"] . "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='4'>Tidak ada data tamu terbaru.</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
