@@ -57,7 +57,7 @@ $tanggal_sekarang = strftime("%A, %d %B %Y");
 <div class="container mt-4 mb-5">
     <!-- Header -->
     <div class="header-kabupaten d-flex align-items-center mb-4">
-        <img src="="logo-belitung.png" alt="Logo Kabupaten Belitung" class="logo-kabupaten">
+      <img src="images/logo-belitung.png" alt="Logo Kabupaten Belitung" class="logo-kabupaten">
         <div class="header-text">
             <h4 class="mb-1">Dinas Komunikasi dan Informatika</h4>
             <p class="mb-0 small">Jalan Anwar Komp Marakas Tanjungpandan RT 025 RW 010 - 33412</p>
