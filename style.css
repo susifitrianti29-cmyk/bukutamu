@@ -261,7 +261,7 @@ body {
 
 /* Batas lebar utama halaman */
 .container {
-    max-width: 900px;   /* Batasi ukuran maksimal agar tidak terlalu lebar */
+    max-width: 500px;   /* Batasi ukuran maksimal agar tidak terlalu lebar */
     margin: 0 auto;
     padding: 15px;
 }
@@ -297,7 +297,7 @@ form input {
 
 /* Statistik */
 .display-4 {
-    font-size: 2rem; /* perkecil angka besar di kartu statistik */
+    font-size: 1rem; /* perkecil angka besar di kartu statistik */
 }
 
 /* Tabel */
