@@ -251,28 +251,90 @@ label {
 /* ===== DASHBOARD ===== */
 /* style.css */
 
-/* style.css */
-
+/* Atur font & jarak umum */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
-    font-size: 16px; /* Perbesar font size */
+    background: #f5f7fa;
+    margin: 0;
+    padding: 0;
 }
 
-#sidebar {
-    background-color: #343a40;
-    color: white;
-    min-height: 100vh;
-    width: 220px; /* Atur lebar sidebar */
-    padding-top: 20px; /* Tambah padding atas */
+/* Batas lebar utama halaman */
+.container {
+    max-width: 900px;   /* Batasi ukuran maksimal agar tidak terlalu lebar */
+    margin: 0 auto;
+    padding: 15px;
 }
 
-#sidebar .nav-link {
-    color: rgba(255, 255, 255, 0.7);
-    padding: 12px 16px; /* Tambah padding pada link */
-    font-size: 15px; /* Perbesar font size pada link */
+/* Header */
+.header-kabupaten img {
+    width: 60px; /* perkecil logo */
+    height: auto;
 }
 
-#sidebar .nav-link:hover {
-    color: white;
-    background-color: rgba(255, 255, 2);
+.header-text h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* Formulir */
+.card {
+    border-radius: 10px;
+}
+
+.card-header {
+    font-weight: 600;
+}
+
+form label {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+form input {
+    font-size: 14px;
+}
+
+/* Statistik */
+.display-4 {
+    font-size: 2rem; /* perkecil angka besar di kartu statistik */
+}
+
+/* Tabel */
+.table th, .table td {
+    font-size: 14px;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .header-kabupaten {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-kabupaten img {
+        margin-bottom: 10px;
+    }
+
+    .row > .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    form input, button {
+        font-size: 14px;
+    }
+
+    .display-4 {
+        font-size: 1.5rem;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+}
