@@ -338,3 +338,17 @@ form input {
         padding: 15px;
     }
 }
+/* Batasi lebar area utama dashboard */
+.container {
+    max-width: 900px;   /* ubah nilainya sesuka kamu, contoh: 800px, 700px */
+    margin: 20px auto;  /* auto = rata tengah */
+    background: #fff;   /* warna latar putih */
+    border-radius: 10px; /* sudut lembut */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* efek bayangan lembut */
+    padding: 20px;
+}
+.container-fluid, main {
+    max-width: 900px;
+    margin: auto;
+}
+
