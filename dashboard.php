@@ -35,6 +35,7 @@ $tanggal_hari_ini = strftime("%A, %d %B %Y");
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -79,7 +80,7 @@ $tanggal_hari_ini = strftime("%A, %d %B %Y");
             <!-- Konten Utama -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <!-- Header -->
-                <nav class="navbar navbar-dark bg-success fixed-top">
+                <nav class="navbar navbar-dark bg-primary fixed-top">
                     <a class="navbar-brand" href="#">
                         <img src="images/logo_belitung.png" width="30" height="30" class="d-inline-block align-top" alt="">
                         Dinas Komunikasi dan Informatika
@@ -89,7 +90,7 @@ $tanggal_hari_ini = strftime("%A, %d %B %Y");
                     </span>
                 </nav>
 
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-5 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Dashboard</h1>
                 </div>
 
@@ -104,4 +105,51 @@ $tanggal_hari_ini = strftime("%A, %d %B %Y");
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card d
+                        <div class="card data-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Jumlah Tamu Bulan Ini</h5>
+                                <p class="card-text"><?php echo $jumlah_tamu_bulan_ini; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabel Tamu Terbaru -->
+                <h2>Tamu Terbaru</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm data-table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nama</th>
+                                <th>Tanggal Kunjungan</th>
+                                <th>Keperluan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($result_tamu_terbaru->num_rows > 0) {
+                                while ($row = $result_tamu_terbaru->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td><img src='" . $row["foto"] . "' alt='Foto' width='50'></td>";
+                                    echo "<td>" . $row["nama"] . "</td>";
+                                    echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
+                                    echo "<td>" . $row["keperluan"] . "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='4'>Tidak ada data tamu terbaru.</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
