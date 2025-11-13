@@ -107,20 +107,23 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         width: calc(100% - 230px);
     }
 
-    .header {
-        background-color: #00923f;
-        color: white;
-        padding: 15px;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: bold;
-    }
+   .header {
+    background-color: #00923f;
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;  /* 🔹 Membesarkan teks */
+    line-height: 1.5; /* 🔹 Jarak antar baris */
+}
 
-    .logo-header {
-        width: 80px;
-        height: auto;
-        margin-bottom: 8px;
-    }
+.logo-header {
+    width: 120px;     /* 🔹 Membesarkan logo */
+    height: auto;
+    margin-bottom: 10px;
+}
+
 
     /* Statistik */
     .statistik {
