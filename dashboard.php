@@ -1,31 +1,32 @@
 <?php
-// index.php
-
 include 'koneksi.php';
 
-// Periksa apakah koneksi berhasil
+// Periksa koneksi
 if (!$conn) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
 
-// Ambil data statistik dari database
+// === Statistik Jumlah Tamu ===
 $sql_tamu_hari_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE DATE(tanggal_kunjungan) = CURDATE()";
-$result_tamu_hari_ini = $conn->query($sql_jumlah_tamu_hari_ini);
-$jumlah_tamu_hari_ini = ($result_tamu_hari_ini->num_rows > 0) ? $result_tamu_hari_ini->fetch_assoc()["jumlah"] : 0;
+$result_tamu_hari_ini = $conn->query($sql_tamu_hari_ini);
+$jumlah_tamu_hari_ini = ($result_tamu_hari_ini && $result_tamu_hari_ini->num_rows > 0)
+    ? $result_tamu_hari_ini->fetch_assoc()["jumlah"] : 0;
 
 $sql_tamu_bulan_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE MONTH(tanggal_kunjungan) = MONTH(CURDATE()) AND YEAR(tanggal_kunjungan) = YEAR(CURDATE())";
-$result_tamu_bulan_ini = $conn->query($sql_jumlah_tamu_bulan_ini);
-$jumlah_tamu_bulan_ini = ($result_tamu_bulan_ini->num_rows > 0) ? $result_tamu_bulan_ini->fetch_assoc()["jumlah"] : 0;
+$result_tamu_bulan_ini = $conn->query($sql_tamu_bulan_ini);
+$jumlah_tamu_bulan_ini = ($result_tamu_bulan_ini && $result_tamu_bulan_ini->num_rows > 0)
+    ? $result_tamu_bulan_ini->fetch_assoc()["jumlah"] : 0;
 
 $sql_total_tamu = "SELECT COUNT(*) AS jumlah FROM buku_tamu";
-$result_total_tamu = $conn->query($sql_jumlah_tamu_bulan_ini);
-$total_tamu = ($result_total_tamu->num_rows > 0) ? $result_total_tamu->fetch_assoc()["jumlah"] : 0;
+$result_total_tamu = $conn->query($sql_total_tamu);
+$total_tamu = ($result_total_tamu && $result_total_tamu->num_rows > 0)
+    ? $result_total_tamu->fetch_assoc()["jumlah"] : 0;
 
-// Ambil data tamu terbaru
-$sql_tamu_terbaru = "SELECT nama, instansi, tanggal_kunjungan, keperluan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
+// === Data Tamu Terbaru ===
+$sql_tamu_terbaru = "SELECT nama, instansi, alamat, keperluan, tanggal_kunjungan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
 $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
