@@ -1,3 +1,32 @@
+<?php
+// index.php
+
+include 'koneksi.php';
+
+// Periksa apakah koneksi berhasil
+if (!$conn) {
+    die("Koneksi database gagal: " . mysqli_connect_error());
+}
+
+// Ambil data statistik dari database
+$sql_tamu_hari_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE DATE(tanggal_kunjungan) = CURDATE()";
+$result_tamu_hari_ini = $conn->query($sql_jumlah_tamu_hari_ini);
+$jumlah_tamu_hari_ini = ($result_tamu_hari_ini->num_rows > 0) ? $result_tamu_hari_ini->fetch_assoc()["jumlah"] : 0;
+
+$sql_tamu_bulan_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE MONTH(tanggal_kunjungan) = MONTH(CURDATE()) AND YEAR(tanggal_kunjungan) = YEAR(CURDATE())";
+$result_tamu_bulan_ini = $conn->query($sql_jumlah_tamu_bulan_ini);
+$jumlah_tamu_bulan_ini = ($result_tamu_bulan_ini->num_rows > 0) ? $result_tamu_bulan_ini->fetch_assoc()["jumlah"] : 0;
+
+$sql_total_tamu = "SELECT COUNT(*) AS jumlah FROM buku_tamu";
+$result_total_tamu = $conn->query($sql_jumlah_tamu_bulan_ini);
+$total_tamu = ($result_total_tamu->num_rows > 0) ? $result_total_tamu->fetch_assoc()["jumlah"] : 0;
+
+// Ambil data tamu terbaru
+$sql_tamu_terbaru = "SELECT nama, instansi, tanggal_kunjungan, keperluan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
+$result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -65,6 +94,13 @@
         padding: 15px;
         border-radius: 5px 5px 0 0;
         font-weight: bold;
+        text-align: center; /* Agar logo dan judul berada di tengah */
+    }
+
+    .logo-header {
+        width: 80px; /* Sesuaikan ukuran logo */
+        height: auto;
+        margin-bottom: 10px; /* Jarak antara logo dan judul */
     }
 
     /* Buku tamu table */
@@ -191,8 +227,68 @@
 
     <!-- Dashboard -->
     <div id="dashboard" class="page active">
-        <div class="header">DASHBOARD</div>
+        <div class="header">
+            <img src="images/logo_belitung.png" alt="Logo Kabupaten Belitung" class="logo-header">
+            SISTEM INFORMASI BUKU TAMU
+            <br>
+            Dinas Komunikasi dan Informatika
+        </div>
         <p>Selamat datang di EntryEase Dashboard! Gunakan menu di sebelah kiri untuk melihat Buku Tamu atau mengisi data tamu baru.</p>
+
+        <div class="statistik">
+            <div class="card">
+                <h3>Tamu Hari Ini</h3>
+                <p><?php echo $jumlah_tamu_hari_ini; ?></p>
+            </div>
+            <div class="card">
+                <h3>Tamu Bulan Ini</h3>
+                <p><?php echo $jumlah_tamu_bulan_ini; ?></p>
+            </div>
+            <div class="card">
+                <h3>Total Semua Tamu</h3>
+                <p><?php echo $total_tamu; ?></p>
+            </div>
+        </div>
+
+        <h2>Data Tamu Terbaru</h2>
+        <table id="bukuTamuTable" class="display">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Nama</th>
+                    <th>Hari & Tanggal</th>
+                    <th>Jabatan</th>
+                    <th>Alamat</th>
+                    <th>Maksud & Tujuan</th>
+                    <th>Tanda Tangan</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $no = 1;
+                if ($result_tamu_terbaru->num_rows > 0) {
+                    while ($row = $result_tamu_terbaru->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $no++ . "</td>";
+                        echo "<td>" . $row["nama"] . "</td>";
+                        echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
+                        echo "<td>" . $row["instansi"] . "</td>";
+                        echo "<td>" . $row["alamat"] . "</td>";
+                        echo "<td>" . $row["keperluan"] . "</td>";
+                        echo "<td><img src='https://cdn-icons-png.flaticon.com/512/149/149071.png'></td>";
+                        echo "<td>
+                            <button class='btn-edit'>Ubah</button>
+                            <button class='btn-hapus'>Hapus</button>
+                        </td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='8'>Tidak ada data tamu terbaru.</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
 
     <!-- Buku Tamu -->
@@ -227,19 +323,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>dedi</td>
-                    <td>Senin, 22-04-2019</td>
-                    <td>Staff</td>
-                    <td>Jalan Baru</td>
-                    <td>Berkunjung</td>
-                    <td><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"></td>
-                    <td>
-                        <button class="btn-edit">Ubah</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+                <?php
+                $no = 1;
+                $sql_tamu_terbaru = "SELECT nama, instansi, tanggal_kunjungan, alamat, keperluan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
+                $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
+                if ($result_tamu_terbaru->num_rows > 0) {
+                    while ($row = $result_tamu_terbaru->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $no++ . "</td>";
+                        echo "<td>" . $row["nama"] . "</td>";
+                        echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
+                        echo "<td>" . $row["instansi"] . "</td>";
+                        echo "<td>" . $row["alamat"] . "</td>";
+                        echo "<td>" . $row["keperluan"] . "</td>";
+                        echo "<td><img src='https://cdn-icons-png.flaticon.com/512/149/149071.png'></td>";
+                        echo "<td>
+                            <button class='btn-edit'>Ubah</button>
+                            <button class='btn-hapus'>Hapus</button>
+                        </td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='8'>Tidak ada data tamu terbaru.</td></tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>
