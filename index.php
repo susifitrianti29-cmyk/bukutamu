@@ -60,61 +60,6 @@ $tanggal_hari_ini = date("l, d F Y");
       margin-bottom: 20px;
     }
 
-    /* ====== Form ====== */
-    form {
-      background: #f7faff;
-      border: 2px solid #0b9444;
-      border-radius: 10px;
-      padding: 20px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    label {
-      font-weight: 600;
-      font-size: 14px;
-      display: block;
-      margin-bottom: 5px;
-      color: #333;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-      box-sizing: border-box;
-    }
-
-    input:focus, textarea:focus {
-      border-color: #0b9444;
-      outline: none;
-      box-shadow: 0 0 4px rgba(11,148,68,0.3);
-    }
-
-    button {
-      display: block;
-      width: 100%;
-      background: #0b9444;
-      color: white;
-      border: none;
-      padding: 12px;
-      font-size: 15px;
-      border-radius: 8px;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #09773a;
-    }
-
     /* ====== Statistik ====== */
     .statistik {
       display: flex;
@@ -173,9 +118,6 @@ $tanggal_hari_ini = date("l, d F Y");
 
     /* ===== Responsive ===== */
     @media (max-width: 768px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
       .statistik {
         flex-direction: column;
       }
@@ -191,41 +133,7 @@ $tanggal_hari_ini = date("l, d F Y");
 
   <main>
     <h2>Buku Tamu Digital</h2>
-    <div class="subtitle">Silakan isi data tamu dengan benar</div>
-
-    <form action="#" method="post">
-      <div class="form-row">
-        <div>
-          <label>Nama:</label>
-          <input type="text" name="nama" required>
-        </div>
-        <div>
-          <label>Instansi:</label>
-          <input type="text" name="instansi">
-        </div>
-        <div>
-          <label>Alamat:</label>
-          <input type="text" name="alamat">
-        </div>
-        <div>
-          <label>No. HP:</label>
-          <input type="text" name="no_hp">
-        </div>
-        <div>
-          <label>Email:</label>
-          <input type="email" name="email">
-        </div>
-        <div>
-          <label>Keperluan:</label>
-          <input type="text" name="keperluan">
-        </div>
-        <div>
-          <label>Tanggal Kunjungan:</label>
-          <input type="date" name="tanggal">
-        </div>
-      </div>
-      <button type="submit">Kirim</button>
-    </form>
+    <div class="subtitle">Rekap Data Tamu dan Statistik Kunjungan</div>
 
     <div class="statistik">
       <div class="card">
@@ -235,6 +143,10 @@ $tanggal_hari_ini = date("l, d F Y");
       <div class="card">
         <h3>Tamu Bulan Ini</h3>
         <span>54</span>
+      </div>
+      <div class="card">
+        <h3>Total Semua Tamu</h3>
+        <span>230</span>
       </div>
     </div>
 
