@@ -1,12 +1,12 @@
 <?php
 include 'koneksi.php';
 
-// Periksa koneksi
+// 🔹 Periksa koneksi database
 if (!$conn) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
 
-// === Statistik Jumlah Tamu ===
+// 🔹 Statistik Jumlah Tamu
 $sql_tamu_hari_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE DATE(tanggal_kunjungan) = CURDATE()";
 $result_tamu_hari_ini = $conn->query($sql_tamu_hari_ini);
 $jumlah_tamu_hari_ini = ($result_tamu_hari_ini && $result_tamu_hari_ini->num_rows > 0)
@@ -22,18 +22,17 @@ $result_total_tamu = $conn->query($sql_total_tamu);
 $total_tamu = ($result_total_tamu && $result_total_tamu->num_rows > 0)
     ? $result_total_tamu->fetch_assoc()["jumlah"] : 0;
 
-// === Data Tamu Terbaru ===
+// 🔹 Data Tamu Terbaru
 $sql_tamu_terbaru = "SELECT nama, instansi, alamat, keperluan, tanggal_kunjungan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
 $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EntryEase | Dashboard</title>
+<title>Buku Tamu Digital | Dashboard</title>
 
 <!-- FontAwesome & DataTables -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -42,7 +41,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 <style>
     body {
         margin: 0;
-        font-family: Arial, sans-serif;
+        font-family: "Poppins", sans-serif;
         display: flex;
         background-color: #f4f6f9;
     }
@@ -50,19 +49,34 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
     /* Sidebar */
     .sidebar {
         width: 230px;
-        background-color: #103b52;
+        background: linear-gradient(180deg, #0f3b52, #145773);
         color: white;
         height: 100vh;
         position: fixed;
         left: 0;
         top: 0;
-        padding-top: 20px;
+        padding-top: 25px;
+        box-shadow: 2px 0 8px rgba(0,0,0,0.2);
     }
 
-    .sidebar h2 {
+    .logo-container {
         text-align: center;
-        font-size: 22px;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
+    }
+
+    .logo-container img {
+        width: 90px;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        background: white;
+        padding: 5px;
+    }
+
+    .instansi-nama {
+        font-size: 15px;
+        font-weight: bold;
+        color: #e2e8f0;
     }
 
     .sidebar a {
@@ -72,14 +86,18 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         color: white;
         text-decoration: none;
         transition: 0.3s;
+        font-size: 15px;
     }
 
     .sidebar a:hover, .sidebar a.active {
-        background-color: #145773;
+        background-color: #00a36c;
+        border-left: 4px solid #ffffff;
+        padding-left: 16px;
     }
 
     .sidebar a i {
         margin-right: 10px;
+        font-size: 17px;
     }
 
     /* Konten utama */
@@ -93,60 +111,49 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         background-color: #00923f;
         color: white;
         padding: 15px;
-        border-radius: 5px 5px 0 0;
+        border-radius: 5px;
+        text-align: center;
         font-weight: bold;
-        text-align: center; /* Agar logo dan judul berada di tengah */
     }
 
     .logo-header {
-        width: 80px; /* Sesuaikan ukuran logo */
+        width: 80px;
         height: auto;
-        margin-bottom: 10px; /* Jarak antara logo dan judul */
+        margin-bottom: 8px;
     }
 
-    /* Buku tamu table */
-    .filter-section {
-        margin: 15px 0;
+    /* Statistik */
+    .statistik {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+        flex-wrap: wrap;
     }
 
-    .filter-section input {
-        padding: 5px;
-        margin-right: 10px;
+    .card {
+        background: white;
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        padding: 15px;
     }
 
-    .filter-section button {
-        background-color: #00923f;
-        color: white;
-        border: none;
-        padding: 6px 10px;
-        border-radius: 4px;
-        cursor: pointer;
+    .card h3 {
+        color: #103b52;
+        margin-bottom: 5px;
     }
 
-    .filter-section button:hover {
-        background-color: #007f35;
+    .card p {
+        font-size: 22px;
+        color: #00923f;
+        font-weight: bold;
     }
-
-    .btn {
-        padding: 6px 10px;
-        border: none;
-        border-radius: 4px;
-        color: white;
-        cursor: pointer;
-        margin-right: 5px;
-    }
-
-    .btn-excel { background-color: #28a745; }
-    .btn-pdf { background-color: #dc3545; }
-    .btn-tambah { background-color: #007bff; }
-
-    .btn-edit { background-color: orange; color: white; border: none; border-radius: 3px; padding: 4px 8px;}
-    .btn-hapus { background-color: red; color: white; border: none; border-radius: 3px; padding: 4px 8px;}
 
     table img {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
     }
 
@@ -157,7 +164,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         max-width: 700px;
-        margin: auto;
+        margin: 20px auto;
     }
 
     .form-section h2 {
@@ -177,7 +184,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         font-weight: bold;
     }
 
-    .form-row input, .form-row textarea {
+    .form-row input {
         padding: 8px;
         border-radius: 5px;
         border: 1px solid #ccc;
@@ -197,7 +204,6 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         background: #007f35;
     }
 
-    /* Halaman yang disembunyikan */
     .page {
         display: none;
         animation: fadeIn 0.3s ease-in-out;
@@ -217,7 +223,11 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <h2>EntryEase <i class="fa-solid fa-right-to-bracket"></i></h2>
+    <div class="logo-container">
+        <img src="images/logo_belitung.png" alt="Logo Kabupaten Belitung">
+        <div class="instansi-nama">Dinas Kominfo</div>
+    </div>
+
     <a href="#" class="active" onclick="showPage('dashboard')"><i class="fa-solid fa-house"></i> Dashboard</a>
     <a href="#" onclick="showPage('bukuTamu')"><i class="fa-solid fa-book"></i> Buku Tamu</a>
     <a href="#" onclick="showPage('formTamu')"><i class="fa-solid fa-pen-to-square"></i> Isi Buku Tamu</a>
@@ -229,11 +239,10 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
     <!-- Dashboard -->
     <div id="dashboard" class="page active">
         <div class="header">
-            <img src="images/logo_belitung.png" alt="Logo Kabupaten Belitung" class="logo-header">
-            SISTEM INFORMASI BUKU TAMU
-            <br>
-            Dinas Komunikasi dan Informatika
+            <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri) (1).png" alt="Logo Kabupaten Belitung" class="logo-header"><br>
+            SISTEM INFORMASI BUKU TAMU<br>Dinas Komunikasi dan Informatika
         </div>
+
         <div class="statistik">
             <div class="card">
                 <h3>Tamu Hari Ini</h3>
@@ -253,14 +262,13 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         <table id="bukuTamuTable" class="display">
             <thead>
                 <tr>
-                    <th>No.</th>
+                    <th>No</th>
                     <th>Nama</th>
-                    <th>Hari & Tanggal</th>
-                    <th>Jabatan</th>
+                    <th>Tanggal</th>
+                    <th>Instansi</th>
                     <th>Alamat</th>
-                    <th>Maksud & Tujuan</th>
+                    <th>Keperluan</th>
                     <th>Tanda Tangan</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -269,81 +277,17 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                 if ($result_tamu_terbaru->num_rows > 0) {
                     while ($row = $result_tamu_terbaru->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . $no++ . "</td>";
-                        echo "<td>" . $row["nama"] . "</td>";
-                        echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
-                        echo "<td>" . $row["instansi"] . "</td>";
-                        echo "<td>" . $row["alamat"] . "</td>";
-                        echo "<td>" . $row["keperluan"] . "</td>";
+                        echo "<td>".$no++."</td>";
+                        echo "<td>".$row["nama"]."</td>";
+                        echo "<td>".$row["tanggal_kunjungan"]."</td>";
+                        echo "<td>".$row["instansi"]."</td>";
+                        echo "<td>".$row["alamat"]."</td>";
+                        echo "<td>".$row["keperluan"]."</td>";
                         echo "<td><img src='https://cdn-icons-png.flaticon.com/512/149/149071.png'></td>";
-                        echo "<td>
-                            <button class='btn-edit'>Ubah</button>
-                            <button class='btn-hapus'>Hapus</button>
-                        </td>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='8'>Tidak ada data tamu terbaru.</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Buku Tamu -->
-    <div id="bukuTamu" class="page">
-        <div class="header">BUKU TAMU</div>
-
-        <div class="filter-section">
-            Dari: <input type="date" id="dari">
-            Sampai: <input type="date" id="sampai">
-            <button><i class="fa fa-search"></i> Cari</button>
-        </div>
-
-        <div>
-            <button class="btn btn-excel"><i class="fa fa-file-excel"></i> Export To Excel</button>
-            <button class="btn btn-pdf"><i class="fa fa-file-pdf"></i> Export To PDF</button>
-            <button class="btn btn-tambah" onclick="showPage('formTamu')"><i class="fa fa-plus"></i> Isi Buku Tamu</button>
-        </div>
-
-        <br>
-
-        <table id="bukuTamuTable" class="display">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Nama</th>
-                    <th>Hari & Tanggal</th>
-                    <th>Jabatan</th>
-                    <th>Alamat</th>
-                    <th>Maksud & Tujuan</th>
-                    <th>Tanda Tangan</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                $sql_tamu_terbaru = "SELECT nama, instansi, tanggal_kunjungan, alamat, keperluan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
-                $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
-                if ($result_tamu_terbaru->num_rows > 0) {
-                    while ($row = $result_tamu_terbaru->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $no++ . "</td>";
-                        echo "<td>" . $row["nama"] . "</td>";
-                        echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
-                        echo "<td>" . $row["instansi"] . "</td>";
-                        echo "<td>" . $row["alamat"] . "</td>";
-                        echo "<td>" . $row["keperluan"] . "</td>";
-                        echo "<td><img src='https://cdn-icons-png.flaticon.com/512/149/149071.png'></td>";
-                        echo "<td>
-                            <button class='btn-edit'>Ubah</button>
-                            <button class='btn-hapus'>Hapus</button>
-                        </td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='8'>Tidak ada data tamu terbaru.</td></tr>";
+                    echo "<tr><td colspan='7'>Belum ada data tamu.</td></tr>";
                 }
                 ?>
             </tbody>
@@ -360,37 +304,30 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                     <label for="nama">Nama:</label>
                     <input type="text" id="nama" name="nama" required>
                 </div>
-
                 <div class="form-row">
                     <label for="instansi">Instansi:</label>
                     <input type="text" id="instansi" name="instansi">
                 </div>
-
                 <div class="form-row">
                     <label for="alamat">Alamat:</label>
                     <input type="text" id="alamat" name="alamat">
                 </div>
-
                 <div class="form-row">
                     <label for="no_hp">No HP:</label>
                     <input type="text" id="no_hp" name="no_hp">
                 </div>
-
                 <div class="form-row">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email">
                 </div>
-
                 <div class="form-row">
                     <label for="keperluan">Keperluan:</label>
                     <input type="text" id="keperluan" name="keperluan">
                 </div>
-
                 <div class="form-row">
                     <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
                     <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
                 </div>
-
                 <div class="form-row">
                     <button type="submit">Kirim</button>
                 </div>
@@ -399,7 +336,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
     </div>
 </div>
 
-<!-- Script DataTables & Page Navigation -->
+<!-- JS -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
@@ -414,6 +351,5 @@ function showPage(pageId) {
     event.target.closest('a').classList.add('active');
 }
 </script>
-
 </body>
 </html>
