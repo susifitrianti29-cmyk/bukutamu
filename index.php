@@ -170,3 +170,97 @@ $tanggal_hari_ini = date("l, d F Y");
 
 </body>
 </html>
+
+<form id="formBukuTamu">
+    <div class="form-row">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required>
+    </div>
+
+    <div class="form-row">
+        <label for="instansi">Instansi:</label>
+        <input type="text" id="instansi" name="instansi">
+    </div>
+
+    <div class="form-row">
+        <label for="alamat">Alamat:</label>
+        <input type="text" id="alamat" name="alamat">
+    </div>
+
+    <div class="form-row">
+        <label for="no_hp">No HP:</label>
+        <input type="text" id="no_hp" name="no_hp">
+    </div>
+
+    <div class="form-row">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+    </div>
+
+    <div class="form-row">
+        <label for="keperluan">Keperluan:</label>
+        <input type="text" id="keperluan" name="keperluan">
+    </div>
+
+    <div class="form-row">
+        <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
+        <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+    </div>
+
+    <div class="form-row">
+        <button type="submit">Kirim</button>
+    </div>
+</form>
+
+<script>
+$(document).ready(function(){
+    // Inisialisasi DataTable
+    let table = $('#bukuTamuTable').DataTable({
+        ajax: {
+            url: 'tampil_data.php',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'id' },
+            { data: 'nama' },
+            { data: 'tanggal_kunjungan' },
+            { data: 'instansi' },
+            { data: 'alamat' },
+            { data: 'keperluan' },
+            { 
+                data: null,
+                render: function(data) {
+                    return '<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">';
+                }
+            },
+            {
+                data: null,
+                render: function() {
+                    return '<button class="btn-edit">Ubah</button> <button class="btn-hapus">Hapus</button>';
+                }
+            }
+        ]
+    });
+
+    // 🔹 Kirim form tanpa reload
+    $('#formBukuTamu').on('submit', function(e){
+        e.preventDefault();
+
+        $.ajax({
+            url: 'proses_buku_tamu.php',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function(response){
+                if(response.trim() === 'sukses'){
+                    alert('Data berhasil disimpan!');
+                    $('#formBukuTamu')[0].reset();
+                    table.ajax.reload(); // refresh tabel otomatis
+                    showPage('bukuTamu'); // pindah ke tabel
+                } else {
+                    alert('Gagal menyimpan data!');
+                }
+            }
+        });
+    });
+});
+</script>
