@@ -234,8 +234,6 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
             <br>
             Dinas Komunikasi dan Informatika
         </div>
-        <p>Selamat datang di EntryEase Dashboard! Gunakan menu di sebelah kiri untuk melihat Buku Tamu atau mengisi data tamu baru.</p>
-
         <div class="statistik">
             <div class="card">
                 <h3>Tamu Hari Ini</h3>
