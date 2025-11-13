@@ -269,7 +269,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                     <th>Instansi</th>
                     <th>Alamat</th>
                     <th>Keperluan</th>
-                    <th>Tanda Tangan</th>
+                
                 </tr>
             </thead>
             <tbody>
