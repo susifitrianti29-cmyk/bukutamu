@@ -2,7 +2,7 @@
 include 'koneksi.php';
 
 $sql = "SELECT * FROM buku_tamu ORDER BY id DESC";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($koneksi, $sql);
 ?>
 
 <table id="bukuTamuTable" class="display">
