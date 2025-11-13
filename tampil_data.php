@@ -55,49 +55,6 @@ if (!$result) {
                 echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
                 echo "</tr>";
             }
-/* style.css */
-
-body {
-    font-family: 'Roboto', sans-serif; /* Ganti dengan font yang Anda sukai */
-    background-color: #f8f9fa;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Efek bayangan */
-    border-radius: 5px; /* Membuat sudut tabel menjadi bulat */
-    overflow: hidden; /* Mencegah border-radius keluar dari tabel */
-}
-
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #007bff; /* Warna header tabel */
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2; /* Warna baris genap */
-}
-
-tbody tr:hover {
-    background-color: #ddd; /* Efek hover pada baris */
-}
-            ?>
         </tbody>
     </table>
 
