@@ -224,8 +224,6 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 <!-- Sidebar -->
 <div class="sidebar">
     <div class="logo-container">
-        <img src="images/logo_belitung.png" alt="Logo Kabupaten Belitung">
-        <div class="instansi-nama">Dinas Kominfo</div>
     </div>
 
     <a href="#" class="active" onclick="showPage('dashboard')"><i class="fa-solid fa-house"></i> Dashboard</a>
