@@ -1,39 +1,63 @@
 <?php
-include 'koneksi.php';
+// tampil_data.php
 
-$sql = "SELECT * FROM buku_tamu ORDER BY id DESC";
-$result = mysqli_query($koneksi, $sql);
+// Sertakan file koneksi database
+include 'koneksi.php'; // Pastikan path ini benar
+
+// Periksa apakah koneksi berhasil
+if (!$conn) {
+    die("Koneksi database gagal: " . mysqli_connect_error());
+}
+
+// Query untuk mengambil data dari tabel buku_tamu
+$query = "SELECT * FROM buku_tamu";
+$result = mysqli_query($conn, $query);
+
+// Periksa apakah query berhasil dieksekusi
+if (!$result) {
+    die("Query gagal: " . mysqli_error($conn));
+}
+
 ?>
 
-<table id="bukuTamuTable" class="display">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Instansi</th>
-            <th>Alamat</th>
-            <th>No HP</th>
-            <th>Email</th>
-            <th>Keperluan</th>
-            <th>Tanggal Kunjungan</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php 
-        $no = 1;
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-                <td><?= $no++; ?></td>
-                <td><?= htmlspecialchars($row['nama']); ?></td>
-                <td><?= htmlspecialchars($row['instansi']); ?></td>
-                <td><?= htmlspecialchars($row['alamat']); ?></td>
-                <td><?= htmlspecialchars($row['no_hp']); ?></td>
-                <td><?= htmlspecialchars($row['email']); ?></td>
-                <td><?= htmlspecialchars($row['keperluan']); ?></td>
-                <td><?= htmlspecialchars($row['tanggal_kunjungan']); ?></td>
-            </tr>
-        <?php } ?>
-    </tbody>
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tampil Data Buku Tamu</title>
+</head>
+<body>
 
-<?php mysqli_close($conn); ?>
+    <h1>Data Buku Tamu</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Instansi</th>
+                <th>Alamat</th>
+                <th>No HP</th>
+                <th>Email</th>
+                <th>Keperluan</th>
+                <th>Tanggal Kunjungan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Tampilkan data dari database
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row["nama"] . "</td>";
+                echo "<td>" . $row["instansi"] . "</td>";
+                echo "<td>" . $row["alamat"] . "</td>";
+                echo "<td>" . $row["no_hp"] . "</td>";
+                echo "<td>" . $row["email"] . "</td>";
+                echo "<td>" . $row["keperluan"] . "</td>";
+                echo "<td>" . $row["tanggal_kunjungan"] . "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+
+</body>
+</html>
