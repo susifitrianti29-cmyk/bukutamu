@@ -249,7 +249,7 @@
         <div class="header">FORMULIR BUKU TAMU</div>
         <div class="form-section">
             <h2>Formulir Data Tamu</h2>
-            <form action="proses_buku_tamu.php" method="post">
+            <form action="tampil_data.php" method="post">
                 <div class="form-row">
                     <label for="nama">Nama:</label>
                     <input type="text" id="nama" name="nama" required>
