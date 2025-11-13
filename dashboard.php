@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard & Buku Tamu | EntryEase</title>
+<title>EntryEase | Dashboard</title>
 
-<!-- DataTables & Font Awesome -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- FontAwesome & DataTables -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
 <style>
     body {
@@ -17,7 +17,7 @@
         background-color: #f4f6f9;
     }
 
-    /* Sidebar kiri */
+    /* Sidebar */
     .sidebar {
         width: 230px;
         background-color: #103b52;
@@ -44,7 +44,7 @@
         transition: 0.3s;
     }
 
-    .sidebar a:hover {
+    .sidebar a:hover, .sidebar a.active {
         background-color: #145773;
     }
 
@@ -56,8 +56,7 @@
     .main-content {
         margin-left: 230px;
         padding: 20px;
-        width: 100%;
-        min-height: 100vh;
+        width: calc(100% - 230px);
     }
 
     .header {
@@ -68,6 +67,7 @@
         font-weight: bold;
     }
 
+    /* Buku tamu table */
     .filter-section {
         margin: 15px 0;
     }
@@ -113,8 +113,66 @@
         border-radius: 50%;
     }
 
-    h1 {
-        margin-top: 0;
+    /* Form Buku Tamu */
+    .form-section {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        max-width: 700px;
+        margin: auto;
+    }
+
+    .form-section h2 {
+        text-align: center;
+        color: #103b52;
+        margin-bottom: 20px;
+    }
+
+    .form-row {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-row label {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-row input, .form-row textarea {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .form-row button {
+        margin-top: 15px;
+        background: #00923f;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .form-row button:hover {
+        background: #007f35;
+    }
+
+    /* Halaman yang disembunyikan */
+    .page {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .page.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 </style>
 </head>
@@ -123,24 +181,22 @@
 <!-- Sidebar -->
 <div class="sidebar">
     <h2>EntryEase <i class="fa-solid fa-right-to-bracket"></i></h2>
-    <a href="#dashboard"><i class="fa-solid fa-house"></i> Dashboard</a>
-    <a href="#agenda"><i class="fa-solid fa-calendar-days"></i> Agenda & Kegiatan</a>
-    <a href="#buku-tamu" id="menu-buku-tamu"><i class="fa-solid fa-book"></i> Buku Tamu</a>
-    <a href="#surat"><i class="fa-solid fa-envelope"></i> Kelola Tata Surat</a>
-    <a href="#dokumen"><i class="fa-solid fa-folder-open"></i> Kelola Dokumen & Arsip</a>
-    <a href="#pengguna"><i class="fa-solid fa-users"></i> Manajemen Pengguna</a>
+    <a href="#" class="active" onclick="showPage('dashboard')"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="#" onclick="showPage('bukuTamu')"><i class="fa-solid fa-book"></i> Buku Tamu</a>
+    <a href="#" onclick="showPage('formTamu')"><i class="fa-solid fa-pen-to-square"></i> Isi Buku Tamu</a>
 </div>
 
 <!-- Konten utama -->
 <div class="main-content">
-    <!-- Halaman Dashboard -->
-    <div id="dashboard" class="page">
-        <h1>Selamat Datang di Dashboard</h1>
-        <p>Ini adalah area utama yang tampil di sebelah kanan sidebar.</p>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="page active">
+        <div class="header">DASHBOARD</div>
+        <p>Selamat datang di EntryEase Dashboard! Gunakan menu di sebelah kiri untuk melihat Buku Tamu atau mengisi data tamu baru.</p>
     </div>
 
-    <!-- Halaman Buku Tamu -->
-    <div id="buku-tamu" class="page" style="display:none;">
+    <!-- Buku Tamu -->
+    <div id="bukuTamu" class="page">
         <div class="header">BUKU TAMU</div>
 
         <div class="filter-section">
@@ -152,7 +208,7 @@
         <div>
             <button class="btn btn-excel"><i class="fa fa-file-excel"></i> Export To Excel</button>
             <button class="btn btn-pdf"><i class="fa fa-file-pdf"></i> Export To PDF</button>
-            <button class="btn btn-tambah"><i class="fa fa-plus"></i> Isi Buku Tamu</button>
+            <button class="btn btn-tambah" onclick="showPage('formTamu')"><i class="fa fa-plus"></i> Isi Buku Tamu</button>
         </div>
 
         <br>
@@ -187,23 +243,70 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Form Buku Tamu -->
+    <div id="formTamu" class="page">
+        <div class="header">FORMULIR BUKU TAMU</div>
+        <div class="form-section">
+            <h2>Formulir Data Tamu</h2>
+            <form action="proses_buku_tamu.php" method="post">
+                <div class="form-row">
+                    <label for="nama">Nama:</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="instansi">Instansi:</label>
+                    <input type="text" id="instansi" name="instansi">
+                </div>
+
+                <div class="form-row">
+                    <label for="alamat">Alamat:</label>
+                    <input type="text" id="alamat" name="alamat">
+                </div>
+
+                <div class="form-row">
+                    <label for="no_hp">No HP:</label>
+                    <input type="text" id="no_hp" name="no_hp">
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-row">
+                    <label for="keperluan">Keperluan:</label>
+                    <input type="text" id="keperluan" name="keperluan">
+                </div>
+
+                <div class="form-row">
+                    <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
+                    <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+                </div>
+
+                <div class="form-row">
+                    <button type="submit">Kirim</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
-<!-- Script DataTables -->
+<!-- Script DataTables & Page Navigation -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
 $(document).ready(function(){
     $('#bukuTamuTable').DataTable();
-
-    // Script sederhana untuk berpindah halaman tanpa reload
-    $('.sidebar a').click(function(e){
-        e.preventDefault();
-        $('.page').hide();
-        var target = $(this).attr('href');
-        $(target).show();
-    });
 });
+
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+    event.target.closest('a').classList.add('active');
+}
 </script>
 
 </body>
