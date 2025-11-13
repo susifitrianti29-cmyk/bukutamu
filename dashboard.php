@@ -284,7 +284,6 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                         echo "<td>".$row["instansi"]."</td>";
                         echo "<td>".$row["alamat"]."</td>";
                         echo "<td>".$row["keperluan"]."</td>";
-                        echo "<td><img src='https://cdn-icons-png.flaticon.com/512/149/149071.png'></td>";
                         echo "</tr>";
                     }
                 } else {
