@@ -1,40 +1,36 @@
 <?php
-// Hubungkan ke database
+// proses_tambah_tamu.php
+
 include 'koneksi.php';
 
-// Cek apakah form dikirim menggunakan metode POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nama = $_POST["nama"];
+    $instansi = $_POST["instansi"];
+    $alamat = $_POST["alamat"];
+    $no_hp = $_POST["no_hp"];
+    $email = $_POST["email"];
+    $keperluan = $_POST["keperluan"];
+    $tanggal_kunjungan = $_POST["tanggal_kunjungan"];
 
-    // Ambil data & hindari SQL Injection
-    $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
-    $instansi = mysqli_real_escape_string($koneksi, $_POST['instansi']);
-    $alamat = mysqli_real_escape_string($koneksi, $_POST['alamat']);
-    $no_hp = mysqli_real_escape_string($koneksi, $_POST['no_hp']);
-    $email = mysqli_real_escape_string($koneksi, $_POST['email']);
-    $keperluan = mysqli_real_escape_string($koneksi, $_POST['keperluan']);
-    $tanggal_kunjungan = mysqli_real_escape_string($koneksi, $_POST['tanggal_kunjungan']);
+    // Validasi dan sanitasi data (contoh sederhana)
+    $nama = htmlspecialchars($nama);
+    $instansi = htmlspecialchars($instansi);
+    $alamat = htmlspecialchars($alamat);
+    $no_hp = htmlspecialchars($no_hp);
+    $email = htmlspecialchars($email);
+    $keperluan = htmlspecialchars($keperluan);
+    $tanggal_kunjungan = htmlspecialchars($tanggal_kunjungan);
 
-    // Query simpan data
-    $query = "INSERT INTO buku_tamu (nama, instansi, alamat, no_hp, email, keperluan, tanggal_kunjungan)
-    VALUES ('$nama', '$instansi', '$alamat', '$no_hp', '$email', '$keperluan', '$tanggal_kunjungan')";
+    $sql = "INSERT INTO buku_tamu (nama, instansi, alamat, no_hp, email, keperluan, tanggal_kunjungan) VALUES ('$nama', '$instansi', '$alamat', '$no_hp', '$email', '$keperluan', '$tanggal_kunjungan')";
 
-    // Jalankan query
-    if (mysqli_query($koneksi, $query)) {
-        echo "<script>
-                alert('Data berhasil disimpan!');
-                window.location.href = 'index.php';
-              </script>";
+    if ($conn->query($sql) === TRUE) {
+        echo "Data tamu berhasil disimpan.";
+        header("Location: index.php"); // Redirect ke halaman index
+        exit();
     } else {
-        $error = mysqli_error($koneksi);
-        echo "<script>
-                alert('Terjadi kesalahan: $error');
-                window.location.href = 'index.php';
-              </script>";
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-    mysqli_close($koneksi);
-    
-} else {
-    echo "Akses tidak diizinkan!";
+    $conn->close();
 }
 ?>
