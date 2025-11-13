@@ -22,7 +22,7 @@ $result_total_tamu = $conn->query($sql_total_tamu);
 $total_tamu = ($result_total_tamu->num_rows > 0) ? $result_total_tamu->fetch_assoc()["jumlah"] : 0;
 
 // Ambil data tamu terbaru
-$sql_tamu_terbaru = "SELECT nama, instansi, tanggal_kunjungan, keperluan FROM buku_tamu ORDER BY tanggal_kunjungan DESC LIMIT 5";
+$sql_tamu_terbaru = "SELECT nama, instansi, tanggal_kunjungan, keperluan FROM buku_tamu ORDER BY tanggal_kunjungan DESC"; // Hapus LIMIT 5
 $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 
 ?>
@@ -155,7 +155,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
             <tbody>
                 <?php
                 if ($result_tamu_terbaru->num_rows > 0) {
-                    while ($row = $result_tamu_terbaru->fetch_assoc()) {
+                    while ($row = mysqli_fetch_assoc($result_tamu_terbaru)) {
                         echo "<tr>";
                         echo "<td>" . $row["nama"] . "</td>";
                         echo "<td>" . $row["instansi"] . "</td>";
