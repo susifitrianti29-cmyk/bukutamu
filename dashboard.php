@@ -230,7 +230,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
     </div>
 
     <a href="#" class="active" onclick="showPage('dashboard')"><i class="fa-solid fa-house"></i> Dashboard</a>
-    <a href="#" onclick="showPage('bukuTamu')"><i class="fa-solid fa-book"></i> Buku Tamu</a>
+    <a href="#" onclick="showPage('bukuTamu')"><i class="fa-solid fa-book"></i> Profil Instansi</a>
     <a href="#" onclick="showPage('formTamu')"><i class="fa-solid fa-pen-to-square"></i> Isi Buku Tamu</a>
 </div>
 
