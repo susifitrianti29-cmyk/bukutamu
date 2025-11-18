@@ -88,18 +88,18 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         .header {
             background-color: #00923f;
             color: white;
-            padding: 25px;
+            padding: 18px;
             border-radius: 10px;
             text-align: center;
             font-weight: bold;
             font-size: 22px;
-            line-height: 1.5;
+            line-height: 1.2;
         }
 
         .logo-header {
             width: 120px;
             height: auto;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .statistik {
