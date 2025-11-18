@@ -405,25 +405,56 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
     </div>
 
     <!-- FORM TAMU PAGE -->
-    <div id="formTamu" class="page">
-        <div class="header">FORMULIR BUKU TAMU</div>
-        <div class="form-section">
+    
+        <div class="container">
+        <div class="judul-box">
+    <h1>Buku Tamu Digital</h1>
+    <p>Dinas Komunikasi dan Informatika</p>
+</div>
+        </div>
+        
             <h2>Formulir Data Tamu</h2>
             <form action="proses_buku_tamu.php" method="post">
-                <label>Nama</label><input type="text" name="nama" required><br>
-                <label>Instansi</label><input type="text" name="instansi"><br>
-                <label>Alamat</label><input type="text" name="alamat"><br>
-                <label>No HP</label><input type="text" name="no_hp"><br>
-                <label>Email</label><input type="email" name="email"><br>
-                <label>Keperluan</label><input type="text" name="keperluan"><br>
-                <label>Tanggal Kunjungan</label><input type="date" name="tanggal_kunjungan" required><br>
+                <div class="form-container">
+                    
+                    <label for="nama">Nama:</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="instansi">Instansi:</label>
+                    <input type="text" id="instansi" name="instansi">
+                </div>
+
+                <div class="form-row">
+                    <label for="alamat">Alamat:</label>
+                    <input type="text" id="alamat" name="alamat">
+                </div>
+
+                <div class="form-row">
+                    <label for="no_hp">No HP:</label>
+                    <input type="text" id="no_hp" name="no_hp">
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-row">
+                    <label for="keperluan">Keperluan:</label>
+                    <input type="text" id="keperluan" name="keperluan">
+                </div>
+
+                <div class="form-row">
+                    <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
+                    <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+                </div>
+                <div class="form-wrapper">
                 <button type="submit">Kirim</button>
             </form>
         </div>
     </div>
-
-</div>
-
 <!-- JS -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
