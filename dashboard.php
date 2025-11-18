@@ -221,67 +221,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
             margin-bottom: 6px;
         }
         /* Style untuk formulir buku tamu */
-.form-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-.form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #00923f;
-}
-
-.form-group input[type="date"] {
-    font-family: Arial, sans-serif;
-}
-
-.form-submit {
-    background-color: #00923f;
-    color: #fff;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.form-submit:hover {
-    background-color: #007f35;
-}
     </style>
 </head>
 <body>
@@ -404,57 +344,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         </div>
     </div>
 
-    <!-- FORM TAMU PAGE -->
-    
-        <div class="container">
-        <div class="judul-box">
-    <h1>Buku Tamu Digital</h1>
-    <p>Dinas Komunikasi dan Informatika</p>
-</div>
-        </div>
-        
-            <h2>Formulir Data Tamu</h2>
-            <form action="proses_buku_tamu.php" method="post">
-                <div class="form-container">
-                    
-                    <label for="nama">Nama:</label>
-                    <input type="text" id="nama" name="nama" required>
-                </div>
 
-                <div class="form-row">
-                    <label for="instansi">Instansi:</label>
-                    <input type="text" id="instansi" name="instansi">
-                </div>
-
-                <div class="form-row">
-                    <label for="alamat">Alamat:</label>
-                    <input type="text" id="alamat" name="alamat">
-                </div>
-
-                <div class="form-row">
-                    <label for="no_hp">No HP:</label>
-                    <input type="text" id="no_hp" name="no_hp">
-                </div>
-
-                <div class="form-row">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email">
-                </div>
-
-                <div class="form-row">
-                    <label for="keperluan">Keperluan:</label>
-                    <input type="text" id="keperluan" name="keperluan">
-                </div>
-
-                <div class="form-row">
-                    <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
-                    <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
-                </div>
-                <div class="form-wrapper">
-                <button type="submit">Kirim</button>
-            </form>
-        </div>
-    </div>
 <!-- JS -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
