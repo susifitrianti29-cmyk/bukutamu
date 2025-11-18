@@ -221,6 +221,32 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
             margin-bottom: 6px;
         }
         /* Style untuk formulir buku tamu */
+        .form-row {
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-row input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.form-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 30px auto;
+}
 
     </style>
 </head>
@@ -343,6 +369,73 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
             <p class="struktur-text"><em>Sumber struktur organisasi: Dokumen SOTK Kominfo Kabupaten Belitung</em></p>
         </div>
     </div>
+<!-- FORM TAMU PAGE -->
+<div id="formTamu" class="page">
+
+    <div class="form-section">
+
+        <div class="judul-box" style="text-align:center; margin-bottom:20px;">
+            <h1 style="margin:0;">Buku Tamu Digital</h1>
+            <p style="margin-top:5px; font-size:16px;">Dinas Komunikasi dan Informatika</p>
+        </div>
+
+        <h2 style="text-align:center;">Formulir Data Tamu</h2>
+
+        <form action="proses_buku_tamu.php" method="post">
+
+            <div class="form-row">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+
+            <div class="form-row">
+                <label for="instansi">Instansi:</label>
+                <input type="text" id="instansi" name="instansi">
+            </div>
+
+            <div class="form-row">
+                <label for="alamat">Alamat:</label>
+                <input type="text" id="alamat" name="alamat">
+            </div>
+
+            <div class="form-row">
+                <label for="no_hp">No HP:</label>
+                <input type="text" id="no_hp" name="no_hp">
+            </div>
+
+            <div class="form-row">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+
+            <div class="form-row">
+                <label for="keperluan">Keperluan:</label>
+                <input type="text" id="keperluan" name="keperluan">
+            </div>
+
+            <div class="form-row">
+                <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
+                <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+            </div>
+
+            <div class="form-wrapper" style="text-align:center; margin-top:20px;">
+                <button type="submit" style="
+                    padding:10px 20px;
+                    background:#00923f;
+                    color:white;
+                    border:none;
+                    border-radius:5px;
+                    cursor:pointer;
+                    font-size:16px;">
+                    Kirim
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 
 <!-- JS -->
