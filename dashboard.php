@@ -59,26 +59,6 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         box-shadow: 2px 0 8px rgba(0,0,0,0.2);
     }
 
-    .logo-container {
-        text-align: center;
-        margin-bottom: 25px;
-    }
-
-    .logo-container img {
-        width: 90px;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 5px;
-        background: white;
-        padding: 5px;
-    }
-
-    .instansi-nama {
-        font-size: 15px;
-        font-weight: bold;
-        color: #e2e8f0;
-    }
-
     .sidebar a {
         display: flex;
         align-items: center;
@@ -107,23 +87,22 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         width: calc(100% - 230px);
     }
 
-   .header {
-    background-color: #00923f;
-    color: white;
-    padding: 25px;
-    border-radius: 10px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 22px;  /* 🔹 Membesarkan teks */
-    line-height: 1.5; /* 🔹 Jarak antar baris */
-}
+    .header {
+        background-color: #00923f;
+        color: white;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 1.5;
+    }
 
-.logo-header {
-    width: 120px;     /* 🔹 Membesarkan logo */
-    height: auto;
-    margin-bottom: 10px;
-}
-
+    .logo-header {
+        width: 120px;
+        height: auto;
+        margin-bottom: 10px;
+    }
 
     /* Statistik */
     .statistik {
@@ -143,24 +122,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         padding: 15px;
     }
 
-    .card h3 {
-        color: #103b52;
-        margin-bottom: 5px;
-    }
-
-    .card p {
-        font-size: 22px;
-        color: #00923f;
-        font-weight: bold;
-    }
-
-    table img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-    }
-
-    /* Form Buku Tamu */
+    /* Form */
     .form-section {
         background: white;
         padding: 20px;
@@ -170,55 +132,54 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         margin: 20px auto;
     }
 
-    .form-section h2 {
-        text-align: center;
-        color: #103b52;
-        margin-bottom: 20px;
-    }
-
-    .form-row {
-        margin-bottom: 10px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .form-row label {
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
-
-    .form-row input {
-        padding: 8px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-
-    .form-row button {
-        margin-top: 15px;
-        background: #00923f;
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .form-row button:hover {
-        background: #007f35;
-    }
-
     .page {
         display: none;
-        animation: fadeIn 0.3s ease-in-out;
     }
 
     .page.active {
         display: block;
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+    /* --- VISI MISI CSS --- */
+    .profil-container {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+        margin-top: 20px;
+    }
+
+    .profil-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #003366;
+    }
+
+    .visi-title, .misi-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #0056b3;
+        margin-top: 20px;
+    }
+
+    .visi-text {
+        font-size: 18px;
+        font-weight: bold;
+        background: #e8f2ff;
+        padding: 12px;
+        border-left: 5px solid #0056b3;
+        border-radius: 6px;
+        margin-top: 10px;
+    }
+
+    .misi-list {
+        background: #f7faff;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 5px solid #0056b3;
+        margin-top: 10px;
     }
 </style>
 </head>
@@ -226,37 +187,25 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <div class="logo-container">
-    </div>
-
     <a href="#" class="active" onclick="showPage('dashboard')"><i class="fa-solid fa-house"></i> Dashboard</a>
-    <a href="#" onclick="showPage('bukuTamu')"><i class="fa-solid fa-book"></i> Profil Instansi</a>
+    <a href="#" onclick="showPage('bukuTamu')"><i class="fa-solid fa-building"></i> Profil Instansi</a>
     <a href="#" onclick="showPage('formTamu')"><i class="fa-solid fa-pen-to-square"></i> Isi Buku Tamu</a>
 </div>
 
 <!-- Konten utama -->
 <div class="main-content">
 
-    <!-- Dashboard -->
+    <!-- DASHBOARD -->
     <div id="dashboard" class="page active">
         <div class="header">
-            <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri) (1).png" alt="Logo Kabupaten Belitung" width="120"  class="logo-header"><br>
+            <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri) (1).png" class="logo-header"><br>
             SISTEM INFORMASI BUKU TAMU<br>Dinas Komunikasi dan Informatika
         </div>
 
         <div class="statistik">
-            <div class="card">
-                <h3>Tamu Hari Ini</h3>
-                <p><?php echo $jumlah_tamu_hari_ini; ?></p>
-            </div>
-            <div class="card">
-                <h3>Tamu Bulan Ini</h3>
-                <p><?php echo $jumlah_tamu_bulan_ini; ?></p>
-            </div>
-            <div class="card">
-                <h3>Total Semua Tamu</h3>
-                <p><?php echo $total_tamu; ?></p>
-            </div>
+            <div class="card"><h3>Tamu Hari Ini</h3><p><?php echo $jumlah_tamu_hari_ini; ?></p></div>
+            <div class="card"><h3>Tamu Bulan Ini</h3><p><?php echo $jumlah_tamu_bulan_ini; ?></p></div>
+            <div class="card"><h3>Total Semua Tamu</h3><p><?php echo $total_tamu; ?></p></div>
         </div>
 
         <h2>Data Tamu Terbaru</h2>
@@ -269,7 +218,6 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                     <th>Instansi</th>
                     <th>Alamat</th>
                     <th>Keperluan</th>
-                
                 </tr>
             </thead>
             <tbody>
@@ -277,68 +225,63 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                 $no = 1;
                 if ($result_tamu_terbaru->num_rows > 0) {
                     while ($row = $result_tamu_terbaru->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>".$no++."</td>";
-                        echo "<td>".$row["nama"]."</td>";
-                        echo "<td>".$row["tanggal_kunjungan"]."</td>";
-                        echo "<td>".$row["instansi"]."</td>";
-                        echo "<td>".$row["alamat"]."</td>";
-                        echo "<td>".$row["keperluan"]."</td>";
-                        echo "</tr>";
+                        echo "<tr>
+                            <td>".$no++."</td>
+                            <td>".$row["nama"]."</td>
+                            <td>".$row["tanggal_kunjungan"]."</td>
+                            <td>".$row["instansi"]."</td>
+                            <td>".$row["alamat"]."</td>
+                            <td>".$row["keperluan"]."</td>
+                        </tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='7'>Belum ada data tamu.</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <!-- Form Buku Tamu -->
+    <!-- PROFIL INSTANSI (VISI MISI) -->
+    <div id="bukuTamu" class="page">
+        <div class="profil-container">
+            <div class="profil-title">Visi & Misi Dinas Komunikasi dan Informatika<br>Kabupaten Belitung</div>
+
+            <div class="visi-title">Visi</div>
+            <p class="visi-text">“Terwujudnya pelayanan komunikasi dan informatika yang berkualitas”</p>
+
+            <div class="misi-title">Misi</div>
+            <ol class="misi-list">
+                <li>Meningkatkan pelayanan publik berbasis TIK.</li>
+                <li>Mengoptimalkan keterbukaan informasi publik.</li>
+                <li>Mengoptimalkan penyelenggaraan TIK.</li>
+                <li>Mengoptimalkan “Belitung Satu Data”.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- FORM TAMU -->
     <div id="formTamu" class="page">
         <div class="header">FORMULIR BUKU TAMU</div>
         <div class="form-section">
             <h2>Formulir Data Tamu</h2>
             <form action="proses_buku_tamu.php" method="post">
-                <div class="form-row">
-                    <label for="nama">Nama:</label>
-                    <input type="text" id="nama" name="nama" required>
-                </div>
-                <div class="form-row">
-                    <label for="instansi">Instansi:</label>
-                    <input type="text" id="instansi" name="instansi">
-                </div>
-                <div class="form-row">
-                    <label for="alamat">Alamat:</label>
-                    <input type="text" id="alamat" name="alamat">
-                </div>
-                <div class="form-row">
-                    <label for="no_hp">No HP:</label>
-                    <input type="text" id="no_hp" name="no_hp">
-                </div>
-                <div class="form-row">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email">
-                </div>
-                <div class="form-row">
-                    <label for="keperluan">Keperluan:</label>
-                    <input type="text" id="keperluan" name="keperluan">
-                </div>
-                <div class="form-row">
-                    <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
-                    <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
-                </div>
-                <div class="form-row">
-                    <button type="submit">Kirim</button>
-                </div>
+                <label>Nama</label><input type="text" name="nama" required>
+                <label>Instansi</label><input type="text" name="instansi">
+                <label>Alamat</label><input type="text" name="alamat">
+                <label>No HP</label><input type="text" name="no_hp">
+                <label>Email</label><input type="email" name="email">
+                <label>Keperluan</label><input type="text" name="keperluan">
+                <label>Tanggal Kunjungan</label><input type="date" name="tanggal_kunjungan" required>
+                <button type="submit">Kirim</button>
             </form>
         </div>
     </div>
+
 </div>
 
 <!-- JS -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
 <script>
 $(document).ready(function(){
     $('#bukuTamuTable').DataTable();
@@ -351,5 +294,6 @@ function showPage(pageId) {
     event.target.closest('a').classList.add('active');
 }
 </script>
+
 </body>
 </html>
