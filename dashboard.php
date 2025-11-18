@@ -237,8 +237,9 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
     <!-- DASHBOARD PAGE -->
     <div id="dashboard" class="page active">
         <div class="header">
-            <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri) (1).png" class="logo-header"><br>
-            SISTEM INFORMASI BUKU TAMU<br>Dinas Komunikasi dan Informatika
+            <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri) (1).png" class="logo-header">
+           <h2>SISTEM INFORMASI BUKU TAMU</h2>
+            <p>Dinas Komunikasi dan Informatika</p>
         </div>
 
         <div class="statistik">
