@@ -1,5 +1,5 @@
 <?php
-include "conn.php";
+include "koneksi.php";
 
 // Ambil data instansi
 $data = mysqli_query($koneksi, "SELECT * FROM instansi WHERE id=1");
