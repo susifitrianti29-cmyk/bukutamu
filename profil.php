@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php";
+include "conn.php";
 
 // Ambil data instansi
 $data = mysqli_query($koneksi, "SELECT * FROM instansi WHERE id=1");
@@ -33,7 +33,7 @@ if (isset($_POST['simpan'])) {
             $up_logo
             WHERE id=1";
 
-    mysqli_query($koneksi, $sql);
+    mysqli_query($conn, $sql);
 
     echo "<script>alert('Profil berhasil diperbarui!'); window.location='profil.php';</script>";
 }
