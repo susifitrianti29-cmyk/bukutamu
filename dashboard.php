@@ -31,7 +31,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buku Tamu Digital | Dashboard</title>
+    <title>Laporan Buku Tamu</title>
 
     <!-- FontAwesome & DataTables -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -254,7 +254,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <a href="#" class="active" onclick="showPage('dashboard')"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="#" class="active" onclick="showPage('dashboard')"><i class="fa-solid fa-house"></i> Laporan Buku Tamu</a>
     <a href="#" onclick="showPage('profilInstansi')"><i class="fa-solid fa-building"></i> Profil Instansi</a>
     <a href="#" onclick="showPage('formTamu')"><i class="fa-solid fa-pen-to-square"></i> Isi Buku Tamu</a>
 </div>
@@ -270,13 +270,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
             <p>Dinas Komunikasi dan Informatika</p>
         </div>
 
-        <div class="statistik">
-            <div class="card"><h3>Tamu Hari Ini</h3><p><?php echo $jumlah_tamu_hari_ini; ?></p></div>
-            <div class="card"><h3>Tamu Bulan Ini</h3><p><?php echo $jumlah_tamu_bulan_ini; ?></p></div>
-            <div class="card"><h3>Total Semua Tamu</h3><p><?php echo $total_tamu; ?></p></div>
-        </div>
-
-        <h2>Data Tamu Terbaru</h2>
+        <h2>Laporan Buku Tamu</h2>
         <table id="bukuTamuTable" class="display">
             <thead>
                 <tr>
