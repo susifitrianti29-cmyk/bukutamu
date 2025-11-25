@@ -256,11 +256,36 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 <div class="sidebar">
     <a href="#" class="active" onclick="showPage('formTamu')"><i class="fa-solid fa-house"></i> Isi Buku Tamu</a>
     <a href="#" onclick="showPage('dashboard')"><i class="fa-solid fa-building"></i> Laporan Buku Tamu</a>
+    <a href="#" onclick="showPage('statistik')"><i class="fa-solid fa-chart-column"></i> Statistik & Grafik</a>
     <a href="#" onclick="showPage('profilInstansi')"><i class="fa-solid fa-pen-to-square"></i> Profil Instansi</a>
 </div>
 
 <!-- Konten utama -->
 <div class="main-content">
+
+    <!-- STATISTIK & GRAFIK PAGE -->
+<div id="statistik" class="page">
+
+    <div class="header">
+        <h2>Statistik & Grafik Buku Tamu</h2>
+    </div>
+
+    <div style="width:90%; margin:auto; margin-top:30px;">
+        <h3>Grafik Kunjungan Per Hari</h3>
+        <canvas id="chartHarian"></canvas>
+    </div>
+
+    <div style="width:90%; margin:auto; margin-top:40px;">
+        <h3>Grafik Kunjungan Per Instansi</h3>
+        <canvas id="chartInstansi"></canvas>
+    </div>
+
+    <div style="width:90%; margin:auto; margin-top:40px;">
+        <h3>Pie Chart Keperluan Tamu</h3>
+        <canvas id="chartKeperluan"></canvas>
+    </div>
+
+</div>
 
     <!-- DASHBOARD PAGE -->
     <div id="dashboard" class="page active">
