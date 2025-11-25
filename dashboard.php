@@ -254,9 +254,9 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <a href="#" class="active" onclick="showPage('dashboard')"><i class="fa-solid fa-house"></i> Laporan Buku Tamu</a>
-    <a href="#" onclick="showPage('profilInstansi')"><i class="fa-solid fa-building"></i> Profil Instansi</a>
-    <a href="#" onclick="showPage('formTamu')"><i class="fa-solid fa-pen-to-square"></i> Isi Buku Tamu</a>
+    <a href="#" class="active" onclick="showPage('formtamu')"><i class="fa-solid fa-house"></i> Isi Buku Tamu</a>
+    <a href="#" onclick="showPage('dashboard')"><i class="fa-solid fa-building"></i> Profil Laporan Buku Tamu</a>
+    <a href="#" onclick="showPage('profilInstansi')"><i class="fa-solid fa-pen-to-square"></i> Profil Instansi</a>
 </div>
 
 <!-- Konten utama -->
