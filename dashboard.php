@@ -299,7 +299,14 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         <table id="bukuTamuTable" class="display">
             <thead>
                 <tr>
-                    <th>No</th><th>Nama</th><th>Tanggal</th><th>Instansi</th><th>Alamat</th><th>Keperluan</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Tanggal</th>
+                    <th>Instansi</th>
+                    <th>Alamat</th>
+                    <th>Keperluan</th>
+                    <th>Aksi</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -307,13 +314,23 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                 $no = 1;
                 while ($row = $result_tamu_terbaru->fetch_assoc()) {
                     echo "<tr>
-                            <td>{$no}</td>
-                            <td>{$row['nama']}</td>
-                            <td>{$row['tanggal_kunjungan']}</td>
-                            <td>{$row['instansi']}</td>
-                            <td>{$row['alamat']}</td>
-                            <td>{$row['keperluan']}</td>
-                          </tr>";
+        <td>{$no}</td>
+        <td>{$row['nama']}</td>
+        <td>{$row['tanggal_kunjungan']}</td>
+        <td>{$row['instansi']}</td>
+        <td>{$row['alamat']}</td>
+        <td>{$row['keperluan']}</td>
+        <td>
+            <a href='edit.php?id={$row['id']}' class='btn-edit' 
+                style='color:blue; margin-right:8px;'>Edit</a>
+            
+            <a href='hapus.php?id={$row['id']}' class='btn-hapus' 
+                style='color:red;' onclick='return confirm(\"Yakin ingin menghapus?\")'>
+                Hapus
+            </a>
+        </td>
+      </tr>";
+
                     $no++;
                 }
                 ?>
