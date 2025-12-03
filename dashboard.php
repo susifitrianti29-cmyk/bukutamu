@@ -309,23 +309,26 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 
                 </tr>
             </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                while ($row = $result_tamu_terbaru->fetch_assoc()) {
-                    echo "<tr>
-                            <td>{$no}</td>
-                            <td>{$row['nama']}</td>
-                            <td>{$row['tanggal_kunjungan']}</td>
-                            <td>{$row['instansi']}</td>
-                            <td>{$row['alamat']}</td>
-                            <td>{$row['keperluan']}</td>
-                        
-                          </tr>";
-                    $no++;
-                }
-                ?>
-            </tbody>
+           <tbody>
+    <?php
+    $no = 1;
+    while ($row = $result_tamu_terbaru->fetch_assoc()) {
+    ?>
+        <tr>
+            <td><?= $no++; ?></td>
+            <td><?= htmlspecialchars($row['nama']); ?></td>
+            <td><?= htmlspecialchars($row['tanggal_kunjungan']); ?></td>
+            <td><?= htmlspecialchars($row['instansi']); ?></td>
+            <td><?= htmlspecialchars($row['alamat']); ?></td>
+            <td><?= htmlspecialchars($row['keperluan']); ?></td>
+            <td>
+                <button style="padding:4px 8px; background:#00923f; color:white; border:none; border-radius:4px;">Edit</button>
+                <button style="padding:4px 8px; background:#d9534f; color:white; border:none; border-radius:4px;">Hapus</button>
+            </td>
+        </tr>
+    <?php } ?>
+</tbody>
+
         </table>
     </div>
 
