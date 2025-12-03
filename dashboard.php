@@ -22,7 +22,7 @@ $result_total_tamu = $conn->query($sql_total_tamu);
 $total_tamu = ($result_total_tamu && $result_total_tamu->num_rows > 0)
     ? $result_total_tamu->fetch_assoc()["jumlah"] : 0;
 
-$sql_tamu_terbaru = "SELECT id, nama, instansi, alamat, keperluan, tanggal_kunjungan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
+$sql_tamu_terbaru = "SELECT id,nama, instansi, alamat, keperluan, tanggal_kunjungan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
 $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 ?>
 
@@ -310,20 +310,22 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                 </tr>
             </thead>
            <tbody>
-    <?php
-    $no = 1;
-    while ($row = $result_tamu_terbaru->fetch_assoc()) {
-    ?>
+    <tbody>
+        <?php 
+        $no = 1;
+        $query = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
+        while ($row = mysqli_fetch_assoc($query)): 
+        ?>
+        
         <tr>
             <td><?= $no++; ?></td>
-            <td><?= htmlspecialchars($row['nama']); ?></td>
-            <td><?= htmlspecialchars($row['tanggal_kunjungan']); ?></td>
-            <td><?= htmlspecialchars($row['instansi']); ?></td>
-            <td><?= htmlspecialchars($row['alamat']); ?></td>
-            <td><?= htmlspecialchars($row['keperluan']); ?></td>
+            <td><?= $row['nama']; ?></td>
+            <td><?= $row['tanggal_kunjungan']; ?></td>
+            <td><?= $row['instansi']; ?></td>
+            <td><?= $row['alamat']; ?></td>
+            <td><?= $row['keperluan']; ?></td>
             <td>
-               <td>
-    <a href="edit.php?id=<?= $row['id']; ?>" 
+                <a href="edit.php?id=<?= $row['id']; ?>" 
        style="padding:4px 8px; background:#00923f; color:white; border:none; border-radius:4px; text-decoration:none;">
        Edit
     </a>
@@ -333,14 +335,12 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
        style="padding:4px 8px; background:#d9534f; color:white; border:none; border-radius:4px; text-decoration:none;">
        Hapus
     </a>
-</td>
-
             </td>
         </tr>
-    <?php } ?>
-</tbody>
 
-        </table>
+        <?php endwhile; ?>
+    </tbody>
+</table>
     </div>
 
     <!-- PROFIL INSTANSI PAGE -->
