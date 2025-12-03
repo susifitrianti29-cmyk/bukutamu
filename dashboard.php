@@ -322,8 +322,19 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
             <td><?= htmlspecialchars($row['alamat']); ?></td>
             <td><?= htmlspecialchars($row['keperluan']); ?></td>
             <td>
-                <button style="padding:4px 8px; background:#00923f; color:white; border:none; border-radius:4px;">Edit</button>
-                <button style="padding:4px 8px; background:#d9534f; color:white; border:none; border-radius:4px;">Hapus</button>
+               <td>
+    <a href="edit.php?id=<?= $row['id']; ?>" 
+       style="padding:4px 8px; background:#00923f; color:white; border:none; border-radius:4px; text-decoration:none;">
+       Edit
+    </a>
+
+    <a href="hapus.php?id=<?= $row['id']; ?>" 
+       onclick="return confirm('Yakin ingin menghapus data ini?')"
+       style="padding:4px 8px; background:#d9534f; color:white; border:none; border-radius:4px; text-decoration:none;">
+       Hapus
+    </a>
+</td>
+
             </td>
         </tr>
     <?php } ?>
