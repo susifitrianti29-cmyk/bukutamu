@@ -299,7 +299,14 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         <table id="bukuTamuTable" class="display">
             <thead>
                 <tr>
-                    <th>No</th><th>Nama</th><th>Tanggal</th><th>Instansi</th><th>Alamat</th><th>Keperluan</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Tanggal</th>
+                    <th>Instansi</th>
+                    <th>Alamat</th>
+                    <th>Keperluan</th>
+                    <th>Aksi</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -313,6 +320,7 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                             <td>{$row['instansi']}</td>
                             <td>{$row['alamat']}</td>
                             <td>{$row['keperluan']}</td>
+                        
                           </tr>";
                     $no++;
                 }
