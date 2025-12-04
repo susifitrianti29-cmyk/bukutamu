@@ -28,16 +28,21 @@ if (isset($_POST['update'])) {
     $email     = $_POST['email'];
     $keperluan = $_POST['keperluan'];
     $tanggal   = $_POST['tanggal_kunjungan'];
+    $tujuan   = $_POST['tujuan'];
 
-    $update = mysqli_query($conn, "UPDATE buku_tamu SET 
-        nama='$nama',
-        instansi='$instansi',
-        alamat='$alamat',
-        no_hp='$no_hp',
-        email='$email',
-        keperluan='$keperluan',
-        tanggal_kunjungan='$tanggal'
-        WHERE id='$id'
+
+   $update = mysqli_query($conn, "UPDATE buku_tamu SET 
+    nama='$nama',
+    instansi='$instansi',
+    alamat='$alamat',
+    no_hp='$no_hp',
+    email='$email',
+    keperluan='$keperluan',
+    tujuan='$tujuan',
+    tanggal_kunjungan='$tanggal'
+    WHERE id='$id'
+");
+
     ");
 
     if ($update) {
@@ -112,6 +117,59 @@ if (isset($_POST['update'])) {
 
         <label>Keperluan</label>
         <input type="text" name="keperluan" value="<?= $data['keperluan']; ?>">
+
+        <label>Pihak yang Dituju</label>
+<select name="tujuan" required style="
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+">
+    <option value="">-- Pilih Pihak --</option>
+    <option value="Kepala Dinas" <?= ($data['tujuan']=="Kepala Dinas"?'selected':''); ?>>
+        KASIMIN, S.IP, MAB (Kepala Dinas)
+    </option>
+    <option value="Sekretaris Dinas" <?= ($data['tujuan']=="Sekretaris Dinas"?'selected':''); ?>>
+        ZAINAL HARISON, SE (Sekretaris Dinas)
+    </option>
+    <option value="Kabid Aplikasi Informatika" <?= ($data['tujuan']=="Kabid Aplikasi Informatika"?'selected':''); ?>>
+        APDIAN MUDIE PRIYANBADI, ST, MM
+    </option>
+    <option value="Kabid Informasi Komunikasi Publik" <?= ($data['tujuan']=="Kabid Informasi Komunikasi Publik"?'selected':''); ?>>
+        PADILA, ST
+    </option>
+    <option value="Kabid Keamanan Informasi Persandian  & Statistik" <?= ($data['tujuan']=="Kabid Keamanan Informasi Persandian  & Statistik"?'selected':''); ?>>
+        MUHAMMAD SAPRIL, S.Sos
+    </option>
+    <option value="Kasubbag Kepegawaian dan Umum" <?= ($data['tujuan']=="Kasubbag Kepegawaian dan Umum"?'selected':''); ?>>
+        DESY RESMITA, S.Sos
+    </option>
+    <option value="Sandiman" <?= ($data['tujuan']=="Sandiman"?'selected':''); ?>>
+        MOHD ISNAINI, S.Sos
+    </option>
+    <option value="Pranata Hubungan Masyarakat Ahli Muda" <?= ($data['tujuan']=="Pranata Hubungan Masyarakat Ahli Muda"?'selected':''); ?>>
+        UPIK SUMARTI, SS
+    </option>
+    <option value="Analis Kebijakan Ahli Muda" <?= ($data['tujuan']=="Analis Kebijakan Ahli Muda"?'selected':''); ?>>
+        ROSDIANSYAH, SE
+    </option>
+    <option value="Pranata Hubungan Masyarakat Ahli Muda 2" <?= ($data['tujuan']=="Pranata Hubungan Masyarakat Ahli Muda 2"?'selected':''); ?>>
+        VERRY YUDHISTIRA, S.Ikom, M.I.Kom
+    </option>
+    <option value="Pranata Komputer Muda" <?= ($data['tujuan']=="Pranata Komputer Muda"?'selected':''); ?>>
+        FIRIK, S.Ikom
+    </option>
+    <option value="Pranata Komputer Muda 2" <?= ($data['tujuan']=="Pranata Komputer Muda 2"?'selected':''); ?>>
+        ERLINA SETYOWATI HANDAYANI, S.I.Kom
+    </option>
+    <option value="Penelaah Teknis Kebijakan" <?= ($data['tujuan']=="Penelaah Teknis Kebijakan"?'selected':''); ?>>
+        ICHSAN ZAINUL HAKIM, ST
+    </option>
+    <option value="Penelaah Teknis Kebijakan 2" <?= ($data['tujuan']=="Penelaah Teknis Kebijakan 2"?'selected':''); ?>>
+        IRHAM ASYHARI, S.Kom
+    </option>
+
+</select>
 
         <label>Tanggal Kunjungan</label>
         <input type="date" name="tanggal_kunjungan" value="<?= $data['tanggal_kunjungan']; ?>" required>

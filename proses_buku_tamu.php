@@ -15,13 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $no_hp = $_POST['no_hp'] ?? '';
     $email = $_POST['email'] ?? '';
     $keperluan = $_POST['keperluan'] ?? '';
+    $tujuan = $_POST['tujuan']??'';
     $tanggal_kunjungan = $_POST['tanggal_kunjungan'] ?? '';
 
     // Validasi sederhana
     if ($nama != '' && $tanggal_kunjungan != '') {
         // Simpan ke database
-        $sql = "INSERT INTO buku_tamu (nama, instansi, alamat, no_hp, email, keperluan, tanggal_kunjungan)
-                VALUES ('$nama', '$instansi', '$alamat', '$no_hp', '$email', '$keperluan', '$tanggal_kunjungan')";
+        $sql = "INSERT INTO buku_tamu (nama, instansi, alamat, no_hp, email, keperluan, tanggal_kunjungan, tujuan)
+        VALUES ('$nama', '$instansi', '$alamat', '$no_hp', '$email', '$keperluan', '$tanggal_kunjungan', '$tujuan')";
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>alert('Data tamu berhasil disimpan!'); window.location='dashboard.php';</script>";
