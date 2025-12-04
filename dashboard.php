@@ -262,6 +262,20 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 
 <!-- Konten utama -->
 <div class="main-content">
+    <?php
+include 'koneksi.php';
+
+// SCRIPT HAPUS DATA
+if (isset($_GET["hapus"])) {
+    $id = $_GET["hapus"];
+    $hapus = mysqli_query($conn, "DELETE FROM buku_tamu WHERE id='$id'");
+
+    if ($hapus) {
+        echo "<script>alert('Data berhasil dihapus!'); window.location='index.php';</script>";
+    } else {
+        echo "<script>alert('Gagal menghapus data!');</script>";
+    }
+}
 
     <!-- STATISTIK & GRAFIK PAGE -->
 <div id="statistik" class="page">
