@@ -22,7 +22,7 @@ $result_total_tamu = $conn->query($sql_total_tamu);
 $total_tamu = ($result_total_tamu && $result_total_tamu->num_rows > 0)
     ? $result_total_tamu->fetch_assoc()["jumlah"] : 0;
 
-$sql_tamu_terbaru = "SELECT nama, instansi, alamat, keperluan, tanggal_kunjungan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
+$sql_tamu_terbaru = "SELECT id,nama, instansi, alamat, keperluan, tanggal_kunjungan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
 $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 ?>
 
@@ -310,7 +310,6 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
                 </tr>
             </thead>
            <tbody>
-    <tbody>
         <?php 
         $no = 1;
         $query = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
@@ -325,17 +324,22 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
             <td><?= $row['alamat']; ?></td>
             <td><?= $row['keperluan']; ?></td>
             <td>
-                <a href="dashboard.php?edit=<?= $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                <a href="dashboard.php?hapus=<?= $row['id']; ?>" 
-                   onclick="return confirm('Yakin ingin menghapus data ini?');"
-                   class="btn btn-danger btn-sm">Hapus</a>
+             <a href="index.php?edit=<?= $row['id']; ?>" 
+   style="padding:4px 8px; background:#00923f; color:white; border:none; border-radius:4px; text-decoration:none;">
+   Edit
+</a>
+
+<a href="index.php?hapus=<?= $row['id']; ?>" 
+   onclick="return confirm('Yakin ingin menghapus data ini?')"
+   style="padding:4px 8px; background:#d9534f; color:white; border:none; border-radius:4px; text-decoration:none;">
+   Hapus
+    </a>
             </td>
         </tr>
 
         <?php endwhile; ?>
     </tbody>
 </table>
-
     </div>
 
     <!-- PROFIL INSTANSI PAGE -->
