@@ -6,6 +6,21 @@ if (!$conn) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
 
+// 🔹 Tangani penghapusan data
+if (isset($_GET['hapus'])) {
+    $id_hapus = $_GET['hapus'];
+    $sql_hapus = "DELETE FROM buku_tamu WHERE id = ?";
+    $stmt = $conn->prepare($sql_hapus);
+    $stmt->bind_param("i", $id_hapus);
+    
+    if ($stmt->execute()) {
+        echo "<script>alert('Data berhasil dihapus'); window.location.href='index.php';</script>";
+    } else {
+        echo "<script>alert('Gagal menghapus data');</script>";
+    }
+    $stmt->close();
+}
+
 // 🔹 Statistik Jumlah Tamu
 $sql_tamu_hari_ini = "SELECT COUNT(*) AS jumlah FROM buku_tamu WHERE DATE(tanggal_kunjungan) = CURDATE()";
 $result_tamu_hari_ini = $conn->query($sql_tamu_hari_ini);
@@ -24,6 +39,63 @@ $total_tamu = ($result_total_tamu && $result_total_tamu->num_rows > 0)
 
 $sql_tamu_terbaru = "SELECT id,nama, instansi, alamat, keperluan, tanggal_kunjungan FROM buku_tamu ORDER BY tanggal_kunjungan DESC";
 $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
+
+// 🔹 Data untuk chart harian (7 hari terakhir)
+$sql_chart_harian = "SELECT DATE(tanggal_kunjungan) as tanggal, COUNT(*) as jumlah 
+                     FROM buku_tamu 
+                     WHERE tanggal_kunjungan >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+                     GROUP BY DATE(tanggal_kunjungan) 
+                     ORDER BY tanggal";
+$result_chart_harian = $conn->query($sql_chart_harian);
+$labels_harian = [];
+$data_harian = [];
+
+if ($result_chart_harian && $result_chart_harian->num_rows > 0) {
+    while ($row = $result_chart_harian->fetch_assoc()) {
+        $labels_harian[] = date('d M', strtotime($row['tanggal']));
+        $data_harian[] = $row['jumlah'];
+    }
+}
+
+// 🔹 Data untuk chart instansi (top 5)
+$sql_chart_instansi = "SELECT instansi, COUNT(*) as jumlah 
+                       FROM buku_tamu 
+                       WHERE instansi IS NOT NULL AND instansi != ''
+                       GROUP BY instansi 
+                       ORDER BY jumlah DESC 
+                       LIMIT 5";
+$result_chart_instansi = $conn->query($sql_chart_instansi);
+$labels_instansi = [];
+$data_instansi = [];
+
+if ($result_chart_instansi && $result_chart_instansi->num_rows > 0) {
+    while ($row = $result_chart_instansi->fetch_assoc()) {
+        $labels_instansi[] = $row['instansi'];
+        $data_instansi[] = $row['jumlah'];
+    }
+}
+
+// 🔹 Data untuk chart keperluan
+$sql_chart_keperluan = "SELECT keperluan, COUNT(*) as jumlah 
+                        FROM buku_tamu 
+                        WHERE keperluan IS NOT NULL AND keperluan != ''
+                        GROUP BY keperluan 
+                        ORDER BY jumlah DESC";
+$result_chart_keperluan = $conn->query($sql_chart_keperluan);
+$labels_keperluan = [];
+$data_keperluan = [];
+$colors_keperluan = [];
+
+if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
+    $color_palette = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+    $i = 0;
+    while ($row = $result_chart_keperluan->fetch_assoc()) {
+        $labels_keperluan[] = $row['keperluan'];
+        $data_keperluan[] = $row['jumlah'];
+        $colors_keperluan[] = $color_palette[$i % count($color_palette)];
+        $i++;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,9 +105,10 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAPORAN BUKU TAMU DIGITAL</title>
 
-    <!-- FontAwesome & DataTables -->
+    <!-- FontAwesome & DataTables & Chart.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         body {
@@ -220,34 +293,102 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
         .struktur-list li {
             margin-bottom: 6px;
         }
+        
         /* Style untuk formulir buku tamu */
         .form-row {
-    margin-bottom: 15px;
-}
+            margin-bottom: 15px;
+        }
 
-.form-row label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+        .form-row label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-.form-row input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #bbb;
-    border-radius: 6px;
-    font-size: 15px;
-}
+        .form-row input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 15px;
+        }
 
-.form-section {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    max-width: 600px;
-    margin: 30px auto;
-}
+        .form-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 30px auto;
+        }
 
+        .btn-edit {
+            padding: 4px 8px;
+            background: #00923f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .btn-delete {
+            padding: 4px 8px;
+            background: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-edit:hover {
+            background: #007a33;
+        }
+
+        .btn-delete:hover {
+            background: #c9302c;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            width: 90%;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-card h3 {
+            color: #00923f;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #0f3b52;
+        }
+
+        .stat-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -262,51 +403,83 @@ $result_tamu_terbaru = $conn->query($sql_tamu_terbaru);
 
 <!-- Konten utama -->
 <div class="main-content">
-    <?php
-include 'koneksi.php';
 
-// SCRIPT HAPUS DATA
-if (isset($_GET["hapus"])) {
-    $id = $_GET["hapus"];
-    $hapus = mysqli_query($conn, "DELETE FROM buku_tamu WHERE id='$id'");
+    <!-- FORM TAMU PAGE -->
+    <div id="formTamu" class="page active">
+        <div class="form-section">
+            <div class="judul-box" style="text-align:center; margin-bottom:20px;">
+                <h1 style="margin:0;">Buku Tamu Digital</h1>
+                <p style="margin-top:5px; font-size:16px;">Dinas Komunikasi dan Informatika</p>
+            </div>
 
-    if ($hapus) {
-        echo "<script>alert('Data berhasil dihapus!'); window.location='index.php';</script>";
-    } else {
-        echo "<script>alert('Gagal menghapus data!');</script>";
-    }
-}
+            <h2 style="text-align:center;">Formulir Data Tamu</h2>
 
-    <!-- STATISTIK & GRAFIK PAGE -->
-<div id="statistik" class="page">
+            <form action="proses_buku_tamu.php" method="post">
+                <div class="form-row">
+                    <label for="nama">Nama:</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
 
-    <div class="header">
-        <h2>Statistik & Grafik Buku Tamu</h2>
+                <div class="form-row">
+                    <label for="instansi">Instansi:</label>
+                    <input type="text" id="instansi" name="instansi">
+                </div>
+
+                <div class="form-row">
+                    <label for="alamat">Alamat:</label>
+                    <input type="text" id="alamat" name="alamat">
+                </div>
+
+                <div class="form-row">
+                    <label for="no_hp">No HP:</label>
+                    <input type="text" id="no_hp" name="no_hp">
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-row">
+                    <label for="keperluan">Keperluan:</label>
+                    <input type="text" id="keperluan" name="keperluan">
+                </div>
+
+                <div class="form-row">
+                    <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
+                    <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+                </div>
+
+                <div class="form-wrapper" style="text-align:center; margin-top:20px;">
+                    <button type="submit" style="padding:10px 20px; background:#00923f; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px;">
+                        Kirim
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div style="width:90%; margin:auto; margin-top:30px;">
-        <h3>Grafik Kunjungan Per Hari</h3>
-        <canvas id="chartHarian"></canvas>
-    </div>
-
-    <div style="width:90%; margin:auto; margin-top:40px;">
-        <h3>Grafik Kunjungan Per Instansi</h3>
-        <canvas id="chartInstansi"></canvas>
-    </div>
-
-    <div style="width:90%; margin:auto; margin-top:40px;">
-        <h3>Pie Chart Keperluan Tamu</h3>
-        <canvas id="chartKeperluan"></canvas>
-    </div>
-
-</div>
 
     <!-- DASHBOARD PAGE -->
-    <div id="dashboard" class="page active">
+    <div id="dashboard" class="page">
         <div class="header">
             <img src="Logo Kabupaten Belitung (Maju Terus Mawas Diri) (1).png" class="logo-header">
-           <h2>SISTEM INFORMASI BUKU TAMU</h2>
+            <h2>SISTEM INFORMASI BUKU TAMU</h2>
             <p>Dinas Komunikasi dan Informatika</p>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Tamu Hari Ini</h3>
+                <div class="number"><?= $jumlah_tamu_hari_ini ?></div>
+            </div>
+            <div class="stat-card">
+                <h3>Tamu Bulan Ini</h3>
+                <div class="number"><?= $jumlah_tamu_bulan_ini ?></div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Tamu</h3>
+                <div class="number"><?= $total_tamu ?></div>
+            </div>
         </div>
 
         <h2>Laporan Buku Tamu</h2>
@@ -320,40 +493,68 @@ if (isset($_GET["hapus"])) {
                     <th>Alamat</th>
                     <th>Keperluan</th>
                     <th>Aksi</th>
-
                 </tr>
             </thead>
-           <tbody>
-        <?php 
-        $no = 1;
-        $query = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
-        while ($row = mysqli_fetch_assoc($query)): 
-        ?>
-        
-        <tr>
-            <td><?= $no++; ?></td>
-            <td><?= $row['nama']; ?></td>
-            <td><?= $row['tanggal_kunjungan']; ?></td>
-            <td><?= $row['instansi']; ?></td>
-            <td><?= $row['alamat']; ?></td>
-            <td><?= $row['keperluan']; ?></td>
-            <td>
-             <a href="index.php?edit=<?= $row['id']; ?>" 
-   style="padding:4px 8px; background:#00923f; color:white; border:none; border-radius:4px; text-decoration:none;">
-   Edit
-</a>
+            <tbody>
+                <?php 
+                $no = 1;
+                $query = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
+                while ($row = mysqli_fetch_assoc($query)): 
+                ?>
+                <tr>
+                    <td><?= $no++; ?></td>
+                    <td><?= htmlspecialchars($row['nama']); ?></td>
+                    <td><?= date('d/m/Y', strtotime($row['tanggal_kunjungan'])); ?></td>
+                    <td><?= htmlspecialchars($row['instansi']); ?></td>
+                    <td><?= htmlspecialchars($row['alamat']); ?></td>
+                    <td><?= htmlspecialchars($row['keperluan']); ?></td>
+                    <td>
+                        <a href="edit.php?id=<?= $row['id']; ?>" class="btn-edit">Edit</a>
+                        <a href="index.php?hapus=<?= $row['id']; ?>" 
+                           onclick="return confirm('Yakin ingin menghapus data ini?')"
+                           class="btn-delete">Hapus</a>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 
-<a href="index.php?hapus=<?= $row['id']; ?>" 
-   onclick="return confirm('Yakin ingin menghapus data ini?')"
-   style="padding:4px 8px; background:#d9534f; color:white; border:none; border-radius:4px; text-decoration:none;">
-   Hapus
-    </a>
-            </td>
-        </tr>
+    <!-- STATISTIK & GRAFIK PAGE -->
+    <div id="statistik" class="page">
+        <div class="header">
+            <h2>Statistik & Grafik Buku Tamu</h2>
+        </div>
 
-        <?php endwhile; ?>
-    </tbody>
-</table>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Tamu Hari Ini</h3>
+                <div class="number"><?= $jumlah_tamu_hari_ini ?></div>
+            </div>
+            <div class="stat-card">
+                <h3>Tamu Bulan Ini</h3>
+                <div class="number"><?= $jumlah_tamu_bulan_ini ?></div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Tamu</h3>
+                <div class="number"><?= $total_tamu ?></div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3>Grafik Kunjungan 7 Hari Terakhir</h3>
+            <canvas id="chartHarian"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3>Grafik Kunjungan Per Instansi (Top 5)</h3>
+            <canvas id="chartInstansi"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3>Distribusi Keperluan Tamu</h3>
+            <canvas id="chartKeperluan"></canvas>
+        </div>
     </div>
 
     <!-- PROFIL INSTANSI PAGE -->
@@ -368,14 +569,14 @@ if (isset($_GET["hapus"])) {
             <div class="profil-title">Visi & Misi</div>
 
             <div class="visi-title">Visi</div>
-            <p class="visi-text">“Terwujudnya pelayanan komunikasi dan informatika yang berkualitas”</p>
+            <p class="visi-text">"Terwujudnya pelayanan komunikasi dan informatika yang berkualitas"</p>
 
             <div class="misi-title">Misi</div>
             <ol class="misi-list">
                 <li>Meningkatkan pelayanan publik berbasis TIK.</li>
                 <li>Mengoptimalkan keterbukaan informasi publik.</li>
                 <li>Mengoptimalkan penyelenggaraan TIK.</li>
-                <li>Mengoptimalkan “Belitung Satu Data”.</li>
+                <li>Mengoptimalkan "Belitung Satu Data".</li>
             </ol>
 
             <div class="sejarah-title">Sejarah Instansi</div>
@@ -423,81 +624,18 @@ if (isset($_GET["hapus"])) {
             <p class="struktur-text"><em>Sumber struktur organisasi: Dokumen SOTK Kominfo Kabupaten Belitung</em></p>
         </div>
     </div>
-<!-- FORM TAMU PAGE -->
-<div id="formTamu" class="page">
-
-    <div class="form-section">
-
-        <div class="judul-box" style="text-align:center; margin-bottom:20px;">
-            <h1 style="margin:0;">Buku Tamu Digital</h1>
-            <p style="margin-top:5px; font-size:16px;">Dinas Komunikasi dan Informatika</p>
-        </div>
-
-        <h2 style="text-align:center;">Formulir Data Tamu</h2>
-
-        <form action="proses_buku_tamu.php" method="post">
-
-            <div class="form-row">
-                <label for="nama">Nama:</label>
-                <input type="text" id="nama" name="nama" required>
-            </div>
-
-            <div class="form-row">
-                <label for="instansi">Instansi:</label>
-                <input type="text" id="instansi" name="instansi">
-            </div>
-
-            <div class="form-row">
-                <label for="alamat">Alamat:</label>
-                <input type="text" id="alamat" name="alamat">
-            </div>
-
-            <div class="form-row">
-                <label for="no_hp">No HP:</label>
-                <input type="text" id="no_hp" name="no_hp">
-            </div>
-
-            <div class="form-row">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-            </div>
-
-            <div class="form-row">
-                <label for="keperluan">Keperluan:</label>
-                <input type="text" id="keperluan" name="keperluan">
-            </div>
-
-            <div class="form-row">
-                <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
-                <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
-            </div>
-
-            <div class="form-wrapper" style="text-align:center; margin-top:20px;">
-                <button type="submit" style="
-                    padding:10px 20px;
-                    background:#00923f;
-                    color:white;
-                    border:none;
-                    border-radius:5px;
-                    cursor:pointer;
-                    font-size:16px;">
-                    Kirim
-                </button>
-            </div>
-
-        </form>
-
-    </div>
-
 </div>
-
 
 <!-- JS -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
 $(document).ready(function(){
-    $('#bukuTamuTable').DataTable();
+    $('#bukuTamuTable').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
+        }
+    });
 });
 
 function showPage(pageId) {
@@ -506,6 +644,87 @@ function showPage(pageId) {
     document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
     event.target.closest('a').classList.add('active');
 }
+
+// Chart.js untuk statistik
+document.addEventListener('DOMContentLoaded', function() {
+    // Chart Harian
+    const ctxHarian = document.getElementById('chartHarian');
+    if (ctxHarian) {
+        new Chart(ctxHarian, {
+            type: 'line',
+            data: {
+                labels: <?= json_encode($labels_harian) ?>,
+                datasets: [{
+                    label: 'Jumlah Tamu',
+                    data: <?= json_encode($data_harian) ?>,
+                    borderColor: '#00923f',
+                    backgroundColor: 'rgba(0, 146, 63, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    }
+
+    // Chart Instansi
+    const ctxInstansi = document.getElementById('chartInstansi');
+    if (ctxInstansi) {
+        new Chart(ctxInstansi, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($labels_instansi) ?>,
+                datasets: [{
+                    label: 'Jumlah Kunjungan',
+                    data: <?= json_encode($data_instansi) ?>,
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    }
+
+    // Chart Keperluan
+    const ctxKeperluan = document.getElementById('chartKeperluan');
+    if (ctxKeperluan) {
+        new Chart(ctxKeperluan, {
+            type: 'pie',
+            data: {
+                labels: <?= json_encode($labels_keperluan) ?>,
+                datasets: [{
+                    label: 'Jumlah',
+                    data: <?= json_encode($data_keperluan) ?>,
+                    backgroundColor: <?= json_encode($colors_keperluan) ?>,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    }
+                }
+            }
+        });
+    }
+});
 </script>
 
 </body>
