@@ -446,16 +446,15 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
                 </div>
 
                 <div class="form-row">
-                    <label for="keperluan">Pihak yang Dituju:</label>
-                    <input type="text" id="tujuan" name="tujuan">
-                </div>
-
-
-                <div class="form-row">
-                    <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
-                    <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
-                </div>
-                <option value="">-- Pilih Pihak --</option>
+    <label for="tujuan">Pihak yang Dituju:</label>
+    <select id="tujuan" name="tujuan" required style="
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #bbb;
+        border-radius: 6px;
+        font-size: 15px;
+    ">
+        <option value="">-- Pilih Pihak --</option>
         <option value="Kepala Dinas">KASIMIN, S.IP, MAB (Kepala Dinas)</option>
         <option value="Sekretaris Dinas">ZAINAL HARISON, SE (Sekretaris Dinas)</option>
         <option value="Kabid Aplikasi Informatika">APDIAN MUDIE PRIYANBADI,ST,MM (Kabid Aplikasi Informatika)</option>
@@ -473,6 +472,12 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
     </select>
 </div>
 
+
+                <div class="form-row">
+                    <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
+                    <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
+                </div>
+                
 
                 <div class="form-wrapper" style="text-align:center; margin-top:20px;">
                     <button type="submit" style="padding:10px 20px; background:#00923f; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px;">
