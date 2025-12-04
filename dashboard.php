@@ -455,6 +455,24 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
                     <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
                     <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
                 </div>
+                <option value="">-- Pilih Pihak --</option>
+        <option value="Kepala Dinas">KASIMIN, S.IP, MAB (Kepala Dinas)</option>
+        <option value="Sekretaris Dinas">ZAINAL HARISON, SE (Sekretaris Dinas)</option>
+        <option value="Kabid Aplikasi Informatika">APDIAN MUDIE PRIYANBADI,ST,MM (Kabid Aplikasi Informatika)</option>
+        <option value="Kabid Informasi Komunikasi Publik">PADILA, ST (Kabid  Informasi Komunikasi Publik)</option>
+        <option value="Kabid Keamanan Informasi Persandian  & Statistik">MUHAMMAD SAPRIL, S.Sos (Kabid Keamanan Informasi Persandian dan Statistik)</option>
+        <option value="Kasubbag Kepegawaian dan Umum">DESY RESMITA, S.Sos (Kasubbag Kepegawaian dan Umum)</option>
+        <option value="Sandiman">MOHD ISNAINI, S.Sos (Sandiman Muda)</option>
+         <option value="Pranata Hubungan Masyarakat Ahli Muda">UPIK SUMARTI, SS (Pranata Hubungan Masyarakat Ahli Muda)</option>
+         <option value="Analis Kebijakan Ahli Muda">ROSDIANSYAH, SE (Analis Kebijakan Ahli Muda)</option>
+         <option value="Pranata Hubungan Masyarakat Ahli Muda">VERRY YUDHISTIRA, S.Ikom, M.I.Kom (Pranata Hubungan Masyarakat Ahli Muda)</option>
+         <option value="Pranata Komputer Muda">FIRIK, S.Ikom (Pranata Komputer Muda)</option>
+         <option value="Pranata Komputer Muda">ERLINA SETYOWATI HANDAYANI, S.I.Kom (Pranata Komputer Muda)</option>
+         <option value="Penelaah Teknis Kebijakan">ICHSAN ZAINUL HAKIM, ST (Penelaah Teknis Kebijakan)</option>
+         <option value="Penelaah Teknis Kebijakan">IRHAM ASYHARI, S.Kom	(Penelaah Teknis Kebijakan)</option>
+    </select>
+</div>
+
 
                 <div class="form-wrapper" style="text-align:center; margin-top:20px;">
                     <button type="submit" style="padding:10px 20px; background:#00923f; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px;">
