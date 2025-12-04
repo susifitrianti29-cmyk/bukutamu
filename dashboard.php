@@ -46,9 +46,9 @@ $sql_chart_harian = "SELECT DATE(tanggal_kunjungan) as tanggal, COUNT(*) as juml
                      WHERE tanggal_kunjungan >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
                      GROUP BY DATE(tanggal_kunjungan) 
                      ORDER BY tanggal";
-$result_chart_harian = $conn->query($sql_chart_harian);
-$labels_harian = [];
-$data_harian = [];
+            $result_chart_harian = $conn->query($sql_chart_harian);
+            $labels_harian = [];
+            $data_harian = [];
 
 if ($result_chart_harian && $result_chart_harian->num_rows > 0) {
     while ($row = $result_chart_harian->fetch_assoc()) {
@@ -446,6 +446,12 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
                 </div>
 
                 <div class="form-row">
+                    <label for="keperluan">Pihak yang Dituju:</label>
+                    <input type="text" id="tujuan" name="tujuan">
+                </div>
+
+
+                <div class="form-row">
                     <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
                     <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
                 </div>
@@ -458,7 +464,6 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
             </form>
         </div>
     </div>
-
     <!-- DASHBOARD PAGE -->
     <div id="dashboard" class="page">
         <div class="header">
@@ -498,6 +503,7 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
             <td><?= $row['alamat']; ?></td>
             <td><?= $row['keperluan']; ?></td>
             <td><?= $row['tujuan']; ?></td>
+            
             <td>
                 <a href="edit.php?id=<?= $row['id']; ?>" 
        style="padding:4px 8px; background:#00923f; color:white; border:none; border-radius:4px; text-decoration:none;">
@@ -617,92 +623,6 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
             <p class="struktur-text"><em>Sumber struktur organisasi: Dokumen SOTK Kominfo Kabupaten Belitung</em></p>
         </div>
     </div>
-<!-- FORM TAMU PAGE -->
-<div id="formTamu" class="page">
-
-    <div class="form-section">
-
-        <div class="judul-box" style="text-align:center; margin-bottom:20px;">
-            <h1 style="margin:0;">Buku Tamu Digital</h1>
-            <p style="margin-top:5px; font-size:16px;">Dinas Komunikasi dan Informatika</p>
-        </div>
-
-        <h2 style="text-align:center;">Formulir Data Tamu</h2>
-
-        <form action="proses_buku_tamu.php" method="post">
-
-            <div class="form-row">
-                <label for="nama">Nama:</label>
-                <input type="text" id="nama" name="nama" required>
-            </div>
-
-            <div class="form-row">
-                <label for="instansi">Instansi:</label>
-                <input type="text" id="instansi" name="instansi">
-            </div>
-
-            <div class="form-row">
-                <label for="alamat">Alamat:</label>
-                <input type="text" id="alamat" name="alamat">
-            </div>
-
-            <div class="form-row">
-                <label for="no_hp">No HP:</label>
-                <input type="text" id="no_hp" name="no_hp">
-            </div>
-
-            <div class="form-row">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-            </div>
-
-            <div class="form-row">
-                <label for="keperluan">Keperluan:</label>
-                <input type="text" id="keperluan" name="keperluan">
-            </div>
-            
-            <div class="form-row">
-    <label for="tujuan">Pihak yang Dituju:</label>
-    <select id="tujuan" name="tujuan" required style="
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #bbb;
-        border-radius: 6px;
-        font-size: 15px;
-    ">
-        <option value="">-- Pilih Pihak --</option>
-        <option value="Kepala Dinas">KASIMIN, S.IP, MAB (Kepala Dinas)</option>
-        <option value="Sekretaris Dinas">ZAINAL HARISON, SE (Sekretaris Dinas)</option>
-        <option value="Kabid Aplikasi Informatika">APDIAN MUDIE PRIYANBADI,ST,MM (Kabid Aplikasi Informatika)</option>
-        <option value="Kabid Informasi Komunikasi Publik">PADILA, ST (Kabid  Informasi Komunikasi Publik)</option>
-        <option value="Kabid Keamanan Informasi Persandian  & Statistik">MUHAMMAD SAPRIL, S.Sos (Kabid Keamanan Informasi Persandian dan Statistik)</option>
-        <option value="Kasubbag Kepegawaian dan Umum">DESY RESMITA, S.Sos (Kasubbag Kepegawaian dan Umum)</option>
-        <option value="Sandiman">MOHD ISNAINI, S.Sos (Sandiman Muda)</option>
-         <option value="Pranata Hubungan Masyarakat Ahli Muda">UPIK SUMARTI, SS (Pranata Hubungan Masyarakat Ahli Muda)</option>
-         <option value="Analis Kebijakan Ahli Muda">ROSDIANSYAH, SE (Analis Kebijakan Ahli Muda)</option>
-         <option value="Pranata Hubungan Masyarakat Ahli Muda">VERRY YUDHISTIRA, S.Ikom, M.I.Kom (Pranata Hubungan Masyarakat Ahli Muda)</option>
-         <option value="Pranata Komputer Muda">FIRIK, S.Ikom (Pranata Komputer Muda)</option>
-         <option value="Pranata Komputer Muda">ERLINA SETYOWATI HANDAYANI, S.I.Kom (Pranata Komputer Muda)</option>
-         <option value="Penelaah Teknis Kebijakan">ICHSAN ZAINUL HAKIM, ST (Penelaah Teknis Kebijakan)</option>
-         <option value="Penelaah Teknis Kebijakan">IRHAM ASYHARI, S.Kom	(Penelaah Teknis Kebijakan)</option>
-    </select>
-</div>
-
-            <div class="form-row">
-                <label for="tanggal_kunjungan">Tanggal Kunjungan:</label>
-                <input type="date" id="tanggal_kunjungan" name="tanggal_kunjungan" required>
-            </div>
-
-            <div class="form-wrapper" style="text-align:center; margin-top:20px;">
-                <button type="submit" style="
-                    padding:10px 20px;
-                    background:#00923f;
-                    color:white;
-                    border:none;
-                    border-radius:5px;
-                    cursor:pointer;
-                    font-size:16px;">
-                    Kirim
                 </button>
             </div>
 
