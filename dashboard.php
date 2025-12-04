@@ -710,8 +710,7 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
 
     </div>
 
-=======
->>>>>>> a8752b0c74a25039da4864bd39360dec0275b327
+
 </div>
 
 <!-- JS -->
