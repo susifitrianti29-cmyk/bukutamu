@@ -522,7 +522,8 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
             <td><?= $row['instansi']; ?></td>
             <td><?= $row['alamat']; ?></td>
             <td><?= $row['keperluan']; ?></td>
-            <td><?= $row['tujuan']; ?></td>
+            <td><?= $row['nama_pihak'] . " (" . $row['jabatan'] . ")"; ?></td>
+
             
             <td>
                 <a href="edit.php?id=<?= $row['id']; ?>" 
