@@ -450,7 +450,7 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
                 <select id="tujuan" name="tujuan" required style="
                  width: 100%;
                  padding: 10px;
-                border: 1px solid #bbb;
+                border: 3px solid #bbb;
                 border-radius: 6px;
                 font-size: 15px;
                 ">
@@ -468,7 +468,7 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
          <option value="FIRIK, S.Ikom-Pranata Komputer Muda">FIRIK, S.Ikom (Pranata Komputer Muda)</option>
          <option value="ERLINA SETYOWATI HANDAYANI, S.I.Kom -Pranata Komputer Muda">ERLINA SETYOWATI HANDAYANI, S.I.Kom (Pranata Komputer Muda)</option>
          <option value="ICHSAN ZAINUL HAKIM, ST-Penelaah Teknis Kebijakan">ICHSAN ZAINUL HAKIM, ST (Penelaah Teknis Kebijakan)</option>
-         <option value="IRHAM ASYHARI, S.Kom-Penelaah Teknis Kebijakan">IRHAM ASYHARI, S.Kom	(Penelaah Teknis Kebijakan)</option>
+         <option value="IRHAM ASYHARI, S.Kom-Penelaah Teknis Kebijakan">IRHAM ASYHARI, S.Kom (Penelaah Teknis Kebijakan)</option>
     </select>
 </div>
                 <div class="form-row">
