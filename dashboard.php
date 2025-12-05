@@ -507,8 +507,7 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
                     <th>Aksi</th>
                 </tr>
             </thead>
-    </div>
-           <tbody>
+    
     <tbody>
         <?php 
         $no = 1;
@@ -523,13 +522,7 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
             <td><?= $row['instansi']; ?></td>
             <td><?= $row['alamat']; ?></td>
             <td><?= $row['keperluan']; ?></td>
-            <?php
-$pecah = explode('|', $row['tujuan']);
-$nama_pejabat = $pecah[0];
-$jabatan = $pecah[1];
-?>
-<td><?= $nama_pejabat . " (" . $jabatan . ")"; ?></td>
-
+            <td><?= $row['tujuan']; ?></td>
             
             <td>
                 <a href="edit.php?id=<?= $row['id']; ?>" 
