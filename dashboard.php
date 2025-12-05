@@ -495,7 +495,6 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
 
         <h2>Laporan Buku Tamu</h2>
         <table id="bukuTamuTable" class="display">
-            <table border="1">
             <thead>
                 <tr>
                     <th>No</th>
@@ -508,23 +507,24 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
                     <th>Aksi</th>
                 </tr>
             </thead>
-    
+    </div>
            <tbody>
+    <tbody>
         <?php 
         $no = 1;
         $query = mysqli_query($conn, "SELECT * FROM buku_tamu ORDER BY id DESC");
         while ($row = mysqli_fetch_assoc($query)): 
-            ?>
+        ?>
+        
          <tr>
-         <td><?= $no++; ?></td>
-        <td><?= $row['nama']; ?></td>
-        <td><?= $row['instansi']; ?></td>
-        <td><?= $row['alamat']; ?></td>
-        <td><?= $row['no_hp']; ?></td>
-        <td><?= $row['email']; ?></td>
-        <td><?= $row['keperluan']; ?></td>
-        <td><?= $row['tujuan']; ?></td> <!-- INI YANG BELUM ADA -->
-        <td><?= $row['tanggal_kunjungan']; ?></td>
+          <td><?= $no++; ?></td>
+            <td><?= $row['nama']; ?></td>
+            <td><?= $row['tanggal_kunjungan']; ?></td>
+            <td><?= $row['instansi']; ?></td>
+            <td><?= $row['alamat']; ?></td>
+            <td><?= $row['keperluan']; ?></td>
+            <td><?= $row['tujuan']; ?></td>
+            
             <td>
                 <a href="edit.php?id=<?= $row['id']; ?>" 
        style="padding:4px 8px; background:#00923f; color:white; border:none; border-radius:4px; text-decoration:none;">
