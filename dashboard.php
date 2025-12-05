@@ -448,9 +448,9 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
                 <div class="form-row">
                 <label for="tujuan">Pihak yang Dituju:</label>
                 <select id="tujuan" name="tujuan" required style="
-                 width: 100%;
+                 width: 200%;
                  padding: 10px;
-                border: 3px solid #bbb;
+                border: 1px solid #bbb;
                 border-radius: 6px;
                 font-size: 15px;
                 ">
