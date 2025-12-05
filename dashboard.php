@@ -448,27 +448,27 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
                 <div class="form-row">
                 <label for="tujuan">Pihak yang Dituju:</label>
                 <select id="tujuan" name="tujuan" required style="
-                 width: 200%;
+                 width: 100%;
                  padding: 10px;
                 border: 1px solid #bbb;
                 border-radius: 6px;
                 font-size: 15px;
                 ">
         <option value="">-- Pilih Pihak --</option>
-        <option value=" KASIMIN, S.IP, MAB-Kepala Dinas">KASIMIN, S.IP, MAB (Kepala Dinas)</option>
-        <option value=" ZAINAL HARISON, SE-Sekretaris Dinas">ZAINAL HARISON, SE (Sekretaris Dinas)</option>
-        <option value=" APDIAN MUDIE PRIYANBADI,ST,MM -Kabid Aplikasi Informatika">APDIAN MUDIE PRIYANBADI,ST,MM (Kabid Aplikasi Informatika)</option>
-        <option value=" PADILA, ST-Kabid Informasi Komunikasi Publik">PADILA, ST (Kabid  Informasi Komunikasi Publik)</option>
-        <option value=" MUHAMMAD SAPRIL, S.Sos-Kabid Keamanan Informasi Persandian  & Statistik">MUHAMMAD SAPRIL, S.Sos (Kabid Keamanan Informasi Persandian dan Statistik)</option>
-        <option value=" DESY RESMITA, S.Sos-Kasubbag Kepegawaian dan Umum">DESY RESMITA, S.Sos (Kasubbag Kepegawaian dan Umum)</option>
-        <option value=" MOHD ISNAINI, S.Sos-Sandiman">MOHD ISNAINI, S.Sos (Sandiman Muda)</option>
-         <option value=" UPIK SUMARTI, SS-Pranata Hubungan Masyarakat Ahli Muda">UPIK SUMARTI, SS (Pranata Hubungan Masyarakat Ahli Muda)</option>
-         <option value=" ROSDIANSYAH, SE-Analis Kebijakan Ahli Muda">ROSDIANSYAH, SE (Analis Kebijakan Ahli Muda)</option>
-         <option value="VERRY YUDHISTIRA, S.Ikom, M.I.Kom-Pranata Hubungan Masyarakat Ahli Muda">VERRY YUDHISTIRA, S.Ikom, M.I.Kom (Pranata Hubungan Masyarakat Ahli Muda)</option>
-         <option value="FIRIK, S.Ikom-Pranata Komputer Muda">FIRIK, S.Ikom (Pranata Komputer Muda)</option>
-         <option value="ERLINA SETYOWATI HANDAYANI, S.I.Kom -Pranata Komputer Muda">ERLINA SETYOWATI HANDAYANI, S.I.Kom (Pranata Komputer Muda)</option>
-         <option value="ICHSAN ZAINUL HAKIM, ST-Penelaah Teknis Kebijakan">ICHSAN ZAINUL HAKIM, ST (Penelaah Teknis Kebijakan)</option>
-         <option value="IRHAM ASYHARI, S.Kom-Penelaah Teknis Kebijakan">IRHAM ASYHARI, S.Kom (Penelaah Teknis Kebijakan)</option>
+        <option value="KASIMIN, S.IP, MAB|Kepala Dinas">KASIMIN, S.IP, MAB (Kepala Dinas)</option>
+        <option value="ZAINAL HARISON, SE|Sekretaris Dinas">ZAINAL HARISON, SE (Sekretaris Dinas)</option>
+        <option value="APDIAN MUDIE PRIYANBADI,ST,MM|Kabid Aplikasi Informatika">APDIAN MUDIE PRIYANBADI,ST,MM (Kabid Aplikasi Informatika)</option>
+        <option value="PADILA, ST|Kabid Informasi Komunikasi Publik">PADILA, ST (Kabid  Informasi Komunikasi Publik)</option>
+        <option value="MUHAMMAD SAPRIL, S.Sos|Kabid Keamanan Informasi Persandian  & Statistik">MUHAMMAD SAPRIL, S.Sos (Kabid Keamanan Informasi Persandian dan Statistik)</option>
+        <option value="DESY RESMITA, S.Sos|Kasubbag Kepegawaian dan Umum">DESY RESMITA, S.Sos (Kasubbag Kepegawaian dan Umum)</option>
+        <option value="MOHD ISNAINI, S.Sos|Sandiman">MOHD ISNAINI, S.Sos (Sandiman Muda)</option>
+         <option value="UPIK SUMARTI, SS|Pranata Hubungan Masyarakat Ahli Muda">UPIK SUMARTI, SS (Pranata Hubungan Masyarakat Ahli Muda)</option>
+         <option value="ROSDIANSYAH, SE|Analis Kebijakan Ahli Muda">ROSDIANSYAH, SE (Analis Kebijakan Ahli Muda)</option>
+         <option value="VERRY YUDHISTIRA, S.Ikom, M.I.Kom|Pranata Hubungan Masyarakat Ahli Muda">VERRY YUDHISTIRA, S.Ikom, M.I.Kom (Pranata Hubungan Masyarakat Ahli Muda)</option>
+         <option value="FIRIK, S.Ikom|Pranata Komputer Muda">FIRIK, S.Ikom (Pranata Komputer Muda)</option>
+         <option value="ERLINA SETYOWATI HANDAYANI, S.I.Kom|Pranata Komputer Muda">ERLINA SETYOWATI HANDAYANI, S.I.Kom (Pranata Komputer Muda)</option>
+         <option value="ICHSAN ZAINUL HAKIM, ST|Penelaah Teknis Kebijakan">ICHSAN ZAINUL HAKIM, ST (Penelaah Teknis Kebijakan)</option>
+         <option value="IRHAM ASYHARI, S.Kom|Penelaah Teknis Kebijakan">IRHAM ASYHARI, S.Kom (Penelaah Teknis Kebijakan)</option>
     </select>
 </div>
                 <div class="form-row">
@@ -523,7 +523,13 @@ if ($result_chart_keperluan && $result_chart_keperluan->num_rows > 0) {
             <td><?= $row['instansi']; ?></td>
             <td><?= $row['alamat']; ?></td>
             <td><?= $row['keperluan']; ?></td>
-            <td><?= $row['tujuan']; ?></td>
+            <?php
+$pecah = explode('|', $row['tujuan']);
+$nama_pejabat = $pecah[0];
+$jabatan = $pecah[1];
+?>
+<td><?= $nama_pejabat . " (" . $jabatan . ")"; ?></td>
+
             
             <td>
                 <a href="edit.php?id=<?= $row['id']; ?>" 
